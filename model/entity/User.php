@@ -38,6 +38,7 @@ class User
      */
     private string $mail;
 
+
     /**
      * Mot de passe de l'utilisateur
      * @ORM\Column(type="string", length="255")

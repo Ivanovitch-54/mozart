@@ -13,8 +13,6 @@ require dirname(__DIR__) . "/vendor/autoload.php";
 
 // Déclaration du tableau de MODULE à charger 
 $modules = [
-    HomeModule::class,
-    CarModule::class,
     AdminModule::class,
     UserModule::class,
 ];

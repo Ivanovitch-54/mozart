@@ -35,11 +35,3 @@ class DataBaseFactory
     }
   }
 }
-
-// Ceci est un script PHP qui établit une connexion à une base de données en utilisant la bibliothèque ORM (Object Relational Mapping) de Doctrine.
-// La classe DataBaseFactory est invoquée en tant que conteneur PSR-11 et prend une instance de ContainerInterface en tant que paramètre.
-// Il récupère divers paramètres de connexion du conteneur, notamment le pilote de base de données, l'utilisateur, le mot de passe et le nom,
-// et utilise ces paramètres pour créer une connexion Doctrine DBAL.
-// La connexion est ensuite transmise à la classe EntityManager pour créer une instance d'un objet EntityManager,
-// qui sert de point d'entrée principal à la fonctionnalité ORM de Doctrine. Si des exceptions sont levées pendant ce processus,
-// le script attrape l'exception et affiche un message d'erreur avant d'arrêter l'exécution du script.
