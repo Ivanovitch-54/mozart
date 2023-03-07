@@ -2,7 +2,6 @@
 
 namespace App\User;
 
-use App\Car\Action\CarAction;
 use App\User\Action\UserAction;
 use Core\Framework\AbstractClass\AbstractModule;
 use Core\Framework\Renderer\RendererInterface;
@@ -23,7 +22,6 @@ class UserModule extends AbstractModule
         $this->container = $container;
         $this->router = $container->get(Router::class);
         $this->renderer = $container->get(RendererInterface::class);
-        $carAction = $container->get(CarAction::class); // Ensembles d'actions possibles
 
         // Chemin des vues
         $this->renderer->addPath('user', __DIR__ . DIRECTORY_SEPARATOR . 'view');

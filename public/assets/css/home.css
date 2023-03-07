@@ -1,0 +1,105 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Ne pas oublier de modifier l'url pour récupérer les images (Supprimer /public pour passez directement à /assets) */
+body {
+    background-color: #FDFFEC;
+}
+
+header li {
+    font-family: 'Josefin Sans', sans-serif;
+}
+
+.bloc1 {
+    height: 85vh;
+}
+
+.welcome-pic {
+    background-image: url(/assets/img/toto3.jpg);
+    background-position: center;
+    background-size: cover;
+    font-family: 'Satisfy', cursive;
+}
+
+.welcome-text {
+    margin-top: 45%;
+}
+
+.link-cuisine {
+    height: 25%;
+    background-image: url(/assets/img/pexels-nerfee-mirandilla-3186654.jpg);
+    background-position: center;
+    background-size: cover;
+    font-family: 'Satisfy', cursive;
+}
+
+.link-coiffure {
+    height: 25%;
+    background-image: url(/assets/img/barber-gb2ae370d6_1920.jpg);
+    background-position: center;
+    background-size: cover;
+    font-family: 'Satisfy', cursive;
+}
+
+.link-doc {
+    height: 25%;
+    background-image: url(/assets/img/pexels-karolina-grabowska-4386466.jpg);
+    background-position: center;
+    background-size: cover;
+    font-family: 'Satisfy', cursive;
+}
+
+.linkedin-link {
+    font-family: 'Josefin Sans', sans-serif;
+    width: 80%;
+}
+
+.facebook-link {
+    font-family: 'Josefin Sans', sans-serif;
+    width: 80%;
+}
+
+.text-activity {
+    margin-top: 25%;
+}
+
+.text-josefin {
+    font-family: 'Josefin Sans', sans-serif;
+}
+
+/* Ici commence la deuxième partie de ma page principale (Partie Gauche) */
+
+.index-bottom-bloc {
+    height: 85vh;
+}
+
+.bloc2 {
+    background-image: url(/assets/img/portrait-agriculteur-tenant-caisse-pleine-fruits-fraises-serre.jpg);
+    background-position: center;
+    background-size: cover;
+    font-family: 'Satisfy', cursive;
+    height: 85vh;
+}
+
+.bloc-actu {
+    font-family: 'Josefin Sans', sans-serif;
+    width: 90%;
+}
+
+.welcome-text2 {
+    width: 60%;
+}
+
+.welcome-pic2 {
+    margin-top: 35%;
+}
+
+/* Ici commence le FOOTER */
+
+.bloc-footer {
+    background-color: #FFFCCF;
+}
+

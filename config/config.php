@@ -15,7 +15,7 @@ use function DI\factory;
 
 return [
     "doctrine.user" => "root",
-    "doctrine.dbname" => "rentcar",
+    "doctrine.dbname" => "mozart",
     "doctrine.mdp" => "",
     "doctrine.driver" => "pdo_mysql",
     "doctrine.devMode" => true,

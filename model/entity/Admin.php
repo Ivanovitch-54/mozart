@@ -6,45 +6,52 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity
- * @ORM\Table(name="utilisateur")
+ * @ORM\Table(name="administrateur")
  */
-class User
+
+class Admin
 {
 
     /**
+     * Id de l'administrateur
      * @ORM\Id
+     * @ORM\Column(type="integer", name="id")
      * @ORM\GeneratedValue(strategy="IDENTITY")
-     * @ORM\Column(type="integer")
      * @var integer
      */
     private int $id;
 
 
     /**
-     * @ORM\Column(type="string", length="55")
+     * Nom de l'Admin
+     * @ORM\Column(type="string", name="admin" , length="55")
      * @var string
      */
-    private string $nom;
-
-    /**
-     * @ORM\Column(type="string", length="55")
-     * @var string
-     */
-    private string $prenom;
+    private string $name;
 
 
     /**
-     * @ORM\Column(type="string", length="150")
+     * Mot de passe de l'Admin
+     *@ORM\Column(type="string", name="password", length="255")
+     * @var string
+     */
+    private string $password;
+
+
+    /**
+     * Email de l'admin 
+     *@ORM\Column(type="string", name="email", length="55")
      * @var string
      */
     private string $mail;
 
 
     /**
-     * @ORM\Column(type="string", length="255")
+     * Numéro de téléphone de l'Admin
+     *@ORM\Column(type="string", name="phone_number", length="20")
      * @var string
      */
-    private string $password;
+    private string $phone;
 
     /**
      * Get id.
@@ -57,51 +64,51 @@ class User
     }
 
     /**
-     * Set nom.
+     * Set name.
      *
-     * @param string $nom
+     * @param string $name
      *
-     * @return User
+     * @return Admin
      */
-    public function setNom($nom)
+    public function setName($name)
     {
-        $this->nom = $nom;
+        $this->name = $name;
 
         return $this;
     }
 
     /**
-     * Get nom.
+     * Get name.
      *
      * @return string
      */
-    public function getNom()
+    public function getName()
     {
-        return $this->nom;
+        return $this->name;
     }
 
     /**
-     * Set prenom.
+     * Set password.
      *
-     * @param string $prenom
+     * @param string $password
      *
-     * @return User
+     * @return Admin
      */
-    public function setPrenom($prenom)
+    public function setPassword($password)
     {
-        $this->prenom = $prenom;
+        $this->password = $password;
 
         return $this;
     }
 
     /**
-     * Get prenom.
+     * Get password.
      *
      * @return string
      */
-    public function getPrenom()
+    public function getPassword()
     {
-        return $this->prenom;
+        return $this->password;
     }
 
     /**
@@ -109,7 +116,7 @@ class User
      *
      * @param string $mail
      *
-     * @return User
+     * @return Admin
      */
     public function setMail($mail)
     {
@@ -129,37 +136,26 @@ class User
     }
 
     /**
-     * Set password.
+     * Set phone.
      *
-     * @param string $password
+     * @param string $phone
      *
-     * @return User
+     * @return Admin
      */
-    public function setPassword($password)
+    public function setPhone($phone)
     {
-        $this->password = $password;
+        $this->phone = $phone;
 
         return $this;
     }
 
     /**
-     * Get password.
+     * Get phone.
      *
      * @return string
      */
-    public function getPassword()
+    public function getPhone()
     {
-        return $this->password;
+        return $this->phone;
     }
-
-    public function hydrate(array $data): self  // Permet d'éviter de réécrire a chaque fois set avant chaque méthode
-    {
-        foreach($data as $key => $value) {
-            $method = 'set'.ucfirst($key);
-            if(method_exists($this, $method)){
-                $this->$method($value);
-            }
-        }
-        return $this;
-    } 
 }

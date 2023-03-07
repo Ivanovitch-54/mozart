@@ -1,5 +1,7 @@
 <?php
 
-return [
+use App\Admin\AdminModule;
 
+return [
+    AdminModule::class => \DI\autowire()
 ];

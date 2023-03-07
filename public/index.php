@@ -1,18 +1,28 @@
 <?php
 
-
+use Core\App;
+use App\Home\HomeModule;
 use DI\ContainerBuilder;
-
+use App\Admin\AdminModule;
+use App\User\UserModule;
 
 use function Http\Response\send;
 use GuzzleHttp\Psr7\ServerRequest;
+use Core\Framework\Middleware\RouterMiddleware;
+use Core\Framework\Middleware\NotFoundMiddleware;
+use Core\Framework\Middleware\AdminAuthMiddleware;
+use Core\Framework\Middleware\TrailingSlashMiddleware;
 
+
+use Core\Framework\Middleware\RouterDispatcherMiddleware;
+use Core\Framework\Middleware\UserAuthMiddleware;
 
 // Inclusion de l'AUTOLOADER de COMPOSER
 require dirname(__DIR__) . "/vendor/autoload.php";
 
 // Déclaration du tableau de MODULE à charger 
 $modules = [
+    HomeModule::class,
     AdminModule::class,
     UserModule::class,
 ];

@@ -1,38 +1,41 @@
-<?php 
+<?php
+
 namespace Model\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * @ORM\Entity
  * @ORM\Table(name="utilisateur")
  */
-class User 
+class User
 {
+
     /**
-     * Id de l'utilisateur
-     * @ORM\GeneratedValue(strategy="IDENTIFY")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
      * @ORM\Column(type="integer")
      * @var integer
      */
     private int $id;
 
+
     /**
-     * Nom de l'utilisateur
      * @ORM\Column(type="string", length="55")
      * @var string
      */
     private string $nom;
 
     /**
-     * Prenom de l'utilisateur
      * @ORM\Column(type="string", length="55")
      * @var string
      */
     private string $prenom;
 
+
     /**
-     * Email de l'utilisateur 
      * @ORM\Column(type="string", length="150")
      * @var string
      */
@@ -40,40 +43,42 @@ class User
 
 
     /**
-     * Mot de passe de l'utilisateur
      * @ORM\Column(type="string", length="255")
      * @var string
      */
     private string $password;
 
+
     /**
-     * Get id de l'utilisateur
+     * Many Users have Many Evenements.
+     * @ORM\ManyToMany(targetEntity="Evenement", inversedBy="users")
+     * @ORM\JoinTable(name="users_evenements")
+     * @var Collection<int, Evenement>
+     */
+    private Collection $evenements;
+
+    public function __construct() {
+        $this->evenements = new ArrayCollection();
+    }
+
+    /**
+     * Get id.
      *
-     * @return  integer
-     */ 
+     * @return int
+     */
     public function getId()
     {
         return $this->id;
     }
 
     /**
-     * Get nom de l'utilisateur
+     * Set nom.
      *
-     * @return  string
-     */ 
-    public function getNom()
-    {
-        return $this->nom;
-    }
-
-    /**
-     * Set nom de l'utilisateur
+     * @param string $nom
      *
-     * @param  string  $nom  Nom de l'utilisateur
-     *
-     * @return  self
-     */ 
-    public function setNom(string $nom)
+     * @return User
+     */
+    public function setNom($nom)
     {
         $this->nom = $nom;
 
@@ -81,23 +86,23 @@ class User
     }
 
     /**
-     * Get prenom de l'utilisateur
+     * Get nom.
      *
-     * @return  string
-     */ 
-    public function getPrenom()
+     * @return string
+     */
+    public function getNom()
     {
-        return $this->prenom;
+        return $this->nom;
     }
 
     /**
-     * Set prenom de l'utilisateur
+     * Set prenom.
      *
-     * @param  string  $prenom  Prenom de l'utilisateur
+     * @param string $prenom
      *
-     * @return  self
-     */ 
-    public function setPrenom(string $prenom)
+     * @return User
+     */
+    public function setPrenom($prenom)
     {
         $this->prenom = $prenom;
 
@@ -105,23 +110,23 @@ class User
     }
 
     /**
-     * Get email de l'utilisateur
+     * Get prenom.
      *
-     * @return  string
-     */ 
-    public function getMail()
+     * @return string
+     */
+    public function getPrenom()
     {
-        return $this->mail;
+        return $this->prenom;
     }
 
     /**
-     * Set email de l'utilisateur
+     * Set mail.
      *
-     * @param  string  $mail  Email de l'utilisateur
+     * @param string $mail
      *
-     * @return  self
-     */ 
-    public function setMail(string $mail)
+     * @return User
+     */
+    public function setMail($mail)
     {
         $this->mail = $mail;
 
@@ -129,26 +134,83 @@ class User
     }
 
     /**
-     * Get mot de passe de l'utilisateur
+     * Get mail.
      *
-     * @return  string
-     */ 
+     * @return string
+     */
+    public function getMail()
+    {
+        return $this->mail;
+    }
+
+    /**
+     * Set password.
+     *
+     * @param string $password
+     *
+     * @return User
+     */
+    public function setPassword($password)
+    {
+        $this->password = $password;
+
+        return $this;
+    }
+
+    /**
+     * Get password.
+     *
+     * @return string
+     */
     public function getPassword()
     {
         return $this->password;
     }
 
-    /**
-     * Set mot de passe de l'utilisateur
-     *
-     * @param  string  $password  Mot de passe de l'utilisateur
-     *
-     * @return  self
-     */ 
-    public function setPassword(string $password)
+    public function hydrate(array $data): self  // Permet d'éviter de réécrire a chaque fois set avant chaque méthode
     {
-        $this->password = $password;
-
+        foreach ($data as $key => $value) {
+            $method = 'set' . ucfirst($key);
+            if (method_exists($this, $method)) {
+                $this->$method($value);
+            }
+        }
         return $this;
+    }
+
+    /**
+     * Add evenement.
+     *
+     * @param \Model\Entity\Evenement $evenement
+     *
+     * @return User
+     */
+    public function addEvenement(\Model\Entity\Evenement $evenement)
+    {
+        $this->evenements[] = $evenement;
+    
+        return $this;
+    }
+
+    /**
+     * Remove evenement.
+     *
+     * @param \Model\Entity\Evenement $evenement
+     *
+     * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
+     */
+    public function removeEvenement(\Model\Entity\Evenement $evenement)
+    {
+        return $this->evenements->removeElement($evenement);
+    }
+
+    /**
+     * Get evenements.
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getEvenements()
+    {
+        return $this->evenements;
     }
 }
