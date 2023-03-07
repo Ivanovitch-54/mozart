@@ -36,22 +36,15 @@ class Evenement
 
     /**
      * @ORM\Column(type="datetime")
-     * @var string
+     * @var
      */
-    private string $startAt;
+    private $startAt;
 
     /**
      * @ORM\Column(type="datetime")
-     * @var string
+     * @var 
      */
-    private string $endAt;
-
-
-    /**
-     * @ORM\Column(type="string", length="255")
-     * @var string
-     */
-    private string $password;
+    private  $endAt;
 
     /**
      * Many Evenements have Many Users.
@@ -172,26 +165,38 @@ class Evenement
     }
 
     /**
-     * Set password.
+     * Get user>
      *
-     * @param string $password
+     * @return  Collection<int,
+     */ 
+    public function getUsers()
+    {
+        return $this->users;
+    }
+
+    /**
+     * Add user.
+     *
+     * @param \Model\Entity\User $user
      *
      * @return Evenement
      */
-    public function setPassword($password)
+    public function addUser(\Model\Entity\User $user)
     {
-        $this->password = $password;
-
+        $this->users[] = $user;
+    
         return $this;
     }
 
     /**
-     * Get password.
+     * Remove user.
      *
-     * @return string
+     * @param \Model\Entity\User $user
+     *
+     * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
      */
-    public function getPassword()
+    public function removeUser(\Model\Entity\User $user)
     {
-        return $this->password;
+        return $this->users->removeElement($user);
     }
 }

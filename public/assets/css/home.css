@@ -103,3 +103,10 @@ header li {
     background-color: #FFFCCF;
 }
 
+/* TEST */
+
+.toto {
+    border: solid blue;
+    height: 600px;
+    width: 600px;
+}

@@ -4,6 +4,7 @@ use Core\App;
 use App\Home\HomeModule;
 use DI\ContainerBuilder;
 use App\Admin\AdminModule;
+use App\Evenement\EvenementModule;
 use App\User\UserModule;
 
 use function Http\Response\send;
@@ -25,6 +26,7 @@ $modules = [
     HomeModule::class,
     AdminModule::class,
     UserModule::class,
+    EvenementModule::class
 ];
 
 // Instanciation du BUILDER de CONTENEUR de DEPENDANCES, le BUILDER permet de construire l'objet de container de DEPENDANCE  
