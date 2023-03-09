@@ -34,13 +34,22 @@ class AdminModule extends AbstractModule
         $this->router->get('/admin/logout', [$authAction, 'logout'], 'admin.logout'); // LogOut de l'Admin 
         $this->router->get('/admin/home', [$adminAction, 'home'], 'admin.home'); // Page Home de l'Admin
 
-        // TEST //
-        $this->router->get('/admin/event', [$adminAction, 'event'], 'admin.event'); // Liste des Events
-        $this->router->get('/admin/addEvent', [$adminAction, 'addEvent'], 'event.add'); // Page Ajout Event
-        $this->router->post('/admin/addEvent', [$adminAction, 'addEvent']); // Ajout d'Event en POST
-        $this->router->get('/admin/deleteEvent/{id:[\d]+}', [$adminAction, 'delete'], 'event.delete'); // Suppression D'Event 
-        // Modifier un Event 
-        $this->router->get('/admin/updateEvent/{id:[\d]+}', [$adminAction, 'update'], 'event.update'); // Modif Event
-        $this->router->post('/admin/updateEvent/{id:[\d]+}', [$adminAction, 'update']); // Modif Event
+        // Liste Des Evenements
+        $this->router->get('/admin/event', [$adminAction, 'event'], 'admin.event');
+        // Ajouter Un Evenement
+        $this->router->get('/admin/addEvent', [$adminAction, 'addEvent'], 'event.add');
+        $this->router->post('/admin/addEvent', [$adminAction, 'addEvent']);
+        // Suppression D'Evenement
+        $this->router->get('/admin/deleteEvent/{id:[\d]+}', [$adminAction, 'delete'], 'event.delete');
+        // Modifier un Evenement
+        $this->router->get('/admin/updateEvent/{id:[\d]+}', [$adminAction, 'update'], 'event.update');
+        $this->router->post('/admin/updateEvent/{id:[\d]+}', [$adminAction, 'update']);
+        // Liste des Intervenants
+        $this->router->get('/admin/inter', [$adminAction, 'showInter'], 'admin.inter');
+        // Ajouter un Intervenant
+        $this->router->get('/admin/addInter', [$adminAction, 'addInter'], 'inter.add');
+        $this->router->post('/admin/addInter', [$adminAction, 'addInter']);
+        // Supprimer un Intervenant
+        $this->router->get('/admin/deleteInter/{id:[\d]+}', [$adminAction, 'deleteInter'], 'inter.delete');
     }
 }

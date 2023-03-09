@@ -12,6 +12,7 @@
         <tr>
             <th>Nom de l'événement</th>
             <th>Description de l'événement</th>
+            <th>Intervenant de l'événement</th>
             <th>Débute à </th>
             <th>Fini à </th>
         </tr>
@@ -22,8 +23,11 @@
         <tr>
             <td>{{ evenement.nom }}</td>
             <td>{{ evenement.description }}</td>
-            <td>{{ evenement.startAt|date("m/d/Y\\ H:i", "Europe/Paris") }}</td>
-            <td>{{ evenement.endAt|date("m/d/Y\\ H:i", "Europe/Paris") }}</td>
+            <td>{% for intervenant in evenement.intervenants %}
+                {{ intervenant.nom }}
+                {% endfor %}</td>
+            <td>{{ evenement.startAt|date("d/m/Y\\ H:i", "Europe/Paris") }}</td>
+            <td>{{ evenement.endAt|date("d/m/Y\\ H:i", "Europe/Paris") }}</td>
             <td>
                 <a href="{{ path('event.delete', {id: evenement.id}) }}">Supprimer</a>
                 <a href="{{ path('event.update', {id: evenement.id}) }}">Modifier</a>

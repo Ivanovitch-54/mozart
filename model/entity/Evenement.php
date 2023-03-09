@@ -53,11 +53,19 @@ class Evenement
      */
     private Collection $users;
 
+    /**
+     * Many Evenements have Many Intervenants.
+     * @ORM\ManyToMany(targetEntity="Intervenant", mappedBy="evenements")
+     * @var Collection<int, Intervenant>
+     */
+    private Collection $intervenants;
+    
     public function __construct()
     {
         $this->users = new ArrayCollection();
+        $this->intervenants = new ArrayCollection();
     }
-
+    
     /**
      * Get id.
      *
@@ -168,7 +176,7 @@ class Evenement
      * Get user>
      *
      * @return  Collection<int,
-     */ 
+     */
     public function getUsers()
     {
         return $this->users;
@@ -184,7 +192,7 @@ class Evenement
     public function addUser(\Model\Entity\User $user)
     {
         $this->users[] = $user;
-    
+
         return $this;
     }
 
@@ -198,5 +206,41 @@ class Evenement
     public function removeUser(\Model\Entity\User $user)
     {
         return $this->users->removeElement($user);
+    }
+
+    /**
+     * Remove intervenant.
+     *
+     * @param \Model\Entity\Intervenant $intervenant
+     *
+     * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
+     */
+    public function removeIntervenant(\Model\Entity\Intervenant $intervenant)
+    {
+        return $this->intervenants->removeElement($intervenant);
+    }
+
+    /**
+     * Add intervenant.
+     *
+     * @param \Model\Entity\Intervenant $intervenant
+     *
+     * @return Evenement
+     */
+    public function addIntervenant(\Model\Entity\Intervenant $intervenant)
+    {
+        $this->intervenants[] = $intervenant;
+    
+        return $this;
+    }
+
+    /**
+     * Get intervenants.
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getIntervenants()
+    {
+        return $this->intervenants;
     }
 }

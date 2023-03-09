@@ -28,7 +28,7 @@ class AdminAuthMiddleware extends AbstractMiddleware
     public function process(ServerRequestInterface $request)
     {
         $uri = $request->getUri()->getPath();
-        // TODO:
+        TODO:
         if (str_starts_with($uri, '/adminTEST') && $uri !== "/admin/login") // On vérifie si l'url commence par '/admin' et n'est pas égale à '/admin/login' car c'est une route qu'on ne veut pas protéger justement
         {
             $auth = $this->container->get(AdminAuth::class); // On récupère l'objet qui gère l'administrateur 

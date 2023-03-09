@@ -13,6 +13,7 @@ use Core\Framework\Validator\Validator;
 use Core\Framework\Router\RedirectTrait;
 use Psr\Http\Message\ServerRequestInterface;
 use Core\Framework\Renderer\RendererInterface;
+use Model\Entity\Intervenant;
 
 class AdministratorAction
 {
@@ -22,6 +23,7 @@ class AdministratorAction
     private $repository;
     private Toaster $toaster;
     private EntityManager $manager;
+    private $interRepository;
 
     public function __construct(ContainerInterface $container, RendererInterface $renderer, EntityManager $manager, Toaster $toaster)
     {
@@ -30,6 +32,8 @@ class AdministratorAction
         $this->renderer = $renderer;
         $this->toaster = $toaster;
         $this->repository = $manager->getRepository(Evenement::class);
+        $this->interRepository = $manager->getRepository(Intervenant::class);
+
     }
 
     public function home(ServerRequest $request)
@@ -55,7 +59,7 @@ class AdministratorAction
             $evenements = $this->repository->findAll();
             $validator = new Validator($data); // On instancie le Validator en lui passant le tableau de données à valider 
             $errors = $validator
-                ->required('nom', 'description', 'startAt', 'endAt')
+                ->required('nom', 'description', 'startAt', 'endAt','intervenant')
                 ->getErrors();
 
             if ($errors) {
@@ -75,8 +79,12 @@ class AdministratorAction
             }
             // Ici j'instancie un nouveau événement contenu dans la variable $new 
             $new = new Evenement();
+            $intervenant = $this->interRepository->find($data['intervenant']);
+            // Test
+
             $new->setNom($data['nom'])
                 ->setDescription($data['description'])
+                ->addIntervenant($intervenant)
                 ->setStartAt(new DateTime($data['startAt']))
                 ->setEndAt(new DateTime($data['endAt']));
 
@@ -87,7 +95,10 @@ class AdministratorAction
             return (new Response())
                 ->withHeader('Location', '/admin/event');
         }
-        return $this->renderer->render('@admin/addEvent');
+        $intervenants = $this->interRepository->findAll();
+        return $this->renderer->render('@admin/addEvent',[
+            "intervenants" => $intervenants
+        ]);
     }
 
     public function delete(ServerRequestInterface $request): Response
@@ -105,7 +116,7 @@ class AdministratorAction
     }
 
 
-    // A TESTER //
+    // Mise à jour d'Evenement //
     public function update(ServerRequestInterface $request)
     {
         $id = $request->getAttribute('id'); // Pour allez recup l'id de l'event 
@@ -138,5 +149,71 @@ class AdministratorAction
         return $this->renderer->render('@admin/updateEvent', [
             "evenement" => $event
         ]);
+    }
+
+    // A partir d'ici je gère les intervenants 
+
+    public function showInter (ServerRequestInterface $request)
+    {
+        $intervenants = $this->interRepository->findAll();
+
+        return $this->renderer->render('@admin/inter', [
+            "intervenants" => $intervenants
+        ]);
+    }
+
+    public function addInter(ServerRequestInterface $request)
+    {
+        $method = $request->getMethod();
+
+        if ($method === 'POST') {
+            $data = $request->getParsedBody();
+            $intervenants = $this->interRepository->findAll();
+            $validator = new Validator($data);
+            $errors = $validator
+            ->required('nom','prenom','role')
+            ->getErrors();
+
+            if ($errors) {
+                foreach ($errors as $error) {
+                    $this->toaster->makeToast($error->toString(), Toaster::ERROR);
+                }
+                return $this->redirect('inter.add');
+            }
+
+            foreach ($intervenants as $intervenant) {
+                if ($intervenant->getNom() === $data['nom']){
+                    $this->toaster->makeToast('Intervenant déjà enregistrer', Toaster::ERROR);
+                    return $this->renderer->render('@admin/addInter');
+                }
+            }
+
+            $new = new Intervenant();
+            $new->setNom($data['nom'])
+                ->setPrenom($data['prenom'])
+                ->setRole($data['role']);
+
+            $this->manager->persist($new);
+            $this->manager->flush();
+            $this->toaster->makeToast('Nouvelle Intervenant enregistrer avec succès', Toaster::SUCCESS);
+
+            return (new Response())
+            ->withHeader('Location', '/admin/inter');
+        }
+        return $this->renderer->render('@admin/addInter');
+    }
+
+    public function deleteInter(ServerRequestInterface $request): Response
+    {
+        $id = $request->getAttribute('id'); // Permet de récup l'ID de l'event
+        $intervenant = $this->interRepository->find($id); // Permet de récup l'event en fonction de son ID
+
+        $this->manager->remove($intervenant); // Supprime l'event
+        $this->manager->flush(); // Applique la suppresion 
+
+        $this->toaster->makeToast('Intervenant supprimer avec succès', Toaster::SUCCESS);
+
+        return (new Response())
+            ->withHeader('Location', '/admin/inter');
     }
 }

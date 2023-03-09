@@ -3,6 +3,8 @@
 namespace Model\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 
 /**
  * @ORM\Entity
@@ -32,20 +34,27 @@ class Intervenant
      */
     private string $prenom;
 
-
-    /**
-     * @ORM\Column(type="string", length="150")
-     * @var string
-     */
-    private string $mail;
-
-
     /**
      * Role de l'intervenant 
      * @ORM\Column(type="string", length="60")
      * @var string
      */
     private string $role;
+
+    /**
+     * Many Intervenants have Many Evenements.
+     * @ORM\ManyToMany(targetEntity="Evenement")
+     * @ORM\JoinTable(
+     * joinColumns={@ORM\JoinColumn(name="id_intervenant",referencedColumnName="id", onDelete="CASCADE")},
+     * inverseJoinColumns={@ORM\JoinColumn(name="id_evenement",referencedColumnName="id")})
+     * @var Collection<int, Evenement>
+     */
+    private Collection $evenements;
+
+    public function __construct()
+    {
+        $this->evenements = new ArrayCollection();
+    }
 
     /**
      * Get id.
@@ -105,30 +114,6 @@ class Intervenant
         return $this->prenom;
     }
 
-    /**
-     * Set mail.
-     *
-     * @param string $mail
-     *
-     * @return self
-     */
-    public function setMail($mail)
-    {
-        $this->mail = $mail;
-
-        return $this;
-    }
-
-    /**
-     * Get mail.
-     *
-     * @return string
-     */
-    public function getMail()
-    {
-        return $this->mail;
-    }
-
     public function hydrate(array $data): self  // Permet d'éviter de réécrire a chaque fois set avant chaque méthode
     {
         foreach ($data as $key => $value) {
@@ -144,7 +129,7 @@ class Intervenant
      * Get role de l'intervenant
      *
      * @return  string
-     */ 
+     */
     public function getRole()
     {
         return $this->role;
@@ -156,11 +141,47 @@ class Intervenant
      * @param  string  $role  Role de l'intervenant
      *
      * @return  self
-     */ 
+     */
     public function setRole(string $role)
     {
         $this->role = $role;
 
         return $this;
+    }
+
+    /**
+     * Add evenement.
+     *
+     * @param \Model\Entity\Evenement $evenement
+     *
+     * @return User
+     */
+    public function addEvenement(\Model\Entity\Evenement $evenement)
+    {
+        $this->evenements[] = $evenement;
+
+        return $this;
+    }
+
+    /**
+     * Remove evenement.
+     *
+     * @param \Model\Entity\Evenement $evenement
+     *
+     * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
+     */
+    public function removeEvenement(\Model\Entity\Evenement $evenement)
+    {
+        return $this->evenements->removeElement($evenement);
+    }
+
+    /**
+     * Get evenements.
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getEvenements()
+    {
+        return $this->evenements;
     }
 }
