@@ -1,0 +1,34 @@
+{% extends "admin.layout.html.twig" %}
+
+{% block body %}
+
+<form method="POST" action="" class="card p-4" style="max-width: 500px;" enctype="multipart/form-data">
+
+    <div class="input-group input-group-sm mb-3">
+        <span class="input-group-text" id="inputGroup-sizing-sm">Nom de l'événement</span>
+        <input type="text" name="nom" class="form-control" aria-label="Sizing example input"
+            aria-describedby="inputGroup-sizing-sm">
+    </div>
+
+    <div class="input-group input-group-sm mb-3">
+        <span class="input-group-text" id="inputGroup-sizing-sm">Description de l'événement</span>
+        <input type="text" name="description" class="form-control" aria-label="Sizing example input"
+            aria-describedby="inputGroup-sizing-sm">
+    </div>
+
+    <div class="input-group input-group-sm mb-3">
+        <span class="input-group-text" id="inputGroup-sizing-sm">Début de l'événement</span>
+        <input type="datetime-local" name="startAt" class="form-control" aria-label="Sizing example input"
+            aria-describedby="inputGroup-sizing-sm">
+    </div>
+
+    <div class="input-group input-group-sm mb-3">
+        <span class="input-group-text" id="inputGroup-sizing-sm">Fin de l'événement</span>
+        <input type="datetime-local" name="endAt" class="form-control" aria-label="Sizing example input"
+            aria-describedby="inputGroup-sizing-sm">
+    </div>
+
+    <input type="submit" value="Ajouter">
+</form>
+
+{% endblock %}

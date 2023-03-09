@@ -38,7 +38,13 @@
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="#">Evenements</a>
+                            <a class="nav-link" aria-current="page" href="{{ path('admin.event') }}">Liste des
+                                événements</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" aria-current="page" href="{{ path('event.add') }}">Ajouter un
+                                événement</a>
                         </li>
 
                     </ul>
@@ -47,17 +53,14 @@
         </nav>
     </header>
     <main>
-
         {% if hasToast() %}
-
-        {{ renderToast() }}
-
+        {% for toast in renderToast() %}
+        {{ toast | raw}}
+        {% endfor %}
         {% endif %}
-
         {% block body %}
-        <!-- inserer page içi -->
+        <!-- inserer page ici -->
         {% endblock %}
-
     </main>
     <footer>
         <h1>Je suis le footer</h1>

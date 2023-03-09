@@ -1,0 +1,36 @@
+{% extends "admin.layout.html.twig" %}
+{% block stylesheet %}
+{# Mettre ici le liens vers le CSS de la page #}
+{% endblock %}
+
+{% block body %}
+
+<h1>Liste des événements</h1>
+
+<table>
+    <thead>
+        <tr>
+            <th>Nom de l'événement</th>
+            <th>Description de l'événement</th>
+            <th>Débute à </th>
+            <th>Fini à </th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {% for evenement in evenements %}
+        <tr>
+            <td>{{ evenement.nom }}</td>
+            <td>{{ evenement.description }}</td>
+            <td>{{ evenement.startAt|date("m/d/Y\\ H:i", "Europe/Paris") }}</td>
+            <td>{{ evenement.endAt|date("m/d/Y\\ H:i", "Europe/Paris") }}</td>
+            <td>
+                <a href="{{ path('event.delete', {id: evenement.id}) }}">Supprimer</a>
+                <a href="{{ path('event.update', {id: evenement.id}) }}">Modifier</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}
