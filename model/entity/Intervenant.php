@@ -43,10 +43,7 @@ class Intervenant
 
     /**
      * Many Intervenants have Many Evenements.
-     * @ORM\ManyToMany(targetEntity="Evenement")
-     * @ORM\JoinTable(
-     * joinColumns={@ORM\JoinColumn(name="id_intervenant",referencedColumnName="id", onDelete="CASCADE")},
-     * inverseJoinColumns={@ORM\JoinColumn(name="id_evenement",referencedColumnName="id")})
+     * @ORM\ManyToMany(targetEntity="Evenement", mappedBy="intervenants")
      * @var Collection<int, Evenement>
      */
     private Collection $evenements;

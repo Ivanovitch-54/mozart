@@ -8,7 +8,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * @ORM\Entity
- * @ORM\Table(name="utilisateur")
+ * @ORM\Table(name="user")
  */
 class User
 {
@@ -51,8 +51,7 @@ class User
 
     /**
      * Many Users have Many Evenements.
-     * @ORM\ManyToMany(targetEntity="Evenement", inversedBy="users")
-     * @ORM\JoinTable(name="users_evenements")
+     * @ORM\ManyToMany(targetEntity="Evenement", mappedBy="users")
      * @var Collection<int, Evenement>
      */
     private Collection $evenements;

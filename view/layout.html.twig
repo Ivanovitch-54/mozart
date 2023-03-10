@@ -28,7 +28,7 @@
           <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap">
             <use xlink:href="#bootstrap" />
           </svg>
-          
+
         </a>
 
         <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
@@ -36,7 +36,7 @@
           <li><a href="#" class="nav-link px-3 link-dark fs-5">Qui sommes-nous ?</a></li>
           <li><a href="#" class="nav-link px-3 link-dark fs-5">Dons</a></li>
           <li><a href="#" class="nav-link px-3 link-dark fs-5">Contact</a></li>
-          <li><a href="#" class="nav-link px-3 link-dark fs-5">Inscription / Connexion</a></li>
+          <li><a href="{{ path('user.login') }}" class="nav-link px-3 link-dark fs-5">Inscription / Connexion</a></li>
         </ul>
 
         <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
@@ -46,14 +46,16 @@
         <div class="dropdown text-end">
           <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" data-bs-toggle="dropdown"
             aria-expanded="false">
-            <img src="{{ assets('assets/img/user.png') }}" alt="" width="32" height="32" class="rounded-circle">
+            <img src="{{ absolute(assets('assets/img/user.png')) }}" alt="" width="32" height="32" class="rounded-circle">
           </a>
           <ul class="dropdown-menu text-small">
             <li><a class="dropdown-item" href="#">Mon profile</a></li>
             <li>
               <hr class="dropdown-divider">
             </li>
-            <li><a class="dropdown-item" href="#">Se déconnecter</a></li>
+            <li>
+              <a class="dropdown-item" href="{{ path('user.logout') }}">Se déconnecter</a>
+            </li>
           </ul>
         </div>
       </div>
@@ -77,53 +79,54 @@
     {% endblock %}
 
   </main>
-    <div class="bloc-footer container-fluid">
-      <footer class="py-5">
-        <div class="row">
-          <div class="col-6 col-md-2 mb-3">
-            <h5>Liens du site</h5>
-            <ul class="nav flex-column">
-              <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Acceuil</a></li>
-              <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Nos activités</a></li>
-              <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">A propos</a></li>
-              <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Contact</a></li>
-              <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Mentions Légales</a></li>
-            </ul>
-          </div>
 
-          <div class="col-6 col-md-2 mb-3">
-            <h5>Horaires</h5>
-            <ul class="nav flex-column">
-              <li class="nav-item mb-2">Lundi 09:00-19:30</li>
-              <li class="nav-item mb-2">Mardi 09:00-19:30</li>
-              <li class="nav-item mb-2">Mercredi 09:00-19:30</li>
-              <li class="nav-item mb-2">Jeudi 09:00-19:30</li>
-              <li class="nav-item mb-2">Vendredi 09:00-19:30</li>
-              <li class="nav-item mb-2">Samedi 09:00-19:30</li>
-              <li class="nav-item mb-2">Dimanche 09:00-12:30</li>
-            </ul>
-          </div>
-
-          <div class="col-6 col-md-2 mb-3">
-            <h5>Nous contacter</h5>
-            <ul class="nav flex-column">
-              <li class="nav-item mb-2">57000 Metz</li>
-              <li class="nav-item mb-2">14 Rue Mozart</li>
-              <li class="nav-item mb-2">Tél. +33 07 25 13 12</li>
-              <li class="nav-item mb-2">Fax. +33 07 25 13 12</li>
-              <li class="nav-item mb-2">E-mail : mozart@epi.fr</li>
-            </ul>
-          </div>
-
-          <div class="col-md-5 offset-md-1 mb-3">
-            <iframe
-              src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d10447.130077723144!2d6.1680357!3d49.1097719!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4794dc0600ab2253%3A0x5b6ac954f3be2ad3!2sEpicerie%20Mozart!5e0!3m2!1sfr!2sfr!4v1678187938277!5m2!1sfr!2sfr"
-              width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"
-              referrerpolicy="no-referrer-when-downgrade"></iframe>
-          </div>
+  <div class="bloc-footer container-fluid">
+    <footer class="py-5">
+      <div class="row px-5">
+        <div class="col-6 col-md-2 mb-3">
+          <h5>Liens du site</h5>
+          <ul class="nav flex-column">
+            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Acceuil</a></li>
+            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Nos activités</a></li>
+            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">A propos</a></li>
+            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Contact</a></li>
+            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Mentions Légales</a></li>
+          </ul>
         </div>
-      </footer>
-    </div>
+
+        <div class="col-6 col-md-2 mb-3">
+          <h5>Horaires</h5>
+          <ul class="nav flex-column">
+            <li class="nav-item mb-2">Lundi 09:00-19:30</li>
+            <li class="nav-item mb-2">Mardi 09:00-19:30</li>
+            <li class="nav-item mb-2">Mercredi 09:00-19:30</li>
+            <li class="nav-item mb-2">Jeudi 09:00-19:30</li>
+            <li class="nav-item mb-2">Vendredi 09:00-19:30</li>
+            <li class="nav-item mb-2">Samedi 09:00-19:30</li>
+            <li class="nav-item mb-2">Dimanche 09:00-12:30</li>
+          </ul>
+        </div>
+
+        <div class="col-6 col-md-2 mb-3">
+          <h5>Nous contacter</h5>
+          <ul class="nav flex-column">
+            <li class="nav-item mb-2">57000 Metz</li>
+            <li class="nav-item mb-2">14 Rue Mozart</li>
+            <li class="nav-item mb-2">Tél. +33 07 25 13 12</li>
+            <li class="nav-item mb-2">Fax. +33 07 25 13 12</li>
+            <li class="nav-item mb-2">E-mail : mozart@epi.fr</li>
+          </ul>
+        </div>
+
+        <div class="col-md-5 offset-md-1 mb-3">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d10447.130077723144!2d6.1680357!3d49.1097719!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4794dc0600ab2253%3A0x5b6ac954f3be2ad3!2sEpicerie%20Mozart!5e0!3m2!1sfr!2sfr!4v1678187938277!5m2!1sfr!2sfr"
+            width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+      </div>
+    </footer>
+  </div>
   {% block scripts %}
 
   {% endblock %}

@@ -28,6 +28,12 @@
             aria-describedby="inputGroup-sizing-sm" value="{{ evenement.endAt|date("d/m/Y\\ H:i", "Europe/Paris") }}">
     </div>
 
+    <div class="input-group input-group-sm mb-3">
+        <span class="input-group-text" id="inputGroup-sizing-sm">Nombres de places de l'événement</span>
+        <input type="number" name="nbr_places_dispo" class="form-control" aria-label="Sizing example input"
+            aria-describedby="inputGroup-sizing-sm" value="{{ evenement.nbrPLacesDispo }}">
+    </div>
+
     <input type="submit" value="Modifier l'événement">
 </form>
 

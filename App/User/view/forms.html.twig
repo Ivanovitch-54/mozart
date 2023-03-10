@@ -10,15 +10,16 @@
 
 {% block body %}
 
-<div class="userFormViewPort">
+<div class="userFormViewPort bg-white">
     <div class="btn-group" role="group" aria-label="Basic example">
-        <button type="button" class="btn btn-primary" onclick="slider('connexion')">Connexion</button>
-        <button type="button" class="btn btn-secondary" onclick="slider('inscription')">Inscription</button>
+        <button type="button" class="btn btn-warning text-white" onclick="slider('connexion')">Connexion</button>
+        <button type="button" class="btn btn-success" onclick="slider('inscription')">Inscription</button>
     </div>
-    <div class="formContainer d-flex">
+    <div class="formContainer">
         {# Formulaire connexion #}
-        <form method="POST" class="p-4 formConnexion" action="{{ path('user.connection') }}">
-            <div class="form-floating mb-3">
+        <form method="POST" class="p-4 formConnexion d-flex flex-column justify-content-evenly my-5"
+            action="{{ path('user.connection') }}">
+            <div class="form-floating mb-3 ">
                 <input type="email" class="form-control" name="mail" id="connexion_email"
                     placeholder="name@example.com">
                 <label for="connexion_email">Email address</label>
@@ -27,11 +28,12 @@
                 <input type="password" class="form-control" name="mdp" id="connexion_password" placeholder="Password">
                 <label for="connexion_password">Password</label>
             </div>
-            <input type="submit" value="Connexion">
+            <input type="submit" value="Connexion"
+                class="border border-warning rounded-4 bg-warning w-50 align-self-center py-4 my-5 text-white">
         </form>
 
         {# Formulaire inscription #}
-        <form method="POST" class="p-4 formInscription" action="{{ path('user.new') }}">
+        <form method="POST" class="p-4 formInscription d-flex flex-column" action="{{ path('user.new') }}">
             <div class="form-floating mb-3">
                 <input type="text" class="form-control" name="nom" id="nom" placeholder="name@example.com">
                 <label for="nom">Nom</label>
@@ -44,16 +46,17 @@
                 <input type="email" class="form-control" name="mail" id="mail" placeholder="name@example.com">
                 <label for="mail">Email address</label>
             </div>
-            <div class="form-floating">
+            <div class="form-floating mb-3">
                 <input type="password" class="form-control" name="mdp" id="floatingPassword" placeholder="Password">
                 <label for="floatingPassword">Mot de passe</label>
             </div>
-            <div class="form-floating">
+            <div class="form-floating mb-3">
                 <input type="password" class="form-control" name="mdp_confirm" id="floatingPasswordConfirm"
                     placeholder="Password">
                 <label for="floatingPasswordConfirm">Confirmer le mot de passe</label>
             </div>
-            <input type="submit" value="Inscription">
+            <input type="submit" value="Inscription"
+                class="border border-warning rounded-4 bg-warning align-self-center py-2 my-1 text-white">
         </form>
     </div>
 </div>

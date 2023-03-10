@@ -47,7 +47,7 @@ class AdminAction
                 return (new Response())
                     ->withHeader('Location', '/admin/home');
             }
-            $this->toaster->makeToast('Connexion problème avec le MDP ou le Login', Toaster::ERROR);
+            $this->toaster->makeToast('Connexion échouée, vos accès sont inconnus.', Toaster::ERROR);
             return (new Response())
                 ->withHeader('Location', '/admin/login');
         }

@@ -59,7 +59,7 @@ class AdministratorAction
             $evenements = $this->repository->findAll();
             $validator = new Validator($data); // On instancie le Validator en lui passant le tableau de données à valider 
             $errors = $validator
-                ->required('nom', 'description', 'startAt', 'endAt','intervenant')
+                ->required('nom', 'description', 'startAt', 'endAt', 'intervenant', 'nbr_places_dispo')
                 ->getErrors();
 
             if ($errors) {
@@ -86,7 +86,8 @@ class AdministratorAction
                 ->setDescription($data['description'])
                 ->addIntervenant($intervenant)
                 ->setStartAt(new DateTime($data['startAt']))
-                ->setEndAt(new DateTime($data['endAt']));
+                ->setEndAt(new DateTime($data['endAt']))
+                ->setNbrPlacesDispo($data['nbr_places_dispo']);
 
             $this->manager->persist($new);
             $this->manager->flush();
@@ -138,7 +139,8 @@ class AdministratorAction
             $event->setNom($data['nom'])
                 ->setDescription($data['description'])
                 ->setStartAt(new DateTime($data['startAt']))
-                ->setEndAt(new DateTime($data['endAt']));
+                ->setEndAt(new DateTime($data['endAt']))
+                ->setNbrPlacesDispo($data['nbr_places_dispo']);
 
             $this->manager->flush();
             $this->toaster->makeToast('Mise à jour de l\'événement réussi', Toaster::SUCCESS);

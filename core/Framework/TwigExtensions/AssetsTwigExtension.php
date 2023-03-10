@@ -17,6 +17,7 @@ class AssetsTwigExtension extends AbstractExtension
     {
         return [
             new TwigFunction('assets', [$this, 'asset']) // Permet de renommer assets coter twig pour utliser la fonction asset ici présente
+            , new TwigFunction('absolute', [$this, 'absolutePath'])
         ];
     }
 
@@ -28,5 +29,11 @@ class AssetsTwigExtension extends AbstractExtension
         }
         $path .= '?' . filemtime($file);
         return $path;
+    }
+
+    public function absolutePath(string $path): string
+    {
+        $absolutePath = "http://localhost:8000/" . $path;
+        return $absolutePath;
     }
 }

@@ -1,0 +1,31 @@
+table {
+    border: solid;
+    height: 75vh;
+    width: 95vw;
+}
+
+thead {
+    color: black;
+    border: solid;
+}
+
+tr {
+    border: solid;
+}
+
+td {
+    border: solid;
+}
+
+th {
+    border: solid;
+}
+
+body {
+    background-color: #FDFFEC;
+}
+
+h2 {
+    width: 30%;
+    font-family: 'Satisfy', cursive;
+}

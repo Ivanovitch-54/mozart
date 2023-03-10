@@ -1,6 +1,7 @@
 {% extends "layout.html.twig" %}
+{% block stylesheet %}
+<link rel="stylesheet" href="{{ assets('/assets/css/home.css') }}" />
+{% endblock %}
 {% block body %}
-<h1>User Home </h1>
-
 <p>Bienvenue, {{ user.nom }} {{ user.prenom }}</p>
 {% endblock %}

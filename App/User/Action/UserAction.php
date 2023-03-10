@@ -102,8 +102,6 @@ class UserAction
             ->setPassword($data['password']);
     }
 
-    // TEST // Trouver solution pour conserver les anciennes valeurs 
-
     public function login(ServerRequest $request)
     {
         $data = $request->getParsedBody();
@@ -146,7 +144,5 @@ class UserAction
         $this->toaster->makeToast('User Disconnected with success, please log in again to resume your activity ', Toaster::SUCCESS);
         return $this->redirect('user.login');
     }
-
-    // TEST // 
-
 }
+   TODO:

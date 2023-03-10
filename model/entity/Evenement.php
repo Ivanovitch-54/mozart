@@ -33,6 +33,12 @@ class Evenement
      */
     private string $description;
 
+    /**
+     * @ORM\Column(type="integer")
+     * @var integer
+     */
+    private int $nbr_places_dispo;
+
 
     /**
      * @ORM\Column(type="datetime")
@@ -48,24 +54,26 @@ class Evenement
 
     /**
      * Many Evenements have Many Users.
-     * @ORM\ManyToMany(targetEntity="User", mappedBy="evenements")
+     * @ORM\ManyToMany(targetEntity="User", inversedBy="evenements")
+     * @ORM\JoinTable(name="evenements_users")
      * @var Collection<int, User>
      */
     private Collection $users;
 
     /**
      * Many Evenements have Many Intervenants.
-     * @ORM\ManyToMany(targetEntity="Intervenant", mappedBy="evenements")
+     * @ORM\ManyToMany(targetEntity="Intervenant", inversedBy="evenements")
+     * @ORM\JoinTable(name="evenements_intervenants")
      * @var Collection<int, Intervenant>
      */
     private Collection $intervenants;
-    
+
     public function __construct()
     {
         $this->users = new ArrayCollection();
         $this->intervenants = new ArrayCollection();
     }
-    
+
     /**
      * Get id.
      *
@@ -230,7 +238,7 @@ class Evenement
     public function addIntervenant(\Model\Entity\Intervenant $intervenant)
     {
         $this->intervenants[] = $intervenant;
-    
+
         return $this;
     }
 
@@ -242,5 +250,29 @@ class Evenement
     public function getIntervenants()
     {
         return $this->intervenants;
+    }
+
+    /**
+     * Set nbrPlacesDispo.
+     *
+     * @param int $nbrPlacesDispo
+     *
+     * @return Evenement
+     */
+    public function setNbrPlacesDispo($nbrPlacesDispo)
+    {
+        $this->nbr_places_dispo = $nbrPlacesDispo;
+    
+        return $this;
+    }
+
+    /**
+     * Get nbrPlacesDispo.
+     *
+     * @return int
+     */
+    public function getNbrPlacesDispo()
+    {
+        return $this->nbr_places_dispo;
     }
 }

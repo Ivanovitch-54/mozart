@@ -28,11 +28,10 @@ class AdminAuthMiddleware extends AbstractMiddleware
     public function process(ServerRequestInterface $request)
     {
         $uri = $request->getUri()->getPath();
-        TODO:
-        if (str_starts_with($uri, '/adminTEST') && $uri !== "/admin/login") // On vérifie si l'url commence par '/admin' et n'est pas égale à '/admin/login' car c'est une route qu'on ne veut pas protéger justement
+        if (str_starts_with($uri, '/admin') && $uri !== "/admin/login") // On vérifie si l'url commence par '/admin' et n'est pas égale à '/admin/login' car c'est une route qu'on ne veut pas protéger justement
         {
             $auth = $this->container->get(AdminAuth::class); // On récupère l'objet qui gère l'administrateur 
-            if (!$auth->isLogged() || $auth->isAdmin()) { // On vérifie si l'administrateur est connecté et qu'il s'agit bien d'un administrateur
+            if (!$auth->isLogged() || !$auth->isAdmin()) { // On vérifie si l'administrateur est connecté et qu'il s'agit bien d'un administrateur
                 if (!$auth->isLogged()) { //  Si personne n'est connecté on renvoi en conséquence 
                     $this->toaster->makeToast("Vous devez être connecté pour accéder à cette page ", Toaster::ERROR);
                 } elseif (!$auth->isAdmin()) { // Si quelqu'un est connecté mais n'est pas un admin refuse l'accès

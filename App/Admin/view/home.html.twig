@@ -1,7 +1,14 @@
 {% extends "admin.layout.html.twig" %}
-
+{% block stylesheet %}
+<link rel="stylesheet" href="{{ absolute(assets('assets/css/adminHome.css')) }}" />
+{% endblock %}
 {% block body %}
 
-    <h1>Bienvenue Admin</h1>
+
+
+<div class="container text-center d-flex flex-column">
+    <h1 class="my-5">Bienvenue Administrateur !</h1>
+    <p class="fs-1">Cette page permet de gérer les événements ainsi que les intervenants Attention toute suppresion est définitive ! </p>
+</div>
 
 {% endblock %}

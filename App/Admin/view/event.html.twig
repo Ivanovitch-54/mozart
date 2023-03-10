@@ -1,40 +1,44 @@
 {% extends "admin.layout.html.twig" %}
 {% block stylesheet %}
-{# Mettre ici le liens vers le CSS de la page #}
+<link rel="stylesheet" href="{{ absolute(assets('assets/css/event.css')) }}">
 {% endblock %}
-
 {% block body %}
 
-<h1>Liste des événements</h1>
+<div class="container text-center my-2 d-flex flex-column align-items-center">
 
-<table>
-    <thead>
-        <tr>
-            <th>Nom de l'événement</th>
-            <th>Description de l'événement</th>
-            <th>Intervenant de l'événement</th>
-            <th>Débute à </th>
-            <th>Fini à </th>
-        </tr>
-    </thead>
+    <h2 class="text-center my-4 border rounded-4 bg-white">Liste des événements</h2>
+    <table>
+        <thead class="bg-white">
+            <tr>
+                <th>Nom de l'événement</th>
+                <th>Description de l'événement</th>
+                <th>Intervenant de l'événement</th>
+                <th>Débute à </th>
+                <th>Fini à </th>
+                <th>Nombres de places disponibles </th>
+                <th>Options</th>
+            </tr>
+        </thead>
 
-    <tbody>
-        {% for evenement in evenements %}
-        <tr>
-            <td>{{ evenement.nom }}</td>
-            <td>{{ evenement.description }}</td>
-            <td>{% for intervenant in evenement.intervenants %}
-                {{ intervenant.nom }}
-                {% endfor %}</td>
-            <td>{{ evenement.startAt|date("d/m/Y\\ H:i", "Europe/Paris") }}</td>
-            <td>{{ evenement.endAt|date("d/m/Y\\ H:i", "Europe/Paris") }}</td>
-            <td>
-                <a href="{{ path('event.delete', {id: evenement.id}) }}">Supprimer</a>
-                <a href="{{ path('event.update', {id: evenement.id}) }}">Modifier</a>
-            </td>
-        </tr>
-        {% endfor %}
-    </tbody>
-</table>
-
+        <tbody class="bg-white">
+            {% for evenement in evenements %}
+            <tr>
+                <td>{{ evenement.nom }}</td>
+                <td>{{ evenement.description }}</td>
+                <td>{% for intervenant in evenement.intervenants %}
+                    {{ intervenant.nom }}
+                    {% endfor %}</td>
+                <td>{{ evenement.startAt|date("d/m/Y\\ H:i", "Europe/Paris") }}</td>
+                <td>{{ evenement.endAt|date("d/m/Y\\ H:i", "Europe/Paris") }}</td>
+                <td>{{ evenement.nbrPLacesDispo }}</td>
+                <td>
+                    <a href="{{ path('event.delete', {id: evenement.id}) }}"
+                        class="text-decoration-none text-danger">Supprimer /</a>
+                    <a href="{{ path('event.update', {id: evenement.id}) }}" class="text-decoration-none">Modifier</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
 {% endblock %}
