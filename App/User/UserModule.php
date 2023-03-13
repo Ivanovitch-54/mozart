@@ -36,8 +36,14 @@ class UserModule extends AbstractModule
         $this->router->post('/newUser', [$userAction, 'signIn'], 'user.new');
         $this->router->post('/connexion', [$userAction, 'login'], 'user.connection');
 
-        // TEST // 
-        $this->router->post('/change', [$userAction, 'change'], 'user.change');
-
+        // Vue des événements côté USER
+        $this->router->get('/user/evenement', [$userAction, 'liste'], 'user.liste');
+        // Inscription à un événement côté USER
+        $this->router->get('/user/inscEvent/{id:[\d]+}', [$userAction, 'inscEvent'], 'user.inscEvent');
+        $this->router->post('/user/inscEvent/{id:[\d]+}', [$userAction, 'inscEvent']);
+        // Liste des événements où le USER est inscrit 
+        $this->router->get('/user/listEvent', [$userAction, 'listEvent'], 'user.listEvent');
+        // Permet à un User de se déscinscrire d'un événement
+        $this->router->get('/user/decoEvent/{id:[\d]+}', [$userAction, 'decoEvent'], 'user.decoEvent');
     }
 }

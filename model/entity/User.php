@@ -51,7 +51,7 @@ class User
 
     /**
      * Many Users have Many Evenements.
-     * @ORM\ManyToMany(targetEntity="Evenement", mappedBy="users")
+     * @ORM\ManyToMany(targetEntity="Evenement", mappedBy="users", cascade={"merge"})
      * @var Collection<int, Evenement>
      */
     private Collection $evenements;

@@ -1,0 +1,42 @@
+{% extends "layout.html.twig" %}
+{% block stylesheet %}
+<link rel="stylesheet" href="{{ assets('/assets/css/home.css') }}" />
+{% endblock %}
+{% block body %}
+<div class="container text-center my-2 d-flex flex-column align-items-center">
+
+    <h2 class="text-center my-4 border rounded-4 bg-white">Liste des événements disponibles</h2>
+    <table>
+        <thead class="bg-white">
+            <tr>
+                <th>Nom de l'événement</th>
+                <th>Description de l'événement</th>
+                <th>Intervenant de l'événement</th>
+                <th>Débute à </th>
+                <th>Fini à </th>
+                <th>Nombres de places disponibles </th>
+                <th>Participer</th>
+            </tr>
+        </thead>
+
+        <tbody class="bg-white">
+            {% for evenement in evenements %}
+            <tr>
+                <td>{{ evenement.nom }}</td>
+                <td>{{ evenement.description }}</td>
+                <td>{% for intervenant in evenement.intervenants %}
+                    {{ intervenant.nom }}
+                    {% endfor %}</td>
+                <td>{{ evenement.startAt|date("d/m/Y\\ H:i", "Europe/Paris") }}</td>
+                <td>{{ evenement.endAt|date("d/m/Y\\ H:i", "Europe/Paris") }}</td>
+                <td>{{ evenement.places_dispo }}</td>
+                <td>
+                    <a href="{{ path('user.inscEvent', {id: evenement.id}) }}"
+                        class="text-decoration-none">S'inscrire</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

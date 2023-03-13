@@ -2,18 +2,22 @@
 
 namespace App\User\Action;
 
-use Core\Framework\Router\RedirectTrait;
 use Model\Entity\User;
 use Core\Toaster\Toaster;
+use Model\Entity\Evenement;
+use Model\Entity\Intervenant;
 use Doctrine\ORM\EntityManager;
 use Core\Framework\Auth\UserAuth;
 use Core\Framework\Router\Router;
+use Core\Session\SessionInterface;
 use Doctrine\ORM\EntityRepository;
 use GuzzleHttp\Psr7\ServerRequest;
 use Psr\Container\ContainerInterface;
 use Core\Framework\Validator\Validator;
+use Core\Framework\Router\RedirectTrait;
 use Core\Framework\Renderer\RendererInterface;
-use Core\Session\SessionInterface;
+use GuzzleHttp\Psr7\Response;
+use Psr\Http\Message\ServerRequestInterface;
 
 class UserAction
 {
@@ -25,15 +29,22 @@ class UserAction
     private Toaster $toaster;
     private EntityRepository $repository;
     private SessionInterface $session;
+    private EntityManager $manager;
+    private EntityRepository $eventRepository;
+    private EntityRepository $interRepository;
 
-    public function __construct(ContainerInterface $container)
+    public function __construct(ContainerInterface $container, EntityManager $manager)
     {
         $this->container = $container;
+        $this->manager = $manager;
         $this->renderer = $container->get(RendererInterface::class);
         $this->toaster = $container->get(Toaster::class);
         $this->router = $container->get(Router::class);
-        $this->repository = $container->get(EntityManager::class)->getRepository(User::class);
         $this->session = $container->get(SessionInterface::class);
+        $this->repository = $container->get(EntityManager::class)->getRepository(User::class);
+        $this->eventRepository = $manager->getRepository(Evenement::class);
+        $this->interRepository = $manager->getRepository(Intervenant::class);
+
         $user = $this->session->get('auth');
         if ($user) {
             $this->renderer->addGlobal('user', $user);
@@ -75,33 +86,6 @@ class UserAction
         return $this->redirect('user.login');
     }
 
-    // TEST // 
-
-    public function change(ServerRequest $request)
-    {
-        $auth = $this->container->get(UserAuth::class);
-        $data = $request->getParsedBody();
-        $validator = new Validator($data); // Validator permet de vérifier les informations rentrer par le USER
-
-        $errors = $validator
-            ->required('nom', 'prenom', 'mdp', 'mdp_confirm')
-            ->strSize('mdp', 12, 50)
-            ->confirm('mdp')
-            ->getErrors();
-
-        if ($errors) {
-            foreach ($errors as $error) {
-                $this->toaster->makeToast($error->toString(), Toaster::ERROR);
-            }
-            return $this->redirect('user.login');  // Redirige l'utilisateur 
-        }
-
-        $user = $this->session->get('auth');
-        $user->setNom($data['nom'])
-            ->setPrenom($data['prenom'])
-            ->setPassword($data['password']);
-    }
-
     public function login(ServerRequest $request)
     {
         $data = $request->getParsedBody();
@@ -129,20 +113,99 @@ class UserAction
         return $this->redirect('user.login');
     }
 
-    public function home(ServerRequest $request)
-    {
-        $user = $this->session->get('auth');
-        return $this->renderer->render('@user/home', [
-            'user' => $user
-        ]); // Retourne la vu USER/HOME et permet de récupérer le User.Nom en même temps afin de l'afficher dans le home.html.twig
-    }
-
     public function logout()
     {
         $auth = $this->container->get(UserAuth::class);
         $auth->logout();
-        $this->toaster->makeToast('User Disconnected with success, please log in again to resume your activity ', Toaster::SUCCESS);
+        $this->toaster->makeToast('Déconnexion Réussie', Toaster::SUCCESS);
         return $this->redirect('user.login');
     }
+
+    public function home(ServerRequest $request)
+    {
+
+        $user = $this->session->get('auth');
+        return $this->renderer->render('@user/home', [
+            'user' => $user,
+        ]); // Retourne la vu USER/HOME et permet de récupérer le User.Nom en même temps afin de l'afficher dans le home.html.twig
+    }
+
+    public function liste(ServerRequest $request)
+    {
+        $inter = $this->interRepository->findAll();
+        $events = $this->eventRepository->findAll();
+
+        foreach ($events as &$event) {
+            $event->places_dispo = $event->getNbrPlacesDispo() - $event->getUsers()->count();
+        }
+
+        return $this->renderer->render('@user/evenement', [
+            "evenements" => $events,
+            "intervenant" => $inter
+        ]);
+    }
+
+    public function inscEvent(ServerRequestInterface $request)
+    {
+
+        $event = $this->eventRepository->find($request->getAttribute('id'));
+
+        if ($event) {
+            $sess = $this->session->get('auth');
+            $user = $this->repository->find($sess->getId());
+
+            if ($event->getUsers()->count() >= $event->getNbrPlacesDispo()) {
+                $this->toaster->makeToast('Attention nombres de participants maximum atteint', Toaster::ERROR);
+                return (new Response())
+                    ->withHeader('Location', '/user/listEvent');
+            }
+
+            $event->addUser($user);
+
+            $this->manager->flush();
+
+            $this->toaster->makeToast('Inscription à l\'événement réussi !', Toaster::SUCCESS);
+        }
+
+        return (new Response())
+            ->withHeader('Location', '/user/listEvent');
+    }
+
+    public function decoEvent(ServerRequestInterface $request)
+    {
+
+        $event = $this->eventRepository->find($request->getAttribute('id'));
+
+        if ($event) {
+            $sess = $this->session->get('auth');
+            $user = $this->repository->find($sess->getId());
+
+            $event->removeUser($user);
+
+            $this->manager->flush();
+
+            $this->toaster->makeToast('Désinscription de l\'événement avec succès !', Toaster::SUCCESS);
+        }
+
+        return (new Response())
+            ->withHeader('Location', '/user/listEvent');
+    }
+
+    public function listEvent(ServerRequestInterface $request)
+    {
+        $inter = $this->interRepository->findAll();
+
+        $sess = $this->session->get('auth');
+        $user = $this->repository->find($sess->getId());
+        $events = $user->getEvenements();
+        
+        return $this->renderer->render('@user/listEvent', [
+            "evenements" => $events, // "evenements" = nom de la variable / $response = Valeur de la variable 
+            "intervenant" => $inter,
+        ]);
+    }
 }
-   TODO:
+
+// Je dois allez récupérer evenements_users et le comparer à evenement.nbrPlacesDispo
+// Je dois empêcher User a s'inscrire plusieurs fois aux même événements
+// Les users qui s'enregistre dans un événements sont stocker dans evenements_users

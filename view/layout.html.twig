@@ -33,6 +33,7 @@
 
         <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
           <li><a href="#" class="nav-link px-3 link-dark fs-5">Accueil</a></li>
+          <li><a href="{{ path('user.liste') }}" class="nav-link px-3 link-dark fs-5">Nos événements</a></li>
           <li><a href="#" class="nav-link px-3 link-dark fs-5">Qui sommes-nous ?</a></li>
           <li><a href="#" class="nav-link px-3 link-dark fs-5">Dons</a></li>
           <li><a href="#" class="nav-link px-3 link-dark fs-5">Contact</a></li>
@@ -46,12 +47,16 @@
         <div class="dropdown text-end">
           <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" data-bs-toggle="dropdown"
             aria-expanded="false">
-            <img src="{{ absolute(assets('assets/img/user.png')) }}" alt="" width="32" height="32" class="rounded-circle">
+            <img src="{{ absolute(assets('assets/img/user.png')) }}" alt="" width="32" height="32"
+              class="rounded-circle">
           </a>
           <ul class="dropdown-menu text-small">
-            <li><a class="dropdown-item" href="#">Mon profile</a></li>
+            <li><a class="dropdown-item" href="{{ path('user.home') }}">Home</a></li>
             <li>
               <hr class="dropdown-divider">
+            </li>
+            <li>
+              <a class="dropdown-item" href="{{ path('user.listEvent') }}">Mes événements</a>
             </li>
             <li>
               <a class="dropdown-item" href="{{ path('user.logout') }}">Se déconnecter</a>
@@ -80,8 +85,9 @@
 
   </main>
 
-  <div class="bloc-footer container-fluid">
-    <footer class="py-5">
+  <footer class="py-5">
+    <div class="bloc-footer container-fluid">
+
       <div class="row px-5">
         <div class="col-6 col-md-2 mb-3">
           <h5>Liens du site</h5>
@@ -125,8 +131,9 @@
             referrerpolicy="no-referrer-when-downgrade"></iframe>
         </div>
       </div>
-    </footer>
-  </div>
+
+    </div>
+  </footer>
   {% block scripts %}
 
   {% endblock %}

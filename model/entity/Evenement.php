@@ -54,7 +54,7 @@ class Evenement
 
     /**
      * Many Evenements have Many Users.
-     * @ORM\ManyToMany(targetEntity="User", inversedBy="evenements")
+     * @ORM\ManyToMany(targetEntity="User", inversedBy="evenements", cascade={"merge"})
      * @ORM\JoinTable(name="evenements_users")
      * @var Collection<int, User>
      */
