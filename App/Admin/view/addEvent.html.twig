@@ -8,55 +8,56 @@
 
     <h2 class="border rounded-4 bg-white">Ajouter un événement</h2>
 
-<form method="POST" action="" class="card p-4 mx-auto my-5" style="max-width: 500px;" enctype="multipart/form-data">
+    <form method="POST" action="" class="card p-4 mx-auto my-5" style="max-width: 500px;" enctype="multipart/form-data">
 
-    <div class="input-group input-group-sm mb-3">
-        <span class="input-group-text" id="inputGroup-sizing-sm">Nom de l'événement</span>
-        <input type="text" name="nom" class="form-control" aria-label="Sizing example input"
-            aria-describedby="inputGroup-sizing-sm">
-    </div>
+        <div class="input-group input-group-sm mb-3">
+            <span class="input-group-text" id="inputGroup-sizing-sm">Nom de l'événement</span>
+            <input type="text" name="nom" class="form-control" aria-label="Sizing example input"
+                aria-describedby="inputGroup-sizing-sm" placeholder="Saisir le nom de l'événement">
+        </div>
 
-    <div class="input-group input-group-sm mb-3">
-        <span class="input-group-text" id="inputGroup-sizing-sm">Description de l'événement</span>
-        <input type="text" name="description" class="form-control" aria-label="Sizing example input"
-            aria-describedby="inputGroup-sizing-sm">
-    </div>
+        <div class="input-group input-group-sm mb-3">
+            <span class="input-group-text" id="inputGroup-sizing-sm">Description de l'événement</span>
+            <input type="text" name="description" class="form-control" aria-label="Sizing example input"
+                aria-describedby="inputGroup-sizing-sm" placeholder="Saisir description de l'événement">
+        </div>
 
-    <div class="input-group input-group-sm mb-3">
-        <span class="input-group-text" id="inputGroup-sizing-sm">Intervenant de l'événement</span>
-        <select name="intervenant" class="border border-grey">
+        <div class="input-group input-group-sm mb-3">
+            <span class="input-group-text" id="inputGroup-sizing-sm">Intervenant de l'événement</span>
+            <select name="intervenant" class="border border-grey">
 
-            <option value="" selected>---</option>
+                <option value="" selected>Choisir un intervenant</option>
 
-            {% for intervenant in intervenants %}
+                {% for intervenant in intervenants %}
 
-            <option value="{{ intervenant.id }}">{{ intervenant.nom }} / {{ intervenant.role }}</option>
+                <option value="{{ intervenant.id }}">{{ intervenant.nom }} {{ intervenant.prenom}} / {{ intervenant.role
+                    }}</option>
 
-            {% endfor %}
-            
-        </select>
-    </div>
+                {% endfor %}
 
-    <div class="input-group input-group-sm mb-3">
-        <span class="input-group-text" id="inputGroup-sizing-sm">Début de l'événement</span>
-        <input type="datetime-local" name="startAt" class="form-control" aria-label="Sizing example input"
-            aria-describedby="inputGroup-sizing-sm">
-    </div>
+            </select>
+        </div>
 
-    <div class="input-group input-group-sm mb-3">
-        <span class="input-group-text" id="inputGroup-sizing-sm">Fin de l'événement</span>
-        <input type="datetime-local" name="endAt" class="form-control" aria-label="Sizing example input"
-            aria-describedby="inputGroup-sizing-sm">
-    </div>
+        <div class="input-group input-group-sm mb-3">
+            <span class="input-group-text" id="inputGroup-sizing-sm">Début de l'événement</span>
+            <input type="datetime-local" name="startAt" class="form-control" aria-label="Sizing example input"
+                aria-describedby="inputGroup-sizing-sm">
+        </div>
 
-    <div class="input-group input-group-sm mb-3">
-        <span class="input-group-text" id="inputGroup-sizing-sm">Nombres de places de l'événement</span>
-        <input type="number" name="nbr_places_dispo" class="form-control" aria-label="Sizing example input"
-            aria-describedby="inputGroup-sizing-sm">
-    </div>
+        <div class="input-group input-group-sm mb-3">
+            <span class="input-group-text" id="inputGroup-sizing-sm">Fin de l'événement</span>
+            <input type="datetime-local" name="endAt" class="form-control" aria-label="Sizing example input"
+                aria-describedby="inputGroup-sizing-sm">
+        </div>
 
-    <input type="submit" value="Ajouter" class="border border-warning rounded-4 bg-warning">
-</form>
+        <div class="input-group input-group-sm mb-3">
+            <span class="input-group-text" id="inputGroup-sizing-sm">Nombres de places de l'événement</span>
+            <input type="number" name="nbr_places_dispo" class="form-control" aria-label="Sizing example input"
+                aria-describedby="inputGroup-sizing-sm">
+        </div>
+
+        <input type="submit" value="Ajouter" class="border border-warning rounded-4 bg-warning">
+    </form>
 
 </div>
 

@@ -82,8 +82,8 @@ class UserAction
         if ($result !== true) {
             return $result;
         }
-        $this->toaster->makeToast('Inscription Réussie, vous pouvez désormais vous connecter ! :)', Toaster::SUCCESS);
-        return $this->redirect('user.login');
+        $this->toaster->makeToast('Inscription réussie, vous pouvez désormais vous connecter pour participer aux événements de l\'épicerie', Toaster::SUCCESS);
+        return $this->redirect('accueil');
     }
 
     public function login(ServerRequest $request)
@@ -107,7 +107,7 @@ class UserAction
         $response = $auth->login($data['mail'], $data['mdp']);
         if ($response) {
             $this->toaster->makeToast('Connexion Réussi', Toaster::SUCCESS);
-            return $this->redirect('user.home');
+            return $this->redirect('accueil');
         }
         $this->toaster->makeToast("Connexion échoué, merci de vérifier Email et MDP", Toaster::ERROR);
         return $this->redirect('user.login');
@@ -118,7 +118,7 @@ class UserAction
         $auth = $this->container->get(UserAuth::class);
         $auth->logout();
         $this->toaster->makeToast('Déconnexion Réussie', Toaster::SUCCESS);
-        return $this->redirect('user.login');
+        return $this->redirect('accueil');
     }
 
     public function home(ServerRequest $request)
@@ -134,9 +134,12 @@ class UserAction
     {
         $inter = $this->interRepository->findAll();
         $events = $this->eventRepository->findAll();
+        $sess = $this->session->get('auth');
+        $user = $this->repository->find($sess->getId());
 
         foreach ($events as &$event) {
-            $event->places_dispo = $event->getNbrPlacesDispo() - $event->getUsers()->count();
+            $event->places_dispo = $event->getNbrPlacesDispo() - $event->getUsers()->count(); // Ici je crée un nouveau champs dans l'objet (non visible en BDD)
+            $event->user_register = $event->getUsers()->contains($user);
         }
 
         return $this->renderer->render('@user/evenement', [
@@ -148,13 +151,13 @@ class UserAction
     public function inscEvent(ServerRequestInterface $request)
     {
 
-        $event = $this->eventRepository->find($request->getAttribute('id'));
+        $event = $this->eventRepository->find($request->getAttribute('id')); // Permet d'allez récupérer l'ID
 
         if ($event) {
-            $sess = $this->session->get('auth');
-            $user = $this->repository->find($sess->getId());
+            $sess = $this->session->get('auth'); // Permet d'allez récupérer la personne authentifier'
+            $user = $this->repository->find($sess->getId()); // Permet de récuperer l'id de l'user auth 
 
-            if ($event->getUsers()->count() >= $event->getNbrPlacesDispo()) {
+            if ($event->getUsers()->count() >= $event->getNbrPlacesDispo()) { // Si le nombre d'Users inscrits a l'event est supérieur aux nbr de places dispo
                 $this->toaster->makeToast('Attention nombres de participants maximum atteint', Toaster::ERROR);
                 return (new Response())
                     ->withHeader('Location', '/user/listEvent');
@@ -196,9 +199,9 @@ class UserAction
         $inter = $this->interRepository->findAll();
 
         $sess = $this->session->get('auth');
-        $user = $this->repository->find($sess->getId());
-        $events = $user->getEvenements();
-        
+        $user = $this->repository->find($sess->getId()); // on récupére l'utilisateur qui coresspond a l'id de la session 
+        $events = $user->getEvenements(); // récupération de la liste des évenement a l'aide du GET
+
         return $this->renderer->render('@user/listEvent', [
             "evenements" => $events, // "evenements" = nom de la variable / $response = Valeur de la variable 
             "intervenant" => $inter,
@@ -206,6 +209,4 @@ class UserAction
     }
 }
 
-// Je dois allez récupérer evenements_users et le comparer à evenement.nbrPlacesDispo
-// Je dois empêcher User a s'inscrire plusieurs fois aux même événements
-// Les users qui s'enregistre dans un événements sont stocker dans evenements_users
+

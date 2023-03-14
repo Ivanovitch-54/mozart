@@ -33,7 +33,6 @@ class AdministratorAction
         $this->toaster = $toaster;
         $this->repository = $manager->getRepository(Evenement::class);
         $this->interRepository = $manager->getRepository(Intervenant::class);
-
     }
 
     public function home(ServerRequest $request)
@@ -80,7 +79,6 @@ class AdministratorAction
             // Ici j'instancie un nouveau événement contenu dans la variable $new 
             $new = new Evenement();
             $intervenant = $this->interRepository->find($data['intervenant']);
-            // Test
 
             $new->setNom($data['nom'])
                 ->setDescription($data['description'])
@@ -97,7 +95,7 @@ class AdministratorAction
                 ->withHeader('Location', '/admin/event');
         }
         $intervenants = $this->interRepository->findAll();
-        return $this->renderer->render('@admin/addEvent',[
+        return $this->renderer->render('@admin/addEvent', [
             "intervenants" => $intervenants
         ]);
     }
@@ -136,11 +134,17 @@ class AdministratorAction
                 return (new Response())
                     ->withHeader('Location', '/admin/updateEvent');
             }
+
+            // TEST
+            $intervenants = $this->interRepository->find($data['intervenant']);
+            // TEST
             $event->setNom($data['nom'])
                 ->setDescription($data['description'])
                 ->setStartAt(new DateTime($data['startAt']))
                 ->setEndAt(new DateTime($data['endAt']))
-                ->setNbrPlacesDispo($data['nbr_places_dispo']);
+                ->setNbrPlacesDispo($data['nbr_places_dispo'])
+                // TEST
+                ->setIntervenants($intervenants);
 
             $this->manager->flush();
             $this->toaster->makeToast('Mise à jour de l\'événement réussi', Toaster::SUCCESS);
@@ -148,14 +152,18 @@ class AdministratorAction
             return (new Response())
                 ->withHeader('Location', '/admin/event'); // En cas de succès retourne la page liste d'EVENT
         }
+
+        $intervenants = $this->interRepository->findAll();
         return $this->renderer->render('@admin/updateEvent', [
-            "evenement" => $event
+            "evenement" => $event,
+            // TEST
+            "intervenants" => $intervenants
         ]);
     }
 
     // A partir d'ici je gère les intervenants 
 
-    public function showInter (ServerRequestInterface $request)
+    public function showInter(ServerRequestInterface $request)
     {
         $intervenants = $this->interRepository->findAll();
 
@@ -173,8 +181,8 @@ class AdministratorAction
             $intervenants = $this->interRepository->findAll();
             $validator = new Validator($data);
             $errors = $validator
-            ->required('nom','prenom','role')
-            ->getErrors();
+                ->required('nom', 'prenom', 'role')
+                ->getErrors();
 
             if ($errors) {
                 foreach ($errors as $error) {
@@ -184,7 +192,7 @@ class AdministratorAction
             }
 
             foreach ($intervenants as $intervenant) {
-                if ($intervenant->getNom() === $data['nom']){
+                if ($intervenant->getNom() === $data['nom']) {
                     $this->toaster->makeToast('Intervenant déjà enregistrer', Toaster::ERROR);
                     return $this->renderer->render('@admin/addInter');
                 }
@@ -200,7 +208,7 @@ class AdministratorAction
             $this->toaster->makeToast('Nouvelle Intervenant enregistrer avec succès', Toaster::SUCCESS);
 
             return (new Response())
-            ->withHeader('Location', '/admin/inter');
+                ->withHeader('Location', '/admin/inter');
         }
         return $this->renderer->render('@admin/addInter');
     }

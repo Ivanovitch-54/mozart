@@ -16,7 +16,7 @@
                 <th>Débute à </th>
                 <th>Fini à </th>
                 <th>Nombres de places disponibles </th>
-                <th>Options</th>
+                <th>Options disponibles/th>
             </tr>
         </thead>
 
@@ -27,6 +27,7 @@
                 <td>{{ evenement.description }}</td>
                 <td>{% for intervenant in evenement.intervenants %}
                     {{ intervenant.nom }}
+                    {{ intervenant.prenom }}
                     {% endfor %}</td>
                 <td>{{ evenement.startAt|date("d/m/Y\\ H:i", "Europe/Paris") }}</td>
                 <td>{{ evenement.endAt|date("d/m/Y\\ H:i", "Europe/Paris") }}</td>

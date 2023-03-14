@@ -15,7 +15,6 @@
                 <th>Débute à </th>
                 <th>Fini à </th>
                 <th>Nombres de places disponibles </th>
-                <th>Participer</th>
             </tr>
         </thead>
 
@@ -26,23 +25,12 @@
                 <td>{{ evenement.description }}</td>
                 <td>{% for intervenant in evenement.intervenants %}
                     {{ intervenant.nom }}
+                    {{ intervenant.prenom }}
+                    {{ intervenant.role }}
                     {% endfor %}</td>
                 <td>{{ evenement.startAt|date("d/m/Y\\ H:i", "Europe/Paris") }}</td>
                 <td>{{ evenement.endAt|date("d/m/Y\\ H:i", "Europe/Paris") }}</td>
                 <td>{{ evenement.places_dispo }}</td>
-                <td>
-                    {% if evenement.user_register == false %}
-
-                    <a href="{{ path('user.inscEvent', {id: evenement.id}) }}"
-                        class="text-decoration-none">S'inscrire</a>
-
-                    {% else %}
-
-                    <a href="{{ path('user.decoEvent', {id: evenement.id}) }}"
-                        class="text-decoration-none text-danger">Déscinscription</a>
-                        
-                    {% endif %}
-                </td>
             </tr>
             {% endfor %}
         </tbody>

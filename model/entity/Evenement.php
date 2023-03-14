@@ -253,6 +253,22 @@ class Evenement
     }
 
     /**
+     * Set intervenant.
+     *
+     * @param \Model\Entity\Intervenant $intervenant
+     *
+     * @return Evenement
+     */
+    public function setIntervenants(\Model\Entity\Intervenant $intervenant)
+    {
+        $this->intervenants->clear();
+        $this->intervenants[] = $intervenant;
+
+        return $this;
+    }
+
+
+    /**
      * Set nbrPlacesDispo.
      *
      * @param int $nbrPlacesDispo

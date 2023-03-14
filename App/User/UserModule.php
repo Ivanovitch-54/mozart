@@ -40,7 +40,6 @@ class UserModule extends AbstractModule
         $this->router->get('/user/evenement', [$userAction, 'liste'], 'user.liste');
         // Inscription à un événement côté USER
         $this->router->get('/user/inscEvent/{id:[\d]+}', [$userAction, 'inscEvent'], 'user.inscEvent');
-        $this->router->post('/user/inscEvent/{id:[\d]+}', [$userAction, 'inscEvent']);
         // Liste des événements où le USER est inscrit 
         $this->router->get('/user/listEvent', [$userAction, 'listEvent'], 'user.listEvent');
         // Permet à un User de se déscinscrire d'un événement
