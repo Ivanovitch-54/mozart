@@ -58,7 +58,7 @@ class AdministratorAction
             // TODO $evenements = $this->repository->findAll(); Activer pour empêcher l'inscription de deux événements ayant le même noms
             $validator = new Validator($data); // On instancie le Validator en lui passant le tableau de données à valider 
             $errors = $validator
-                ->required('nom', 'description', 'startAt', 'endAt', 'intervenant', 'nbr_places_dispo')
+                ->required('nom', 'description', 'start_at', 'endAt', 'intervenant', 'nbr_places_dispo')
                 ->getErrors();
 
             if ($errors) {
@@ -89,7 +89,7 @@ class AdministratorAction
                 ->setNom($data['nom'])
                 ->setDescription($data['description'])
                 ->addIntervenant($intervenant)
-                ->setStartAt(new DateTime($data['startAt']))
+                ->setStartAt(new DateTime($data['start_at']))
                 ->setEndAt(new DateTime($data['endAt']))
                 ->setNbrPlacesDispo($data['nbr_places_dispo']);
 
@@ -131,7 +131,7 @@ class AdministratorAction
         if ($method === 'POST') {
             $data = $request->getParsedBody(); // Récup les datas envoyer en POST
             $validator = new Validator($data);
-            $errors = $validator->required('nom', 'description', 'startAt', 'endAt')
+            $errors = $validator->required('nom', 'description', 'start_at', 'endAt')
                 ->getErrors();
 
             if ($errors) {
@@ -146,7 +146,7 @@ class AdministratorAction
 
             $event->setNom($data['nom'])
                 ->setDescription($data['description'])
-                ->setStartAt(new DateTime($data['startAt']))
+                ->setStartAt(new DateTime($data['start_at']))
                 ->setEndAt(new DateTime($data['endAt']))
                 ->setNbrPlacesDispo($data['nbr_places_dispo'])
 

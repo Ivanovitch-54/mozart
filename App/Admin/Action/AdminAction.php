@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Admin\Action;
-// AdminAction == AdminAuth (différent de Brasero)
+// AdminAction == AdminAuth Permet D'authentifer l'admin
 use Core\Toaster\Toaster;
 use GuzzleHttp\Psr7\Response;
 use Core\Framework\Router\Router;
