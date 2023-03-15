@@ -1,10 +1,41 @@
 {% extends 'layout.html.twig' %}
-
 {% block stylesheet %}
-{% endblock %} 
+<link rel="stylesheet" href="{{ assets('/assets/css/home.css') }}" />
+<link rel="stylesheet" href="{{ assets('/assets/css/contact.css') }}" />
+{% endblock %}
 
 {% block body %}
+<div class="bloc container text-center my-2 d-flex flex-column align-items-center">
+    <h2 class="text-center my-4 border rounded-4 bg-white px-5">Nous contacter</h2>
 
-<h1>Bienvenue sur la page de contact</h1>
+    <form action="mailto:mozart@epi.fr" method="post" class="card p-5">
 
+        <div class="input-group input-group-sm mb-3">
+            <span class="input-group-text" id="inputGroup-sizing-sm">Nom</span>
+            <input type="text" name="nom" class="form-control" aria-label="Sizing example input"
+                aria-describedby="inputGroup-sizing-sm">
+        </div>
+
+        <div class="input-group input-group-sm mb-3">
+            <span class="input-group-text" id="inputGroup-sizing-sm">Prénom</span>
+            <input type="text" name="prenom" class="form-control" aria-label="Sizing example input"
+                aria-describedby="inputGroup-sizing-sm">
+        </div>
+
+        <div class="input-group input-group-sm mb-3">
+            <span class="input-group-text" id="inputGroup-sizing-sm">Sujet</span>
+            <input type="text" name="role" class="form-control" aria-label="Sizing example input"
+                aria-describedby="inputGroup-sizing-sm">
+        </div>
+
+        <div class="input-group input-group-sm mb-3 form-floating">
+            <span class="input-group-text" id="inputGroup-sizing-sm">Saisir votre message :</span>
+            <textarea class="form-control" name="description" placeholder="Leave a comment here" id="floatingTextarea"></textarea>
+          </div>
+
+
+        <input type="submit" value="Envoyer" class="border border-warning rounded-4 bg-warning">
+
+    </form>
+</div>
 {% endblock %}

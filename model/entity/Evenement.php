@@ -41,14 +41,12 @@ class Evenement
 
 
     /**
-     * @ORM\Column(name="start_at")
      * @ORM\Column(type="datetime")
      * @var
      */
     private $startAt;
 
     /**
-     * @ORM\Column(name="end_at")
      * @ORM\Column(type="datetime")
      * @var 
      */

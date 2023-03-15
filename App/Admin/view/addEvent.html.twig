@@ -8,7 +8,7 @@
 
     <h2 class="border rounded-4 bg-white">Ajouter un événement</h2>
 
-    <form method="POST" action="" class="card p-4 mx-auto my-5" style="max-width: 500px;" enctype="multipart/form-data">
+    <form method="POST" action="" class="card p-4 my-5" style="max-width: 500px;" enctype="multipart/form-data">
 
         <div class="input-group input-group-sm mb-3">
             <span class="input-group-text" id="inputGroup-sizing-sm">Nom de l'événement</span>
@@ -16,14 +16,14 @@
                 aria-describedby="inputGroup-sizing-sm" placeholder="Saisir le nom de l'événement">
         </div>
 
-        <div class="input-group input-group-sm mb-3 form-floating">
+        <div class="input-group input-group-sm mb-3">
             <span class="input-group-text" id="inputGroup-sizing-sm">Description de l'événement</span>
-            <textarea class="form-control" name="description" placeholder="Leave a comment here" id="floatingTextarea"></textarea>
+            <textarea class="form-control" name="description" placeholder="Saisir la description de l'événement" id="floatingTextarea"></textarea>
           </div>
 
-        <div class="input-group input-group-sm mb-3 my-3">
+          <div class="input-group input-group-sm mb-3">
             <span class="input-group-text" id="inputGroup-sizing-sm">Intervenant de l'événement</span>
-            <select name="intervenant" class="border border-grey">
+            <select name="intervenant" class="border border-grey form-select">
 
                 <option value="" selected>Choisir un intervenant</option>
 

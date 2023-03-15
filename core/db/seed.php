@@ -17,6 +17,6 @@ if ($app) {
     $manager->persist($admin);
     $manager->flush();
 
-    echo "Admin Saved";
+    echo "Admin Enregistrer";
 }
 

@@ -1,10 +1,36 @@
 {% extends 'layout.html.twig' %}
 
 {% block stylesheet %}
-{% endblock %} 
+<link rel="stylesheet" href="{{ assets('assets/css/quiSommes.css') }}">
+<link rel="stylesheet" href="{{ assets('assets/css/home.css') }}">
+{% endblock %}
 
 {% block body %}
 
-<h1>Bienvenue sur Qui-sommes nous ?</h1>
+<div class="d-flex flex-column align-items-center">
+<h2 class="text-center my-4 border rounded-4 bg-white">Qui sommes-nous ?</h2>
 
+<div class="bloc container">
+    <div class="row justify-content-center g-0">
+        <div class="col">
+            <img src="{{ absolute(assets('assets/img/femme-tablette-acheter-aliments-sains-dans-epicerie-supermarche.jpg')) }}"
+                class="img-fluid" alt="image-quiSommes">
+        </div>
+        <div class="col bg-white text-center d-flex flex-column justify-content-evenly fs-5">
+            <p class="px-3">L'épiceries solidaires Mozart se présente comme une épicerie
+                classiques de proximité. Elle propose une aide alimentaire qui allie
+                choix, fraîcheur, qualité et respect du goût, des cultures et des
+                habitudes.</p>
+
+            <p class="px-3">L'épicerie est ouverte depuis le 15 janvier 2016, elle est destinée
+                aux jeunes travailleurs précaires et aux parents isolés avec enfants.</p>
+
+            <p class="px-3">Nous vous proposons de vous inscrire sur notre site afin de
+                participer aux différentes activités de l'épicerie tel que
+                des ateliers coiffure, des ateliers cuisine ainsi que la prise de rendez-vous avec
+                le docteur lors de ses visites.</p>
+        </div>
+    </div>
+</div>
+</div>
 {% endblock %}

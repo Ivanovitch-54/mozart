@@ -34,7 +34,6 @@ class HomeModule extends AbstractModule
         $this->router->get('/dons', [$this, 'dons'], 'dons'); 
         $this->router->get('/contact', [$this, 'contact'], 'contact'); 
         $this->router->get('/events', [$this, 'homeEvents'], 'events'); 
-
     }
 
     public function index()

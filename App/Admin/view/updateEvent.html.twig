@@ -12,19 +12,18 @@
 
     <div class="input-group input-group-sm mb-3">
         <span class="input-group-text" id="inputGroup-sizing-sm">Nom de l'événement</span>
-        <input type="text" name="nom" class="form-control" aria-label="Sizing example input"
+        <input type="text" name="nom" class="form-control text-center" aria-label="Sizing example input"
             aria-describedby="inputGroup-sizing-sm" value="{{ evenement.nom }}">
     </div>
 
     <div class="input-group input-group-sm mb-3">
         <span class="input-group-text" id="inputGroup-sizing-sm">Description de l'événement</span>
-        <input type="text" name="description" class="form-control" aria-label="Sizing example input"
-            aria-describedby="inputGroup-sizing-sm" value="{{ evenement.description }}">
-    </div>
+        <textarea class="form-control" name="description" placeholder="{{ evenement.description }}" id="floatingTextarea"></textarea>
+      </div>
 
     <div class="input-group input-group-sm mb-3">
         <span class="input-group-text" id="inputGroup-sizing-sm">Intervenant de l'événement</span>
-        <select name="intervenant" class="border border-grey">
+        <select name="intervenant" class="border border-grey form-select">
 
 
             {% for intervenant in intervenants %}
@@ -41,8 +40,7 @@
     <div class="input-group input-group-sm mb-3">
         <span class="input-group-text" id="inputGroup-sizing-sm">Début de l'événement</span>
         <input type="datetime-local" name="start_at" class="form-control" aria-label="Sizing example input"
-            aria-describedby="inputGroup-sizing-sm" value="{{ evenement.startAt|date(" d/m/Y\\ H:i", "Europe/Paris" )
-            }}">
+            aria-describedby="inputGroup-sizing-sm" value="{{ evenement.startAt|date(" d/m/Y\\ H:i", "Europe/Paris" ) }}">
     </div>
 
     <div class="input-group input-group-sm mb-3">
@@ -53,7 +51,7 @@
 
     <div class="input-group input-group-sm mb-3">
         <span class="input-group-text" id="inputGroup-sizing-sm">Nombres de places de l'événement</span>
-        <input type="number" name="nbr_places_dispo" class="form-control" aria-label="Sizing example input"
+        <input type="number" name="nbr_places_dispo" class="form-control text-center" aria-label="Sizing example input"
             aria-describedby="inputGroup-sizing-sm" value="{{ evenement.nbrPLacesDispo }}">
     </div>
 

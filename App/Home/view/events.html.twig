@@ -1,6 +1,7 @@
 {% extends "layout.html.twig" %}
 {% block stylesheet %}
 <link rel="stylesheet" href="{{ assets('/assets/css/home.css') }}" />
+<link rel="stylesheet" href="{{ assets('/assets/css/event.css') }}" />
 {% endblock %}
 {% block body %}
 <div class="container text-center my-2 d-flex flex-column align-items-center">
@@ -11,7 +12,6 @@
             <tr>
                 <th>Nom de l'événement</th>
                 <th>Description de l'événement</th>
-                <th>Intervenant de l'événement</th>
                 <th>Débute à </th>
                 <th>Fini à </th>
                 <th>Nombres de places disponibles </th>
@@ -23,11 +23,6 @@
             <tr>
                 <td>{{ evenement.nom }}</td>
                 <td>{{ evenement.description }}</td>
-                <td>{% for intervenant in evenement.intervenants %}
-                    {{ intervenant.nom }}
-                    {{ intervenant.prenom }}
-                    {{ intervenant.role }}
-                    {% endfor %}</td>
                 <td>{{ evenement.startAt|date("d/m/Y\\ H:i", "Europe/Paris") }}</td>
                 <td>{{ evenement.endAt|date("d/m/Y\\ H:i", "Europe/Paris") }}</td>
                 {% if evenement.places_dispo != 0 %}
