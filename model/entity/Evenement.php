@@ -41,12 +41,14 @@ class Evenement
 
 
     /**
+     * @ORM\Column(name="start_at")
      * @ORM\Column(type="datetime")
      * @var
      */
     private $startAt;
 
     /**
+     * @ORM\Column(name="end_at")
      * @ORM\Column(type="datetime")
      * @var 
      */
@@ -278,7 +280,7 @@ class Evenement
     public function setNbrPlacesDispo($nbrPlacesDispo)
     {
         $this->nbr_places_dispo = $nbrPlacesDispo;
-    
+
         return $this;
     }
 
