@@ -31,8 +31,8 @@ class AdministratorAction
         $this->manager = $manager;
         $this->renderer = $renderer;
         $this->toaster = $toaster;
-        $this->repository = $manager->getRepository(Evenement::class);
-        $this->interRepository = $manager->getRepository(Intervenant::class);
+        $this->repository = $manager->getRepository(Evenement::class);          // Permet d'obtenir un objet de type EntityRepository qui permet de gérer les entités de la classe Evenement
+        $this->interRepository = $manager->getRepository(Intervenant::class);   // Permet d'obtenir un objet de type EntityRepository qui permet de gérer les entités de la classe Intervenant
     }
 
     public function home(ServerRequest $request)
@@ -55,7 +55,7 @@ class AdministratorAction
 
         if ($method === 'POST') {
             $data = $request->getParsedBody(); // On récupère le contenu de $_POST (les valeurs saisis dans le formualaire)
-            $evenements = $this->repository->findAll();
+            // TODO $evenements = $this->repository->findAll(); Activer pour empêcher l'inscription de deux événements ayant le même noms
             $validator = new Validator($data); // On instancie le Validator en lui passant le tableau de données à valider 
             $errors = $validator
                 ->required('nom', 'description', 'startAt', 'endAt', 'intervenant', 'nbr_places_dispo')
@@ -68,19 +68,25 @@ class AdministratorAction
                 return $this->redirect('event.add');
             }
 
-            foreach ($evenements as $evenement) {
-                if ($evenement->getNom() === $data['nom']) { // Ici je vérifie si le nom de l'événement rentrer n'existe pas dèja en BDD
 
-                    $this->toaster->makeToast('Cette événement existe déjà', Toaster::ERROR); // Créer et affiche le Toast "ERREUR"
+            //TODO Activer pour empêcher l'inscription de deux événements ayant le même noms
+            // foreach ($evenements as $evenement) {
 
-                    return $this->renderer->render('@admin/addEvent'); // Retourne la page addEvent
-                }
-            }
+            //     if ($evenement->getNom() === $data['nom']) { // Ici je vérifie si le id de l'événement rentrer n'existe pas dèja en BDD
+
+            //         $this->toaster->makeToast('Cette événement existe déjà', Toaster::ERROR); // Créer et affiche le Toast "ERREUR"
+
+            //         return $this->renderer->render('@admin/addEvent'); // Retourne la page addEvent
+            //     }
+            // }
+
+
             // Ici j'instancie un nouveau événement contenu dans la variable $new 
             $new = new Evenement();
             $intervenant = $this->interRepository->find($data['intervenant']);
 
-            $new->setNom($data['nom'])
+            $new
+                ->setNom($data['nom'])
                 ->setDescription($data['description'])
                 ->addIntervenant($intervenant)
                 ->setStartAt(new DateTime($data['startAt']))
@@ -127,6 +133,7 @@ class AdministratorAction
             $validator = new Validator($data);
             $errors = $validator->required('nom', 'description', 'startAt', 'endAt')
                 ->getErrors();
+
             if ($errors) {
                 foreach ($errors as $error) {
                     $this->toaster->makeToast($error->toString(), Toaster::ERROR);
@@ -135,15 +142,14 @@ class AdministratorAction
                     ->withHeader('Location', '/admin/updateEvent');
             }
 
-            // TEST
             $intervenants = $this->interRepository->find($data['intervenant']);
-            // TEST
+
             $event->setNom($data['nom'])
                 ->setDescription($data['description'])
                 ->setStartAt(new DateTime($data['startAt']))
                 ->setEndAt(new DateTime($data['endAt']))
                 ->setNbrPlacesDispo($data['nbr_places_dispo'])
-                // TEST
+
                 ->setIntervenants($intervenants);
 
             $this->manager->flush();
@@ -154,10 +160,9 @@ class AdministratorAction
         }
 
         $intervenants = $this->interRepository->findAll();
-        return $this->renderer->render('@admin/updateEvent', [
-            "evenement" => $event,
-            // TEST
-            "intervenants" => $intervenants
+        return $this->renderer->render('@admin/updateEvent', [ // Nom de la vue appele
+            "evenement" => $event,                   // Tableau Associatif contenant les données qui seront utiliser dans la vue 
+            "intervenants" => $intervenants          // Tableau Associatif contenant les données qui seront utiliser dans la vue
         ]);
     }
 
@@ -167,8 +172,8 @@ class AdministratorAction
     {
         $intervenants = $this->interRepository->findAll();
 
-        return $this->renderer->render('@admin/inter', [
-            "intervenants" => $intervenants
+        return $this->renderer->render('@admin/inter', [   // Nom de la vue appele
+            "intervenants" => $intervenants                // Tableau Associatif contenant les données qui seront utiliser dans la vue
         ]);
     }
 
@@ -178,7 +183,7 @@ class AdministratorAction
 
         if ($method === 'POST') {
             $data = $request->getParsedBody();
-            $intervenants = $this->interRepository->findAll();
+            $intervenants = $this->interRepository->findAll(); // Permet d'allez récuperer tous les intervenants en bdd 
             $validator = new Validator($data);
             $errors = $validator
                 ->required('nom', 'prenom', 'role')
@@ -191,8 +196,9 @@ class AdministratorAction
                 return $this->redirect('inter.add');
             }
 
+            // J'empêche un intervenant d'avoir deux fois le même rôle
             foreach ($intervenants as $intervenant) {
-                if ($intervenant->getNom() === $data['nom']) {
+                if ($intervenant->getRole() === $data['role']) {
                     $this->toaster->makeToast('Intervenant déjà enregistrer', Toaster::ERROR);
                     return $this->renderer->render('@admin/addInter');
                 }
@@ -215,10 +221,10 @@ class AdministratorAction
 
     public function deleteInter(ServerRequestInterface $request): Response
     {
-        $id = $request->getAttribute('id'); // Permet de récup l'ID de l'event
-        $intervenant = $this->interRepository->find($id); // Permet de récup l'event en fonction de son ID
+        $id = $request->getAttribute('id'); // Permet de récup l'ID envoyer par la requête
+        $intervenant = $this->interRepository->find($id); // Permet de récup l'intervenant en fonction de son ID
 
-        $this->manager->remove($intervenant); // Supprime l'event
+        $this->manager->remove($intervenant); // Supprime l'intervenant
         $this->manager->flush(); // Applique la suppresion 
 
         $this->toaster->makeToast('Intervenant supprimer avec succès', Toaster::SUCCESS);

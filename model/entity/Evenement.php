@@ -28,7 +28,7 @@ class Evenement
     private string $nom;
 
     /**
-     * @ORM\Column(type="string", length="55")
+     * @ORM\Column(type="string", length="255")
      * @var string
      */
     private string $description;

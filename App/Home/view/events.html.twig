@@ -30,7 +30,9 @@
                     {% endfor %}</td>
                 <td>{{ evenement.startAt|date("d/m/Y\\ H:i", "Europe/Paris") }}</td>
                 <td>{{ evenement.endAt|date("d/m/Y\\ H:i", "Europe/Paris") }}</td>
+                {% if evenement.places_dispo != 0 %}
                 <td>{{ evenement.places_dispo }}</td>
+                {% endif %}
             </tr>
             {% endfor %}
         </tbody>
