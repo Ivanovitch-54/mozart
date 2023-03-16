@@ -1,3 +1,8 @@
 .bloc {
     height: 55vh;
 }
+
+h1 {
+    font-family: 'Satisfy', cursive;
+    text-decoration: underline;
+}
