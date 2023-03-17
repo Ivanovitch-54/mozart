@@ -18,6 +18,12 @@
     crossorigin="anonymous"></script>
   {% block stylesheet %}
   {% endblock %}
+
+
+    {% block title %}
+
+    {% endblock %}
+
 </head>
 
 <body>
@@ -124,9 +130,11 @@
           <ul class="nav flex-column">
             <li class="nav-item mb-2"><a href="{{ path('accueil') }}" class="nav-link p-0 text-muted">Acceuil</a></li>
             {% if user %}
-            <li class="nav-item mb-2"><a href="{{ path('user.liste') }}" class="nav-link p-0 text-muted">Nos événements</a></li>
+            <li class="nav-item mb-2"><a href="{{ path('user.liste') }}" class="nav-link p-0 text-muted">Nos
+                événements</a></li>
             {% else %}
-            <li class="nav-item mb-2"><a href="{{ path('events') }}" class="nav-link p-0 text-muted">Nos événements</a></li>
+            <li class="nav-item mb-2"><a href="{{ path('events') }}" class="nav-link p-0 text-muted">Nos événements</a>
+            </li>
             {% endif %}
             <li class="nav-item mb-2"><a href="{{ path('quiSommes')}}" class="nav-link p-0 text-muted">Qui sommes-nous
                 ?</a></li>
