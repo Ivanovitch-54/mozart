@@ -1,0 +1,75 @@
+<header class="p-3">
+    <div class="container">
+      <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+        <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-dark text-decoration-none">
+          <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap">
+            <use xlink:href="#bootstrap" />
+          </svg>
+
+        </a>
+
+        <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+          <li><a href="{{ path('accueil') }}" class="nav-link px-3 link-dark fs-5">Accueil</a></li>
+          {% if user %}
+          <li><a href="{{ path('user.liste') }}" class="nav-link px-3 link-dark fs-5">Nos événements</a></li>
+          {% else %}
+          <li><a href="{{ path('events') }}" class="nav-link px-3 link-dark fs-5">Nos événements</a></li>
+          {% endif %}
+          <li><a href="{{ path('quiSommes') }}" class="nav-link px-3 link-dark fs-5">Qui sommes-nous ?</a></li>
+          <li><a href="{{ path('dons') }}" class="nav-link px-3 link-dark fs-5">Dons</a></li>
+          <li><a href="{{ path('contact') }}" class="nav-link px-3 link-dark fs-5">Contact</a></li>
+          <li><a href="{{ path('user.login') }}" class="nav-link px-3 link-dark fs-5">Inscription / Connexion</a></li>
+        </ul>
+
+        <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
+          <input type="search" class="form-control" placeholder="Recherche..." aria-label="Search">
+        </form>
+
+        <div class="dropdown text-end">
+          <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" data-bs-toggle="dropdown"
+            aria-expanded="false">
+            <img src="{{ absolute(assets('assets/img/user.png')) }}" alt="" width="32" height="32"
+              class="rounded-circle">
+          </a>
+          <ul class="dropdown-menu text-small">
+
+            {% if user %}
+            <li>
+              <p class="dropdown-item text-dark disabled">Bonjour, {{ user.prenom }}</p>
+            </li>
+            {% else %}
+            <li>
+              <p class="dropdown-item text-dark disabled">Bonjour, Visiteur</p>
+            </li>
+            {% endif %}
+
+            {% if user %}
+
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+            <li>
+              <a class="dropdown-item" href="{{ path('user.listEvent') }}">Mes événements</a>
+            </li>
+            <li>
+              <a class="dropdown-item" href="{{ path('user.logout') }}">Se déconnecter</a>
+            </li>
+
+            {% else %}
+
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+            <li>
+              <a class="dropdown-item" href="{{ path('events') }}">Voir les événements</a>
+            </li>
+            <li>
+              <a class="dropdown-item" href="{{ path('user.login') }}">Se connecter</a>
+            </li>
+
+            {% endif %}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </header>

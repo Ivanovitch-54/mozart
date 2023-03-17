@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Home;
 
 use Model\Entity\Evenement;
@@ -30,16 +31,19 @@ class HomeModule extends AbstractModule
 
         $this->renderer->addPath('home', __DIR__ . DIRECTORY_SEPARATOR . 'view');
         $this->router->get('/', [$this, 'index'], 'accueil'); // Index Correspond a la méthode appeler 
-        $this->router->get('/quiSommes', [$this, 'quiSommes'], 'quiSommes'); 
-        $this->router->get('/dons', [$this, 'dons'], 'dons'); 
-        $this->router->get('/contact', [$this, 'contact'], 'contact'); 
-        $this->router->get('/events', [$this, 'homeEvents'], 'events'); 
+        $this->router->get('/quiSommes', [$this, 'quiSommes'], 'quiSommes');
+        $this->router->get('/dons', [$this, 'dons'], 'dons');
+        $this->router->get('/contact', [$this, 'contact'], 'contact');
+        $this->router->get('/events', [$this, 'homeEvents'], 'events');
+        $this->router->get('/mentions', [$this, 'mentions'], 'mentions');
     }
 
     public function index()
     {
-        return $this->renderer->render('@home/index',
-    ['siteName' => 'Epicerie Mozart']);
+        return $this->renderer->render(
+            '@home/index',
+            ['siteName' => 'Epicerie Mozart']
+        );
     }
 
     public function quiSommes()
@@ -55,6 +59,11 @@ class HomeModule extends AbstractModule
     public function contact()
     {
         return $this->renderer->render('@home/contact');
+    }
+
+    public function mentions()
+    {
+        return $this->renderer->render('@home/mentions');
     }
 
     public function homeEvents()

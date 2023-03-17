@@ -129,7 +129,7 @@ class AdministratorAction
         $method = $request->getMethod();
 
         if ($method === 'POST') {
-            $data = $request->getParsedBody(); // Récup les datas envoyer en POST
+            $data = $request->getParsedBody(); // Récup les infos envoyer en méthode POST
             $validator = new Validator($data);
             $errors = $validator->required('nom', 'description', 'start_at', 'endAt')
                 ->getErrors();
