@@ -58,8 +58,8 @@ class AdminAction
     {
         $auth = $this->container->get(AdminAuth::class);
         $auth->logout();
-        $this->toaster->makeToast('Disconnected Succeed', Toaster::SUCCESS);
+        $this->toaster->makeToast('Déconnexion Réussi', Toaster::SUCCESS);
         return (new Response())
-            ->withHeader('Location', '/admin/login');
+            ->withHeader('Location', '@home/inex');
     }
 }

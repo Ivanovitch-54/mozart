@@ -12,11 +12,13 @@ use Core\Framework\Validator\Validator;
 use Core\Framework\Router\RedirectTrait;
 use Psr\Http\Message\ServerRequestInterface;
 use Core\Framework\Renderer\RendererInterface;
+use Core\Session\SessionInterface;
 use Model\Entity\Intervenant;
 
 class AdministratorAction
 {
     use RedirectTrait;
+    private SessionInterface $session;
     private ContainerInterface $container;
     private RendererInterface $renderer;
     private $repository;
@@ -30,6 +32,7 @@ class AdministratorAction
         $this->manager = $manager;
         $this->renderer = $renderer;
         $this->toaster = $toaster;
+        $this->session = $container->get(SessionInterface::class);
         $this->repository = $manager->getRepository(Evenement::class);          // Permet d'obtenir un objet de type EntityRepository qui permet de gérer les entités de la classe Evenement
         $this->interRepository = $manager->getRepository(Intervenant::class);   // Permet d'obtenir un objet de type EntityRepository qui permet de gérer les entités de la classe Intervenant
     }
@@ -42,9 +45,19 @@ class AdministratorAction
     public function event()
     {
         $events = $this->repository->findAll();
+        $sess = $this->session->get('auth');
+        $user = $this->repository->find($sess->getId());
+        // Le symbole "&" dans la ligne de code "foreach ($events as &$event)" crée une référence à chaque élément de l'array "$events" lors de l'itération de la boucle foreach.
+        // Cela signifie que toute modification apportée à l'objet "$event" à l'intérieur de la boucle est également modifiée dans l'array "$events" d'origine.
+        foreach ($events as &$event) {
+            // Ces nouvelles propriétés ne sont pas stockées en base de données, mais uniquement ajoutées à l'objet pendant l'exécution de la boucle
+            $event->places_restantes = $event->getNbrPlacesDispo() - $event->getUsers()->count(); // Ici je crée un nouveau champs dans l'objet (non visible en BDD)
+            $event->places_dispo = $event->getNbrPlacesDispo();
+            $event->user_register = $event->getUsers()->count($user);
+        }
 
         return $this->renderer->render('@admin/event', [
-            "evenements" => $events
+            "evenements" => $events,
         ]);
     }
 
