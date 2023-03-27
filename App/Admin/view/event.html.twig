@@ -18,7 +18,7 @@
                 <th>Intervenant de l'événement</th>
                 <th>Débute à </th>
                 <th>Fini à </th>
-                <th>Nombres de places disponibles </th>
+                <th>Nombres de places maximum </th>
                 <th>Options disponibles</th>
             </tr>
         </thead>
@@ -34,7 +34,10 @@
                     {% endfor %}</td>
                 <td>{{ evenement.startAt|date("d/m/Y\\ H:i", "Europe/Paris") }}</td>
                 <td>{{ evenement.endAt|date("d/m/Y\\ H:i", "Europe/Paris") }}</td>
-                <td>{{ evenement.nbrPLacesDispo }}</td>
+                <td>{{ evenement.places_dispo }}</td>
+                {% else %}
+                    <td><span class="text-danger">Complet</span></td>
+                {% endif %}
                 <td>
                     <a href="{{ path('event.delete', {id: evenement.id}) }}"
                         class="text-decoration-none text-danger">Supprimer /</a>

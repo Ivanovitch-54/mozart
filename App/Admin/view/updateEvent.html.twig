@@ -16,12 +16,12 @@
     <div class="input-group input-group-sm mb-3">
         <span class="input-group-text" id="inputGroup-sizing-sm">Nom de l'événement</span>
         <input type="text" name="nom" class="form-control text-center" aria-label="Sizing example input"
-            aria-describedby="inputGroup-sizing-sm" value="{{ evenement.nom }}">
+            aria-describedby="inputGroup-sizing-sm" value="{{ evenement.nom }}" pattern="[a-zA-Z]+">
     </div>
 
     <div class="input-group input-group-sm mb-3">
         <span class="input-group-text" id="inputGroup-sizing-sm">Description de l'événement</span>
-        <textarea class="form-control" name="description" placeholder="{{ evenement.description }}" id="floatingTextarea"></textarea>
+        <textarea class="form-control" name="description" placeholder="{{ evenement.description }}" id="floatingTextarea" pattern="[a-z,A-Z,0-9_ ]*$"></textarea>
       </div>
 
     <div class="input-group input-group-sm mb-3">

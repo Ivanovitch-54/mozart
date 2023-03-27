@@ -16,15 +16,16 @@
         <div class="input-group input-group-sm mb-3">
             <span class="input-group-text" id="inputGroup-sizing-sm">Nom de l'événement</span>
             <input type="text" name="nom" class="form-control" aria-label="Sizing example input"
-                aria-describedby="inputGroup-sizing-sm" placeholder="Saisir le nom de l'événement">
+                aria-describedby="inputGroup-sizing-sm" placeholder="Saisir le nom de l'événement" pattern="[a-zA-Z]+">
         </div>
 
         <div class="input-group input-group-sm mb-3">
             <span class="input-group-text" id="inputGroup-sizing-sm">Description de l'événement</span>
-            <textarea class="form-control" name="description" placeholder="Saisir la description de l'événement" id="floatingTextarea"></textarea>
-          </div>
+            <textarea class="form-control" name="description" placeholder="Saisir la description de l'événement"
+                id="floatingTextarea" pattern="[a-z,A-Z,0-9_ ]*$"></textarea>
+        </div>
 
-          <div class="input-group input-group-sm mb-3">
+        <div class="input-group input-group-sm mb-3">
             <span class="input-group-text" id="inputGroup-sizing-sm">Intervenant de l'événement</span>
             <select name="intervenant" class="border border-grey form-select">
 

@@ -51,7 +51,7 @@ class UserAction
         }
     }
 
-    public function logView(ServerRequest $request) // Permet de se connecter à la Vue Utilisateur
+    public function logView() // Permet de se connecter à la Vue Utilisateur
     {
         return $this->renderer->render('@user/forms'); // Retourne la vue avec les formulaires d'insc/co 
     }
@@ -121,7 +121,7 @@ class UserAction
         return $this->redirect('accueil');
     }
 
-    public function home(ServerRequest $request)
+    public function home()
     {
 
         $user = $this->session->get('auth');
@@ -130,7 +130,7 @@ class UserAction
         ]); // Retourne la vu USER/HOME et permet de récupérer le User.Nom en même temps afin de l'afficher dans le home.html.twig
     }
 
-    public function liste(ServerRequest $request)
+    public function liste()
     {
         $inter = $this->interRepository->findAll();
         $events = $this->eventRepository->findAll();
@@ -194,7 +194,7 @@ class UserAction
             ->withHeader('Location', '/user/listEvent');
     }
 
-    public function listEvent(ServerRequestInterface $request)
+    public function listEvent()
     {
         $inter = $this->interRepository->findAll();
 

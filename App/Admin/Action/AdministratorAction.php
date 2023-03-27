@@ -7,7 +7,6 @@ use Core\Toaster\Toaster;
 use Model\Entity\Evenement;
 use GuzzleHttp\Psr7\Response;
 use Doctrine\ORM\EntityManager;
-use GuzzleHttp\Psr7\ServerRequest;
 use Psr\Container\ContainerInterface;
 use Core\Framework\Validator\Validator;
 use Core\Framework\Router\RedirectTrait;
@@ -35,12 +34,12 @@ class AdministratorAction
         $this->interRepository = $manager->getRepository(Intervenant::class);   // Permet d'obtenir un objet de type EntityRepository qui permet de gérer les entités de la classe Intervenant
     }
 
-    public function home(ServerRequest $request)
+    public function home()
     {
         return $this->renderer->render('@admin/home');
     }
 
-    public function event(ServerRequestInterface $request)
+    public function event()
     {
         $events = $this->repository->findAll();
 
@@ -65,7 +64,7 @@ class AdministratorAction
                 foreach ($errors as $error) {
                     $this->toaster->makeToast($error->toString(), Toaster::ERROR);
                 }
-                return $this->redirect('event.add');
+                return $this->renderer->render('@admin/addEvent');
             }
 
 
@@ -80,7 +79,6 @@ class AdministratorAction
             //     }
             // }
 
-
             // Ici j'instancie un nouveau événement contenu dans la variable $new 
             $new = new Evenement();
             $intervenant = $this->interRepository->find($data['intervenant']);
@@ -89,7 +87,7 @@ class AdministratorAction
                 ->setNom($data['nom'])
                 ->setDescription($data['description'])
                 ->addIntervenant($intervenant)
-                ->setStartAt(new DateTime($data['start_at']))
+                ->setStartAt(new DateTime($data['startat']))
                 ->setEndAt(new DateTime($data['endAt']))
                 ->setNbrPlacesDispo($data['nbr_places_dispo']);
 
@@ -168,7 +166,7 @@ class AdministratorAction
 
     // A partir d'ici je gère les intervenants 
 
-    public function showInter(ServerRequestInterface $request)
+    public function showInter()
     {
         $intervenants = $this->interRepository->findAll();
 
