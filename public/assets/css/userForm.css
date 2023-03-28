@@ -3,8 +3,9 @@ main {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    min-height: 100dvh;
+    min-height: 65dvh;
     min-width: 100dvw;
+
 }
 
 .userFormViewPort {
@@ -12,7 +13,7 @@ main {
     height: fit-content;
     overflow: hidden;
     border: 1px solid rgba(0, 0, 0, 0.4);
-    border-radius: 15px;
+    border-radius: 15px; 
 }
 
 .formContainer {
