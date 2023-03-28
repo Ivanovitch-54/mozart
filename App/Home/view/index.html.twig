@@ -21,16 +21,21 @@
 
       {# TODO #}
       <div class="col-4 d-flex justify-content-around flex-column">
-        <p class="bloc-actu fs-3 rounded-pill border bg-white  align-self-center">Nos activités</p>
-        <div class="link-cuisine fs-2 rounded-4 bg-white d-flex align-items-center justify-content-center">
-          <p class="text-activity text-white mx-5 text-decoration-underline">Atelier cuisine</p>
+        <p class="bloc-actu fs-3 rounded-pill border bg-white align-self-center">Nos activités</p>
+        <div class="link-cuisine fs-2 rounded-4 bg-white d-flex justify-content-center">
+          <p class="align-self-end mb-3"><a href="{{ path('events') }}"
+              class="text-activity text-white text-decoration-none">Atelier
+              Cuisine</a></p>
         </div>
-        <div class="link-coiffure fs-2 rounded-4 bg-white d-flex align-items-center justify-content-center">
-          <p class="text-activity text-white mx-5 text-decoration-underline">Atelier Coiffure</p>
+        <div class="link-coiffure fs-2 rounded-4 bg-white d-flex justify-content-center">
+          <p class="align-self-end mb-3"><a href="{{ path('events') }}"
+              class="text-activity text-white text-decoration-none">Atelier
+              Coiffure</a></p>
         </div>
-        <div class="link-doc fs-2 rounded-4 bg-white d-flex align-items-center justify-content-center">
-          <p class="text-activity text-white mx-5 text-decoration-underline">Rendez-vous
-            médicaux</p>
+        <div class="link-doc fs-2 rounded-4 bg-white d-flex justify-content-center">
+          <p class="align-self-end mb-3"><a href="{{ path('events') }}"
+              class="text-activity text-white text-decoration-none">Rendez-vous
+              médicaux</a></p>
         </div>
       </div>
     </div>
@@ -54,10 +59,12 @@
 
         <div class="bloc-aside-sec col-4 d-flex justify-content-around align-items-center flex-column">
           <div class="bloc-actu fs-3 rounded-pill border bg-white align-self-center">Nos actualités</div>
-          <div class="linkedin-link rounded-4 bg-white py-2"><a href="https://fr.linkedin.com/"
-              target="_blank" class=" text-decoration-none text-dark">Suivez-nous sur Linkedin <i class="fa-brands fa-linkedin fa-2xl"></i></a></div>
+          <div class="linkedin-link rounded-4 bg-white py-2"><a href="https://fr.linkedin.com/" target="_blank"
+              class=" text-decoration-none text-dark">Suivez-nous sur Linkedin <i
+                class="fa-brands fa-linkedin fa-2xl"></i></a></div>
           <div class="facebook-link rounded-4 bg-white py-2"><a href="https://www.facebook.com/epiceriesolidairemozart/"
-              target="_blank" class=" text-decoration-none text-dark">Suivez-nous sur Facebook <i class="fa-brands fa-facebook fa-2xl"></i></a></div>
+              target="_blank" class=" text-decoration-none text-dark">Suivez-nous sur Facebook <i
+                class="fa-brands fa-facebook fa-2xl"></i></a></div>
           <p class="bloc-actu fs-3 rounded-pill border bg-white align-self-center">Nos derniers ateliers</p>
 
           {# Ici commence le carousel #}

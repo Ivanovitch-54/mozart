@@ -39,12 +39,12 @@
                     <td><span class="text-danger">Complet</span></td>
                 {% endif %}
                 <td>
-                    {% if evenement.user_register == false %}
+                    {% if evenement.user_register == false and evenement.places_dispo != 0 %}
 
                     <a href="{{ path('user.inscEvent', {id: evenement.id}) }}"
                         class="text-decoration-none">S'inscrire</a>
 
-                    {% else %}
+                    {% elseif evenement.user_register == true %}
 
                     <a href="{{ path('user.decoEvent', {id: evenement.id}) }}"
                         class="text-decoration-none text-danger">Déscinscription</a>
