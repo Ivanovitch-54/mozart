@@ -44,5 +44,9 @@ class UserModule extends AbstractModule
         $this->router->get('/user/listEvent', [$userAction, 'listEvent'], 'user.listEvent');
         // Permet à un User de se déscinscrire d'un événement
         $this->router->get('/user/decoEvent/{id:[\d]+}', [$userAction, 'decoEvent'], 'user.decoEvent');
+        // Permet à un User d'acceder a ses informations personnelles
+        $this->router->get('/user/monCompte', [$userAction, 'monCompte'], 'user.monCompte');
+        // Permet à un User de modifier ses informations personnelles
+        $this->router->post('/user/monCompte', [$userAction, 'monCompte']);
     }
 }

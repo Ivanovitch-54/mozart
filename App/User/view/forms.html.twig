@@ -25,12 +25,12 @@
         <form method="POST" class="p-4 formConnexion d-flex flex-column justify-content-evenly my-5"
             action="{{ path('user.connection') }}">
             <div class="form-floating mb-3 ">
-                <input type="email" class="form-control" name="mail" id="connexion_email" placeholder="nom@example.com"
-                    >
+                <input type="email" class="form-control" name="mail" id="connexion_email" placeholder="nom@example.com">
                 <label for="connexion_email">Adresse e-mail</label>
             </div>
             <div class="form-floating">
-                <input type="password" class="form-control" name="mdp" id="connexion_password" placeholder="Saisir votre mot de passe">
+                <input type="password" class="form-control" name="mdp" id="connexion_password"
+                    placeholder="Saisir votre mot de passe">
                 <label for="connexion_password">Mot de passe</label>
             </div>
             <input type="submit" value="Connexion"
@@ -48,7 +48,8 @@
                 <label for="prenom">Prénom</label>
             </div>
             <div class="form-floating mb-3">
-                <input type="email" class="form-control" name="mail" id="mail" pattern="^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$">
+                <input type="email" class="form-control" name="mail" id="mail"
+                    pattern="^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$">
                 <label for="mail">Adresse e-mail</label>
             </div>
             <div class="form-floating mb-3">

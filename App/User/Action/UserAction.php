@@ -123,7 +123,6 @@ class UserAction
 
     public function home()
     {
-
         $user = $this->session->get('auth');
         return $this->renderer->render('@user/home', [
             'user' => $user,
@@ -206,5 +205,43 @@ class UserAction
             "evenements" => $events, // "evenements" = nom de la variable / $response = Valeur de la variable 
             "intervenant" => $inter,
         ]);
+    }
+
+    //TODO Modifier les informations d'un utilisateurs 
+    public function monCompte(ServerRequest $request)
+    {
+        $method = $request->getMethod();
+        $sess = $this->session->get('auth');
+        $user = $this->repository->find($sess->getId());
+
+        if ($method === 'POST') {
+            $data = $request->getParsedBody();
+            $validator = new Validator($data);
+            $errors = $validator->required('nom','prenom','mdp','mdp_confirm')
+            ->getErrors();
+
+            if ($errors) {
+                foreach ($errors as $error) {
+                    $this->toaster->makeToast($error->toString(), Toaster::ERROR);
+                }
+                return (new Response())
+                ->withHeader('Location', 'user/monCompte');
+            }
+
+            $user
+            ->setNom($data['nom'])
+            ->setPrenom($data['prenom'])
+            ->strSize('mdp', 12, 50)
+            ->confirm('mdp')
+            ->getErrors();
+
+            $this->manager->flush();
+            $this->toaster->makeToast('Mise à jour réussi', Toaster::SUCCESS);
+
+            return (new Response())
+            ->withHeader('Location', '/user/monCompte'); // En cas de succès retourne la page liste d'EVENT
+        }
+
+        return $this->renderer->render('@user/monCompte');
     }
 }
