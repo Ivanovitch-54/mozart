@@ -28,12 +28,12 @@ main {
     transition: .5s all ease-in-out;
 }
 
-.formConnexion {
+.formInscription {
     top: 0;
     left: 0;
 }
 
-.formInscription {
+.formConnexion {
     top: 0;
     left: 110%;
 }

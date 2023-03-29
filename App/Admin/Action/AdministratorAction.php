@@ -209,7 +209,7 @@ class AdministratorAction
 
             // J'empêche un intervenant d'avoir deux fois le même rôle
             foreach ($intervenants as $intervenant) {
-                if ($intervenant->getRole() === $data['role']) {
+                if ($intervenant->getNom() === $data['nom']) {
                     $this->toaster->makeToast('Intervenant déjà enregistrer', Toaster::ERROR);
                     return $this->renderer->render('@admin/addInter');
                 }

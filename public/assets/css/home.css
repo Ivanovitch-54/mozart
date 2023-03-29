@@ -14,7 +14,7 @@ header li {
 }
 
 .bloc1 {
-    height: 85vh;
+    height: 80vh;
 }
 
 .welcome-pic {
@@ -73,7 +73,7 @@ header li {
 /* Ici commence la deuxième partie de ma page principale (Partie Gauche) */
 
 .index-bottom-bloc {
-    height: 85vh;
+    height: 100vh;
 }
 
 .bloc2 {
@@ -103,10 +103,52 @@ header li {
     background-color: #FFFCCF;
 }
 
-/* TEST */
+footer {
+    height: 15vh;
+}
 
-.toto {
-    border: solid blue;
-    height: 600px;
-    width: 600px;
+.nav-link:hover{
+    color: red;
+}
+
+@media screen and (max-width:780px) {
+    .welcome-pic{
+        margin: 0 auto;
+        width: 90%;
+    }
+
+    .welcome-text{
+        font-size: 20px !important;
+    }
+
+    .bloc2{
+        margin: 2% 5% 0%;
+        width: 90%;
+        display: block !important;
+        background-position: 30%;
+        height: 80vh;
+    }
+
+    footer {
+        margin-top: 50vh!important;
+        height: 15vh;
+    }
+
+    .welcome-text2{
+        font-size: 16px !important;
+        margin-top: 80%;
+        margin-left: 20%;
+    }
+
+    .test {
+        height: 80vh;
+    }
+
+    main {
+        margin-bottom: 110%;
+    }
+
+    footer ul {
+        display: block !important;
+    }
 }

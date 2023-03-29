@@ -217,7 +217,7 @@ class UserAction
         if ($method === 'POST') {
             $data = $request->getParsedBody();
             $validator = new Validator($data);
-            $errors = $validator->required('nom','prenom','mdp','mdp_confirm')
+            $errors = $validator->required('nom','prenom','mdp')
             ->getErrors();
 
             if ($errors) {
@@ -231,9 +231,7 @@ class UserAction
             $user
             ->setNom($data['nom'])
             ->setPrenom($data['prenom'])
-            ->strSize('mdp', 12, 50)
-            ->confirm('mdp')
-            ->getErrors();
+            ->setPassword($data['mdp']);
 
             $this->manager->flush();
             $this->toaster->makeToast('Mise à jour réussi', Toaster::SUCCESS);

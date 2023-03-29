@@ -18,7 +18,6 @@
                 <th>Intervenant de l'événement</th>
                 <th>Débute à </th>
                 <th>Fini à </th>
-                <th>Nombres de places max </th>
                 <th>Nombres de places restantes </th>
                 <th>Nombres de places occupées </th>
                 <th>Options disponibles</th>
@@ -36,7 +35,6 @@
                     {% endfor %}</td>
                 <td>{{ evenement.startAt|date("d/m/Y\\ H:i", "Europe/Paris") }}</td>
                 <td>{{ evenement.endAt|date("d/m/Y\\ H:i", "Europe/Paris") }}</td>
-                <td>{{ evenement.places_dispo }}</td>
                 {% if evenement.places_restantes != 0 %}
                 <td>{{ evenement.places_restantes }}</td>
                 {% else %}

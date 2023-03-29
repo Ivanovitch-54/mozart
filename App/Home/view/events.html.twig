@@ -7,35 +7,25 @@
 <link rel="stylesheet" href="{{ assets('/assets/css/event.css') }}" />
 {% endblock %}
 {% block body %}
-<div class="container text-center my-2 d-flex flex-column align-items-center">
 
-    <h2 class="text-center my-4 border rounded-4 bg-white px-1">Liste des événements disponibles</h2>
-    <table>
-        <thead class="bg-white">
-            <tr>
-                <th>Nom de l'événement</th>
-                <th>Description de l'événement</th>
-                <th>Débute à </th>
-                <th>Fini à </th>
-                <th>Nombres de places disponibles </th>
-            </tr>
-        </thead>
-
-        <tbody class="bg-white">
-            {% for evenement in evenements %}
-            <tr>
-                <td>{{ evenement.nom }}</td>
-                <td>{{ evenement.description }}</td>
-                <td>{{ evenement.startAt|date("d/m/Y\\ H:i", "Europe/Paris") }}</td>
-                <td>{{ evenement.endAt|date("d/m/Y\\ H:i", "Europe/Paris") }}</td>
-                {% if evenement.places_dispo != 0 %}
-                <td>{{ evenement.places_dispo }}</td>
-                {% else %}
-                    <td><span class="text-danger">Complet</span></td>
-                {% endif %}
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-</div>
-{% endblock %}
+<div class="container card-group gap-3 text-center mb-3 mt-5">
+    {% for evenement in evenements %}
+    <div class="card border border-dark rounded">
+        <div class="card-body">
+            <h5 class="card-title text-uppercase my-2">{{ evenement.nom }}</h5>
+            <p class="card-text my-3">{{ evenement.description }}</p>
+            <hr>
+            <p class="card-text">Débute le {{ evenement.startAt|date("d/m/Y\\", "Europe/Paris") }} à {{
+                evenement.startAt|date("H:i", "Europe/Paris") }}</p>
+            <p class="card-text">Fini le {{ evenement.endAt|date("d/m/Y\\", "Europe/Paris") }} à {{
+                evenement.endAt|date("H:i", "Europe/Paris") }}</p>
+            {% if evenement.places_dispo != 0 %}
+            <p class="card-text"><small class="text-dark">Nombres de places restantes : <span class="text-danger">{{
+                    evenement.places_dispo }}</span></small></p>
+            {% else %}
+            <p class="card-text"><small class="text-danger text-uppercase">Complet</small></p>
+            {% endif %}
+        </div>
+    </div>
+    {% endfor %}
+    {% endblock %}

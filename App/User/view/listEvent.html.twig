@@ -7,38 +7,69 @@
 {% endblock %}
 {% block body %}
 
-<div class="container text-center my-2 d-flex flex-column align-items-center">
+<h2 class="mx-auto text-center bg-white border rounded-4 align-self-center my-5">Liste des événements disponibles</h2>
+<div class="container card-group gap-3 text-center mb-5 w-auto">
+    {% for evenement in evenements %}
+    <div class="card border border-dark rounded">
+        <div class="card-body">
+            <h5 class="card-title text-uppercase my-2">{{ evenement.nom }}</h5>
+            <hr>
+            <p class="card-text my-3">{{ evenement.description }}</p>
+            <hr>
+            <p class="card-text">Débute le {{ evenement.startAt|date("d/m/Y\\", "Europe/Paris") }} à {{
+                evenement.startAt|date("H:i", "Europe/Paris") }}</p>
+            <p class="card-text">Fini le {{ evenement.endAt|date("d/m/Y\\", "Europe/Paris") }} à {{
+                evenement.endAt|date("H:i", "Europe/Paris") }}</p>
+            <hr>
+            {% if evenement.places_dispo != 0 %}
+            <p class="card-text"><small class="text-danger">Nombres de places restantes : {{
+                    evenement.places_dispo }}</small></p>
+            {% else %}
+            <p class="card-text"><small class="text-success text-uppercase">Complet</small></p>
+            {% endif %}
+            <a href="{{ path('user.decoEvent', {id: evenement.id}) }}" class="text-decoration-none text-danger">Se
+                désinscrire</a>
+        </div>
+    </div>
+    {% endfor %}
 
-    <h2 class="text-center my-4 border rounded-4 bg-white">Liste des événements où vous êtes inscrit</h2>
-    <table>
-        <thead class="bg-white">
-            <tr>
-                <th>Nom de l'événement</th>
-                <th>Description de l'événement</th>
-                <th>Intervenant de l'événement</th>
-                <th>Débute à </th>
-                <th>Fini à </th>
-                <th>Options</th>
-            </tr>
-        </thead>
+    {% endblock %}
 
-        <tbody class="bg-white">
-            {% for evenement in evenements %}
-            <tr>
-                <td>{{ evenement.nom }}</td>
-                <td>{{ evenement.description }}</td>
-                <td>{% for intervenant in evenement.intervenants %}
-                    {{ intervenant.nom }}
-                    {% endfor %}</td>
-                <td>{{ evenement.startAt|date("d/m/Y\\ H:i", "Europe/Paris") }}</td>
-                <td>{{ evenement.endAt|date("d/m/Y\\ H:i", "Europe/Paris") }}</td>
-                <td>
-                    <a href="{{ path('user.decoEvent', {id: evenement.id}) }}"
-                        class="text-decoration-none text-danger">Se désinscrire</a>
-                </td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-</div>
-{% endblock %}
+
+
+    {# Ancienne Version sous forme de Tableau
+    <div class="container text-center my-2 d-flex flex-column align-items-center">
+
+        <h2 class="text-center my-4 border rounded-4 bg-white">Liste des événements où vous êtes inscrit</h2>
+        <table>
+            <thead class="bg-white">
+                <tr>
+                    <th>Nom de l'événement</th>
+                    <th>Description de l'événement</th>
+                    <th>Intervenant de l'événement</th>
+                    <th>Débute à </th>
+                    <th>Fini à </th>
+                    <th>Options</th>
+                </tr>
+            </thead>
+
+            <tbody class="bg-white">
+                {% for evenement in evenements %}
+                <tr>
+                    <td>{{ evenement.nom }}</td>
+                    <td>{{ evenement.description }}</td>
+                    <td>{% for intervenant in evenement.intervenants %}
+                        {{ intervenant.nom }}
+                        {% endfor %}</td>
+                    <td>{{ evenement.startAt|date("d/m/Y\\ H:i", "Europe/Paris") }}</td>
+                    <td>{{ evenement.endAt|date("d/m/Y\\ H:i", "Europe/Paris") }}</td>
+                    <td>
+                        <a href="{{ path('user.decoEvent', {id: evenement.id}) }}"
+                            class="text-decoration-none text-danger">Se désinscrire</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% endblock %} #}
