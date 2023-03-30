@@ -50,4 +50,13 @@ h2 {
     footer p{
         margin-top: 3%;
     }
+
+    h2 {
+        width: 70% !important;
+    }
+
+    footer {
+        margin-top: 0vh !important;
+    }
+
 }

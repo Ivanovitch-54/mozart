@@ -1,8 +1,22 @@
-.bloc {
-    height: 55vh;
+h2 {
+    font-family: 'Satisfy', cursive;
+    width: 40%;
 }
 
-h1 {
-    font-family: 'Satisfy', cursive;
-    text-decoration: underline;
+@media screen and (max-width:780px) {
+    p {
+        margin-top: 10%;
+    }
+
+    img {
+        width: 100% !important;
+    }
+
+    footer {
+        margin-top: 0vh !important;
+    }
+
+    h2 {
+        width: 80%;
+    }
 }

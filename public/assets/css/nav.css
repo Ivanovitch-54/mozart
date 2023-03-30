@@ -1,0 +1,16 @@
+@media screen and (min-width:1000px) {
+    nav ul {
+        font-size: 1.4rem;
+        gap: 20px;
+    }
+}
+
+@media screen and (max-width:780px) {
+    #insc {
+        display: none;
+    }
+
+    .dropdown {
+        margin-right: 90%;
+    }
+}

@@ -1,57 +1,22 @@
-<footer>
-    <div class="bloc-footer container-fluid py-3">
+{# TODO #}
+{% block stylesheet %}
+<link rel="stylesheet" href="{{ assets('assets/css/footer.css') }}">
+{% endblock %}
 
-      <div class="row px-5">
-        <div class="col-6 col-md-2 mb-3">
-          <h5>Liens du site</h5>
-          <ul class="nav flex-column">
-            <li class="nav-item mb-2"><a href="{{ path('accueil') }}" class="nav-link p-0 text-muted">Acceuil</a></li>
-            {% if user %}
-            <li class="nav-item mb-2"><a href="{{ path('user.liste') }}" class="nav-link p-0 text-muted">Nos
-                événements</a></li>
-            {% else %}
-            <li class="nav-item mb-2"><a href="{{ path('events') }}" class="nav-link p-0 text-muted">Nos événements</a>
-            </li>
-            {% endif %}
-            <li class="nav-item mb-2"><a href="{{ path('quiSommes')}}" class="nav-link p-0 text-muted">Qui sommes-nous
-                ?</a></li>
-            <li class="nav-item mb-2"><a href="{{ path('dons') }}" class="nav-link p-0 text-muted">Dons</a></li>
-            <li class="nav-item mb-2"><a href="{{ path('contact') }}" class="nav-link p-0 text-muted">Contact</a></li>
-            <li class="nav-item mb-2"><a href="{{ path('mentions') }}" class="nav-link p-0 text-muted">Mentions Légales</a></li>
-          </ul>
-        </div>
-
-        <div class="col-6 col-md-2 mb-3">
-          <h5>Horaires</h5>
-          <ul class="nav flex-column">
-            <li class="nav-item mb-2">Lundi 09:00-19:30</li>
-            <li class="nav-item mb-2">Mardi 09:00-19:30</li>
-            <li class="nav-item mb-2">Mercredi 09:00-19:30</li>
-            <li class="nav-item mb-2">Jeudi 09:00-19:30</li>
-            <li class="nav-item mb-2">Vendredi 09:00-19:30</li>
-            <li class="nav-item mb-2">Samedi 09:00-19:30</li>
-            <li class="nav-item mb-2">Dimanche 09:00-12:30</li>
-          </ul>
-        </div>
-
-        <div class="col-6 col-md-2 mb-3">
-          <h5>Nous contacter</h5>
-          <ul class="nav flex-column">
-            <li class="nav-item mb-2">57000 Metz</li>
-            <li class="nav-item mb-2">14 Rue Mozart</li>
-            <li class="nav-item mb-2">Tél. +33 07 25 13 12</li>
-            <li class="nav-item mb-2">Fax. +33 07 25 13 12</li>
-            <li class="nav-item mb-2">E-mail : mozart@epi.fr</li>
-          </ul>
-        </div>
-
-        <div class="col-md-5 offset-md-1 mb-3">
-          <iframe
-            src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d10447.130077723144!2d6.1680357!3d49.1097719!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4794dc0600ab2253%3A0x5b6ac954f3be2ad3!2sEpicerie%20Mozart!5e0!3m2!1sfr!2sfr!4v1678187938277!5m2!1sfr!2sfr"
-            width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"
-            referrerpolicy="no-referrer-when-downgrade"></iframe>
-        </div>
-      </div>
-
-    </div>
+<div class="container">
+  <footer class="container-fluid d-flex flex-wrap justify-content-center align-items-center border-top">
+    <p class="col-md-2 mb-0 text-dark">&copy; 2023 Noblecourt Ivan</p>
+    <ul class="nav col-md-8 justify-content-end text-center">
+      <li class="nav-item"><a href="{{ path('accueil') }}" class="nav-link px-2 text-dark">Accueil</a></li>
+      {% if user %}
+      <li class="nav-item"><a href="{{ path('user.liste') }}" class="nav-link px-2 text-dark">Nos événements</a></li>
+      {% else %}
+      <li class="nav-item"><a href="{{ path('events') }}" class="nav-link px-2 text-dark">Nos événements</a></li>
+      {% endif %}
+      <li class="nav-item"><a href="{{ path('quiSommes')}}" class="nav-link px-2 text-dark">Qui sommes-nous ?</a></li>
+      <li class="nav-item"><a href="{{ path('dons') }}" class="nav-link px-2 text-dark">Dons</a></li>
+      <li class="nav-item"><a href="{{ path('contact') }}" class="nav-link px-2 text-dark">Contact</a></li>
+      <li class="nav-item"><a href="{{ path('mentions') }}" class="nav-link px-2 text-dark">Mentions Légales</a></li>
+    </ul>
   </footer>
+</div>

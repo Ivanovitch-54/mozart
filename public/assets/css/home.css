@@ -130,7 +130,7 @@ footer {
     }
 
     footer {
-        margin-top: 50vh!important;
+        margin-top: 50vh;
         height: 15vh;
     }
 
@@ -138,14 +138,6 @@ footer {
         font-size: 16px !important;
         margin-top: 80%;
         margin-left: 20%;
-    }
-
-    .test {
-        height: 80vh;
-    }
-
-    main {
-        margin-bottom: 110%;
     }
 
     footer ul {

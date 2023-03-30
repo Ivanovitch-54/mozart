@@ -1,4 +1,18 @@
 h2 {
-    width: 20%;
     font-family: 'Satisfy', cursive;
+    width: 25%;
+}
+
+@media screen and (max-width:780px){
+    h2 {
+        width: 70%!important;
+    }
+
+    footer {
+        margin-top: 0vh !important;
+    }
+
+    #toto {
+        margin-top: 10%;
+    }
 }

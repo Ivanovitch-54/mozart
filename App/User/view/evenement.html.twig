@@ -9,9 +9,10 @@
 {% block body %}
 
 
-<h2 class="mx-auto text-center bg-white border rounded-4 align-self-center my-5">Liste des événements disponibles</h2>
+<h2 class="mx-auto text-center bg-white border rounded-4 align-self-center mb-4">Liste des événements disponibles</h2>
 <div class="container card-group gap-3 text-center mb-5">
     {% for evenement in evenements %}
+    {% if evenement.user_register == false %}
     <div class="card border border-dark rounded">
         <div class="card-body">
             <h5 class="card-title text-uppercase my-2">{{ evenement.nom }}</h5>
@@ -24,23 +25,26 @@
                 evenement.endAt|date("H:i", "Europe/Paris") }}</p>
             <hr>
             {% if evenement.places_dispo != 0 %}
-            <p class="card-text"><small class="text-dark">Nombres de places restantes : <span class="text-danger">{{
-                    evenement.places_dispo }}</span></small></p>
+            <p class="card-text"><small class="text-dark">Nombres de places restantes : <span class="text-danger fs-5 bolder">{{
+                        evenement.places_dispo }}</span></small></p>
             {% else %}
-            <p class="card-text"><small class="text-success text-uppercase">Complet</small></p>
+            <p class="card-text"><small class="text-danger text-uppercase bolder">Complet</small></p>
             {% endif %}
             {% if evenement.user_register == false and evenement.places_dispo != 0 %}
-            <p class="card-text"><a href="{{ path('user.inscEvent', {id: evenement.id}) }}"
-                    class="text-decoration-none">S'inscrire</a></p>
-
+            <button class="btn btn-primary">
+                <a href="{{ path('user.inscEvent', {id: evenement.id}) }}"
+                        class="text-decoration-none text-white">S'inscrire</a>
+            </button>
 
             {% elseif evenement.user_register == true %}
-            <a href="{{ path('user.decoEvent', {id: evenement.id}) }}" class="text-decoration-none text-danger">Se
-                désinscrire</a>
-
+            <button class="btn btn-danger">
+                <a href="{{ path('user.decoEvent', {id: evenement.id}) }}" class="text-decoration-none text-white">Se
+                    désinscrire</a>
+            </button>
             {% endif %}
         </div>
     </div>
+    {% endif %}
     {% endfor %}
     {% endblock %}
 

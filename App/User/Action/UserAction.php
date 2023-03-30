@@ -199,7 +199,12 @@ class UserAction
 
         $sess = $this->session->get('auth');
         $user = $this->repository->find($sess->getId()); // on récupére l'utilisateur qui coresspond a l'id de la session 
-        $events = $user->getEvenements(); // récupération de la liste des évenement a l'aide du GET
+        $events = $this->eventRepository->findAll();
+
+        foreach ($events as &$event) {
+            $event->places_dispo = $event->getNbrPlacesDispo() - $event->getUsers()->count(); // Ici je crée un nouveau champs dans l'objet (non visible en BDD)
+            $event->user_register = $event->getUsers()->contains($user);
+        }
 
         return $this->renderer->render('@user/listEvent', [
             "evenements" => $events, // "evenements" = nom de la variable / $response = Valeur de la variable 
@@ -217,27 +222,27 @@ class UserAction
         if ($method === 'POST') {
             $data = $request->getParsedBody();
             $validator = new Validator($data);
-            $errors = $validator->required('nom','prenom','mdp')
-            ->getErrors();
+            $errors = $validator->required('nom', 'prenom', 'mdp')
+                ->getErrors();
 
             if ($errors) {
                 foreach ($errors as $error) {
                     $this->toaster->makeToast($error->toString(), Toaster::ERROR);
                 }
                 return (new Response())
-                ->withHeader('Location', 'user/monCompte');
+                    ->withHeader('Location', 'user/monCompte');
             }
 
             $user
-            ->setNom($data['nom'])
-            ->setPrenom($data['prenom'])
-            ->setPassword($data['mdp']);
+                ->setNom($data['nom'])
+                ->setPrenom($data['prenom'])
+                ->setPassword($data['mdp']);
 
             $this->manager->flush();
             $this->toaster->makeToast('Mise à jour réussi', Toaster::SUCCESS);
 
             return (new Response())
-            ->withHeader('Location', '/user/monCompte'); // En cas de succès retourne la page liste d'EVENT
+                ->withHeader('Location', '/user/monCompte'); // En cas de succès retourne la page liste d'EVENT
         }
 
         return $this->renderer->render('@user/monCompte');
