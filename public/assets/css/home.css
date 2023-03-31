@@ -107,21 +107,21 @@ footer {
     height: 15vh;
 }
 
-.nav-link:hover{
+.nav-link:hover {
     color: red;
 }
 
 @media screen and (max-width:780px) {
-    .welcome-pic{
+    .welcome-pic {
         margin: 0 auto;
         width: 90%;
     }
 
-    .welcome-text{
+    .welcome-text {
         font-size: 20px !important;
     }
 
-    .bloc2{
+    .bloc2 {
         margin: 2% 5% 0%;
         width: 90%;
         display: block !important;
@@ -134,7 +134,7 @@ footer {
         height: 15vh;
     }
 
-    .welcome-text2{
+    .welcome-text2 {
         font-size: 16px !important;
         margin-top: 80%;
         margin-left: 20%;

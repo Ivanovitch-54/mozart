@@ -1,3 +1,22 @@
 h2 {
     font-family: 'Satisfy', cursive;
+    width: 20%;
+}
+
+@media screen and (max-width:780px) {
+    h2 {
+        width: 70%;
+    }
+
+    iframe {
+        margin-top: 10%;
+    }
+
+    footer {
+        margin-top: 0vh !important;
+    }
+
+    form .submit {
+        margin-top: 20%!important;
+    }
 }

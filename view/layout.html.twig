@@ -19,7 +19,6 @@
   {% block stylesheet %}
   {% endblock %}
 
-
   {% block title %}
   {% endblock %}
 
@@ -27,9 +26,12 @@
 
 <body>
 
+  {% include "_partials/_loader.html.twig" %}
+
   {% include "_partials/_nav.html.twig" %}
 
   <main>
+
 
     {% if hasToast() %}
 
@@ -50,8 +52,15 @@
   {% include "_partials/_footer.html.twig" %}
 
   {% block scripts %}
-
   {% endblock %}
+  <script>
+    window.addEventListener('load', function() {
+  var loader = document.getElementById('loader');
+  if (loader) {
+    loader.style.display = 'none';
+  }
+});
+  </script>
 </body>
 
 </html>

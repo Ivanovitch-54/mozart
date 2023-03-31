@@ -13,7 +13,7 @@ main {
     height: fit-content;
     overflow: hidden;
     border: 1px solid rgba(0, 0, 0, 0.4);
-    border-radius: 15px; 
+    border-radius: 15px;
 }
 
 .formContainer {
@@ -38,6 +38,13 @@ main {
     left: 110%;
 }
 
-body{
+body {
     background-color: #FDFFEC;
+}
+
+@media screen and (max-width:780px) {
+    footer {
+        margin-top: 0vh !important;
+    }
+
 }

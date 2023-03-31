@@ -33,14 +33,15 @@ class AdminAuth
         $this->session->delete('auth');
     }
 
-    public function isLogged(): bool
+    //TODO
+    public function isAdminLogged(): bool
     {
         return $this->session->has('auth');
     }
 
     public function isAdmin(): bool
     {
-        if ($this->isLogged()) {
+        if ($this->isAdminLogged()) {
             return $this->session->get('auth') instanceof Admin;
         }
         return false;
