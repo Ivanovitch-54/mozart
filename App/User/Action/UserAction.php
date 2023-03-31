@@ -217,6 +217,7 @@ class UserAction
     {
         $method = $request->getMethod();
         $sess = $this->session->get('auth');
+        $user = $this->repository->find($sess->getId());
 
         if ($method === 'POST') {
             $data = $request->getParsedBody();
@@ -232,11 +233,11 @@ class UserAction
                     ->withHeader('Location', 'user/monCompte');
             }
 
-            $sess
+            $user
                 ->setNom($data['nom'])
                 ->setPrenom($data['prenom']);
-
             $this->manager->flush();
+            $this->session->set('auth', $user);
             $this->toaster->makeToast('Mise à jour réussi', Toaster::SUCCESS);
 
             return (new Response())
@@ -244,7 +245,7 @@ class UserAction
         }
 
         return $this->renderer->render('@user/monCompte', [
-            "user" => $sess
+            "user" => $user
         ]);
     }
 }
