@@ -1,0 +1,9 @@
+@media screen and (max-width:780px) {
+    .container {
+        width: 90%!important;
+    }
+
+    footer {
+        margin-top: 0vh !important;
+    }
+}

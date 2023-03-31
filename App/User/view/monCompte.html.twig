@@ -5,10 +5,10 @@
 {% endblock %}
 {% block body %}
 
-<h2 class="text-center">Modifier mes informations</h2>
 
-<div class="userFormViewPort bg-white w-50 mx-auto">
-    <div class="formContainer ">
+<div class="container userFormViewPort w-50 bg-white mx-auto mt-3 border mb-5">
+    <h2 class="text-center mt-3">Modifier mes informations personnelles</h2>
+    <div class="formContainer">
         <form method="POST" class="p-4 formInscription d-flex flex-column" action="{{ user.monCompte }}">
             <div class="form-floating mb-3">
                 <input type="text" class="form-control" name="nom" id="nom" pattern="^[a-zA-Z]+$" value="{{ user.nom }}">
@@ -18,17 +18,9 @@
                 <input type="text" class="form-control" name="prenom" id="prenom" pattern="[a-zA-Z]+" value="{{ user.prenom}}">
                 <label for="prenom">Prénom</label>
             </div>
-            <div class="form-floating mb-3">
-                <input type="password" class="form-control" name="mdp" id="floatingPassword">
-                <label for="floatingPassword">Nouveau mot de passe</label>
-            </div>
-            <div class="form-floating mb-3">
-                <input type="password" class="form-control" name="mdp_confirm" id="floatingPasswordConfirm">
-                <label for="floatingPasswordConfirm">Confirmer le mot de passe</label>
-            </div>
 
             <input type="submit" value="Modifier mes informations"
-                class="border border-warning rounded-4 bg-warning align-self-center py-2 px-5 my-3 text-white">
+                class="border border-warning rounded-4 bg-warning align-self-center py-2 px-3 my-3 text-white" id="bouton">
         </form>
     </div>
 </div>

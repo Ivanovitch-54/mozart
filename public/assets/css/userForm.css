@@ -9,7 +9,8 @@ main {
 }
 
 .userFormViewPort {
-    min-width: 450px;
+    /* min-width: 450px; */
+    width: 40%;
     height: fit-content;
     overflow: hidden;
     border: 1px solid rgba(0, 0, 0, 0.4);
@@ -23,7 +24,8 @@ main {
 }
 
 .formContainer form {
-    min-width: 450px;
+    width: 100%;
+    /* min-width: 450px; */
     position: absolute;
     transition: .5s all ease-in-out;
 }
@@ -47,4 +49,7 @@ body {
         margin-top: 0vh !important;
     }
 
+    .userFormViewPort {
+        width: 90%;
+    }
 }

@@ -212,17 +212,16 @@ class UserAction
         ]);
     }
 
-    //TODO Modifier les informations d'un utilisateurs 
+    // Modifier les informations d'un utilisateurs 
     public function monCompte(ServerRequest $request)
     {
         $method = $request->getMethod();
         $sess = $this->session->get('auth');
-        $user = $this->repository->find($sess->getId());
 
         if ($method === 'POST') {
             $data = $request->getParsedBody();
             $validator = new Validator($data);
-            $errors = $validator->required('nom', 'prenom', 'mdp')
+            $errors = $validator->required('nom', 'prenom')
                 ->getErrors();
 
             if ($errors) {
@@ -233,10 +232,9 @@ class UserAction
                     ->withHeader('Location', 'user/monCompte');
             }
 
-            $user
+            $sess
                 ->setNom($data['nom'])
-                ->setPrenom($data['prenom'])
-                ->setPassword($data['mdp']);
+                ->setPrenom($data['prenom']);
 
             $this->manager->flush();
             $this->toaster->makeToast('Mise à jour réussi', Toaster::SUCCESS);
@@ -245,6 +243,8 @@ class UserAction
                 ->withHeader('Location', '/user/monCompte'); // En cas de succès retourne la page liste d'EVENT
         }
 
-        return $this->renderer->render('@user/monCompte');
+        return $this->renderer->render('@user/monCompte', [
+            "user" => $sess
+        ]);
     }
 }
