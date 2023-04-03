@@ -13,6 +13,8 @@
     .dropdown {
         margin-right: 90%;
     }
+}
 
-
+li a:hover {
+    text-decoration: underline;
 }

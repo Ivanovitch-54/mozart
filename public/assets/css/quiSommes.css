@@ -3,9 +3,9 @@ h2 {
     width: 25%;
 }
 
-@media screen and (max-width:780px){
+@media screen and (max-width:780px) {
     h2 {
-        width: 70%!important;
+        width: 70% !important;
     }
 
     footer {

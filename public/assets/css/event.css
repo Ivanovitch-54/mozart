@@ -1,6 +1,6 @@
 /* Ancienne Version en Tableau */
 
- table {
+table {
     border: solid;
     height: 75vh;
     width: 80vw;
@@ -22,9 +22,9 @@ td {
 
 th {
     border: solid;
-} 
+}
 
- /* Ancienne Version en Tableau  */
+/* Ancienne Version en Tableau  */
 
 body {
     background-color: #FDFFEC;
@@ -40,7 +40,7 @@ h2 {
         display: block !important;
     }
 
-    footer p{
+    footer p {
         margin-top: 3%;
     }
 

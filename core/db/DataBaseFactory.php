@@ -24,7 +24,7 @@ class DataBaseFactory
       ]
     ];
 
-    $config = ORMSetup::createAnnotationMetadataConfiguration($paths, $isDevMode); 
+    $config = ORMSetup::createAnnotationMetadataConfiguration($paths, $isDevMode);
 
     try {
       $conn = DriverManager::getConnection($dbparams);

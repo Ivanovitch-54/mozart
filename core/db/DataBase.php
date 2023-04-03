@@ -14,7 +14,7 @@ class Database
     private string $dbname;
     private string $mdp;
     private string $char;
-    
+
     public PDO $connection;
     public static Database $instance;
 

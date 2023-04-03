@@ -18,7 +18,6 @@ class HomeModule extends AbstractModule
 
     private Router $router;
     private RendererInterface $renderer;
-    // TEST
     private EntityRepository $eventRepository;
     private EntityRepository $interRepository;
 

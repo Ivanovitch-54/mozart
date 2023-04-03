@@ -2,7 +2,7 @@ h2 {
     width: 25%;
 }
 
-@media screen and (max-width:780px){
+@media screen and (max-width:780px) {
     footer {
         margin-top: 0vh !important;
     }

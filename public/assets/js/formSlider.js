@@ -1,6 +1,7 @@
 function slider(formTarget) {
   let connexionForm = document.querySelector(".formConnexion");
   let inscriptionForm = document.querySelector(".formInscription");
+
   switch (formTarget) {
     case "connexion":
       connexionForm.setAttribute("style", "transform: translateX(-110%)");

@@ -25,7 +25,8 @@
                 evenement.endAt|date("H:i", "Europe/Paris") }}</p>
             <hr>
             {% if evenement.places_dispo != 0 %}
-            <p class="card-text"><small class="text-dark">Nombres de places restantes : <span class="text-danger fs-5 bolder">{{
+            <p class="card-text"><small class="text-dark">Nombres de places restantes : <span
+                        class="text-danger fs-5 bolder">{{
                         evenement.places_dispo }}</span></small></p>
             {% else %}
             <p class="card-text"><small class="text-danger text-uppercase bolder">Complet</small></p>
@@ -33,7 +34,7 @@
             {% if evenement.user_register == false and evenement.places_dispo != 0 %}
             <button class="btn btn-primary">
                 <a href="{{ path('user.inscEvent', {id: evenement.id}) }}"
-                        class="text-decoration-none text-white">S'inscrire</a>
+                    class="text-decoration-none text-white">S'inscrire</a>
             </button>
 
             {% elseif evenement.user_register == true %}

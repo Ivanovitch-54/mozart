@@ -8,20 +8,14 @@ use Core\Toaster\Toaster;
 use Doctrine\ORM\EntityManager;
 use Model\Entity\Evenement;
 use Psr\Container\ContainerInterface;
-use Psr\Http\Message\ServerRequestInterface;
 
 class EventAction
 {
     private RendererInterface $renderer;
-
     private EntityManager $manager;
-
     private Toaster $toaster;
-
     private ContainerInterface $container;
-
     private Router $router;
-
     private $repository;
 
     public function __construct(RendererInterface $renderer, EntityManager $manager, Toaster $toaster, ContainerInterface $container)
@@ -34,7 +28,7 @@ class EventAction
         $this->repository = $manager->getRepository(Evenement::class);
     }
 
-    public function showEvent(ServerRequestInterface $request)
+    public function showEvent()
     {
         $events = $this->repository->findAll();
 

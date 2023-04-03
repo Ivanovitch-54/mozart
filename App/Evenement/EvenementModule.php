@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace App\Evenement;
 
@@ -22,9 +22,8 @@ class EvenementModule extends AbstractModule
         $this->renderer = $container->get(RendererInterface::class);
         $eventAction = $container->get(EventAction::class);
 
-        $this->renderer->addPath('Evenement',__DIR__ . DIRECTORY_SEPARATOR . 'view'); 
+        $this->renderer->addPath('Evenement', __DIR__ . DIRECTORY_SEPARATOR . 'view');
 
         $this->router->get('/event', [$eventAction, 'showEvent'], 'evenement'); // 1er param (/event correspond au chemin de la route) 2eme et 3eme param fonction à appeler, en dernier nom de la route
     }
 }
-
