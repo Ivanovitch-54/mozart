@@ -27,7 +27,7 @@ th {
 /* Ancienne Version en Tableau  */
 
 body {
-    background-color: #FDFFEC;
+    background: linear-gradient(90deg, #c0d7d2,hsl(169, 23%, 98%));
 }
 
 h2 {
@@ -51,5 +51,4 @@ h2 {
     footer {
         margin-top: 0vh !important;
     }
-
 }

@@ -1,7 +1,28 @@
-@media screen and (min-width:1000px) {
+@media screen and (min-width:1100px) {
     nav ul {
         font-size: 1.4rem;
         gap: 20px;
+    }
+
+    .navbar .navbar-nav .nav-item {
+        position: relative;
+    }
+
+    .navbar .navbar-nav .nav-item::after {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        margin: 0 auto;
+        content: "";
+        background-color: black;
+        width: 0%;
+        height: 1px;
+        transition: all 0.5s;
+    }
+
+    .navbar .navbar-nav .nav-item:hover::after {
+        width: 100%;
     }
 }
 
@@ -13,8 +34,4 @@
     .dropdown {
         margin-right: 90%;
     }
-}
-
-li a:hover {
-    text-decoration: underline;
 }

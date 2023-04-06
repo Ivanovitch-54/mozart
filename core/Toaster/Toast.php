@@ -7,7 +7,7 @@ class Toast
 {
     public function success(string $message): string
     {
-        return "<div class='alert alert-success'>
+        return "<div class='alert bg-success text-center text-white'>
                 $message
                 </div>";
     }
