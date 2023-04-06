@@ -30,7 +30,7 @@ body {
   width: 30px;
   height: 30px;
   position: relative;
-  border: 4px solid red;
+  border: 4px solid blue;
   animation: loader 2s infinite ease;
 }
 
@@ -38,7 +38,7 @@ body {
   vertical-align: top;
   display: inline-block;
   width: 100%;
-  background-color: red;
+  background-color: blue;
   animation: loader-inner 2s infinite ease-in;
 }
 
