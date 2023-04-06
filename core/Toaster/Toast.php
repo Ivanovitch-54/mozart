@@ -14,14 +14,14 @@ class Toast
 
     public function error(string $message): string
     {
-        return "<div class='alert alert-danger'>
+        return "<div class='alert alert-danger text-center'>
                 $message
                 </div>";
     }
 
     public function warning(string $message): string
     {
-        return "<div class='alert alert-warning'>
+        return "<div class='alert alert-warning text-center'>
                 $message
                 </div>";
     }
