@@ -19,7 +19,7 @@ body {
   position: absolute;
   top: 0;
   left: 0;
-  background-color: #c0d7d2;
+  background: linear-gradient(90deg, #c0d7d2,hsl(169, 23%, 98%));
   display: flex;
   justify-content: center;
   align-items: center;

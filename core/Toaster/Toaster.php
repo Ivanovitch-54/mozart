@@ -5,7 +5,7 @@ namespace Core\Toaster;
 use Core\Toaster\Toast;
 use Core\Session\SessionInterface;
 
-class Toaster 
+class Toaster
 
 {
     private const SESSION_KEY = 'toast';
@@ -51,7 +51,7 @@ class Toaster
     public function renderToast(): ?array // Permet d'afficher le Toast 
     {
         // On récupère tous les Toast enregistrer en session et on les stocks dans une variable
-        $toast = $this->session->get(self::SESSION_KEY); 
+        $toast = $this->session->get(self::SESSION_KEY);
         // On supprime les Toasts de la session mais on les conserve dans la variable $toast 
         $this->session->delete(self::SESSION_KEY); // Permet de supprimer la clé de SESSION
         // On retourne les Toasts contenu dans la variable $toast 
@@ -66,7 +66,7 @@ class Toaster
      */
     public function hasToast(): bool // Vérifie si le toast existe
     {
-        if ($this->session->has(self::SESSION_KEY) && sizeof($this->session->get(self::SESSION_KEY)) > 0){
+        if ($this->session->has(self::SESSION_KEY) && sizeof($this->session->get(self::SESSION_KEY)) > 0) {
             return true;
         }
 
