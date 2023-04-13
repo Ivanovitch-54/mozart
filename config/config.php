@@ -11,7 +11,6 @@ use Core\Session\SessionInterface;
 use Core\Toaster\Toaster;
 use Core\Toaster\ToasterTwigExtension;
 
-use function DI\factory;
 
 return [
     "doctrine.user" => "root",

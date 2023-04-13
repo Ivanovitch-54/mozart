@@ -14,6 +14,7 @@
     <div class="card border border-dark rounded">
         <div class="card-body">
             <h5 class="card-title text-uppercase my-2">{{ evenement.nom }}</h5>
+            <hr>
             <p class="card-text my-3">{{ evenement.description }}</p>
             <hr>
             <p class="card-text">Débute le {{ evenement.startAt|date("d/m/Y\\", "Europe/Paris") }} à {{

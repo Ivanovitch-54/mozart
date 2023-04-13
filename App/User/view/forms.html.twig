@@ -15,7 +15,7 @@
 
 {% block body %}
 
-<div class="userFormViewPort bg-white mb-5">
+<div class="userFormViewPort bg-white mb-2">
     <div class="btn-group" role="group" aria-label="Basic example">
         <button type="button" class="btn btn-success" onclick="slider('inscription')">Inscription</button>
         <button type="button" class="btn btn-warning text-white" onclick="slider('connexion')">Connexion</button>
@@ -45,10 +45,17 @@
                 <label for="floatingPasswordConfirm">Confirmer le mot de passe</label>
             </div>
 
+            <p class="text-center">En vous inscrivant, vous acceptez les conditions générales d’utilisation
+                définie ci-dessous : <a class="icon-link icon-link-hover" href="{{ path('mentions') }}">Cliquez ici</a>
+            </p>
+
             {# CAPTCHA #}
-            <div class="g-recaptcha align-self-center" data-sitekey="6LfNM_4kAAAAAGIXgFgCgSVpCwsZlB9PHw28zJdj"></div>
-            <input type="submit" value="Inscription"
+            <div class="g-recaptcha align-self-center" data-sitekey="6LeIgIMlAAAAAJjT_9J79tzTX-iMSTZ2ejI9oTqb"></div>
+            {# CAPTCHA #}
+
+            <input type="submit" value="Inscription" id="insc"
                 class="border border-warning rounded-4 bg-warning align-self-center py-2 px-5 my-3 text-white">
+
         </form>
 
         {# Formulaire connexion #}
