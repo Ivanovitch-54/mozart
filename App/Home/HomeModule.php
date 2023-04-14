@@ -9,6 +9,9 @@ use Core\Framework\Router\Router;
 use Doctrine\ORM\EntityRepository;
 use Core\Framework\Renderer\RendererInterface;
 use Core\Framework\AbstractClass\AbstractModule;
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+use Psr\Http\Message\ServerRequestInterface;
 
 class HomeModule extends AbstractModule
 

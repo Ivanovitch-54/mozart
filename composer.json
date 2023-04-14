@@ -18,7 +18,8 @@
         "doctrine/dbal": "^3.4",
         "doctrine/annotations": "^2.0",
         "symfony/cache": "^5.4",
-        "twbs/bootstrap-icons": "^1.10"
+        "twbs/bootstrap-icons": "^1.10",
+        "phpmailer/phpmailer": "^6.8"
     },
     "autoload": {
         "psr-4": {

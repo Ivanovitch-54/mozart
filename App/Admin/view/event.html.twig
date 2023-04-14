@@ -38,13 +38,43 @@
                 {% if evenement.places_restantes != 0 %}
                 <td>{{ evenement.places_restantes }}</td>
                 {% else %}
-                    <td><span class="text-danger">Complet</span></td>
+                <td><span class="text-danger">Complet</span></td>
                 {% endif %}
                 <td>{{ evenement.user_register }}</td>
                 <td>
-                    <a href="{{ path('event.delete', {id: evenement.id}) }}"
-                        class="text-decoration-none text-danger">Supprimer /</a>
-                    <a href="{{ path('event.update', {id: evenement.id}) }}" class="text-decoration-none">Modifier</a>
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+                        data-bs-target="#exampleModal{{ evenement.id }}">
+                        Supprimer
+                    </button>
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="exampleModal{{ evenement.id }}" tabindex="-1"
+                        aria-labelledby="exampleModalLabel{{ evenement.id }}" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="exampleModalLabel{{ evenement.id }}">Attention la
+                                        suppression est
+                                        définitive !</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary"
+                                        data-bs-dismiss="modal">Retour</button>
+                                    <button type="button" class="btn btn-danger">
+                                        <a href="{{ path('event.delete', {id: evenement.id}) }}"
+                                            class="text-decoration-none text-white">Supprimer</a>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="button" class="btn btn-warning mt-3">
+                        <a href="{{ path('event.update', {id: evenement.id}) }}"
+                            class="text-decoration-none text-dark">Modifier</a>
+                    </button>
                 </td>
             </tr>
             {% endfor %}
