@@ -222,7 +222,7 @@ class UserAction
         if ($method === 'POST') {
             $data = $request->getParsedBody();
             $validator = new Validator($data);
-            $errors = $validator->required('nom', 'prenom')
+            $errors = $validator->required('nom', 'prenom','password')
                 ->getErrors();
 
             if ($errors) {
@@ -235,7 +235,8 @@ class UserAction
 
             $user
                 ->setNom($data['nom'])
-                ->setPrenom($data['prenom']);
+                ->setPrenom($data['prenom'])
+                ->setPassword(password_hash($data['password'], PASSWORD_BCRYPT));
             $this->manager->flush();
             $this->session->set('auth', $user);
             $this->toaster->makeToast('Mise à jour réussi', Toaster::SUCCESS);

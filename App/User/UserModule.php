@@ -29,11 +29,11 @@ class UserModule extends AbstractModule
         // On déclare notre première route
         $this->router->get('/login', [$userAction, 'logView'], 'user.login');
 
-        // Suite des routes en méthode GET
-        $this->router->get('/user/home', [$userAction, 'home'], 'user.home');
+        // Déconnexion USER
         $this->router->get('/user/logout', [$userAction, 'logout'], 'user.logout');
-        // Suite des routes en méthode POST
+        // Inscription USER
         $this->router->post('/newUser', [$userAction, 'signIn'], 'user.new');
+        // Connexion USER
         $this->router->post('/connexion', [$userAction, 'login'], 'user.connection');
 
         // Vue des événements côté USER
