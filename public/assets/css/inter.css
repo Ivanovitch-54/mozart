@@ -3,6 +3,11 @@ h2 {
     font-family: 'Satisfy', cursive;
 }
 
+body {
+    height: 100vh;
+    width: 100vw;
+}
+
 table {
     border: solid;
     height: 75vh;
@@ -28,4 +33,17 @@ th {
 
 body {
     background: linear-gradient(90deg, #c0d7d2,hsl(169, 23%, 98%));
+}
+
+@media screen and (max-width:780px) {
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    table {
+        border: solid;
+        height: 50vh;
+    }
 }

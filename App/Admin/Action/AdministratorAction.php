@@ -14,6 +14,7 @@ use Psr\Http\Message\ServerRequestInterface;
 use Core\Framework\Renderer\RendererInterface;
 use Core\Session\SessionInterface;
 use Model\Entity\Intervenant;
+use Model\Entity\User;
 
 class AdministratorAction
 {
@@ -25,6 +26,7 @@ class AdministratorAction
     private Toaster $toaster;
     private EntityManager $manager;
     private $interRepository;
+    private $userRepository;
 
     public function __construct(ContainerInterface $container, RendererInterface $renderer, EntityManager $manager, Toaster $toaster)
     {
@@ -35,6 +37,7 @@ class AdministratorAction
         $this->session = $container->get(SessionInterface::class);
         $this->repository = $manager->getRepository(Evenement::class);          // Permet d'obtenir un objet de type EntityRepository qui permet de gérer les entités de la classe Evenement
         $this->interRepository = $manager->getRepository(Intervenant::class);   // Permet d'obtenir un objet de type EntityRepository qui permet de gérer les entités de la classe Intervenant
+        $this->userRepository = $manager->getRepository(User::class);            // Permet d'obtenir un objet de type EntityRepository qui permet de gérer les entités de la classe User
     }
 
     public function home()
@@ -47,6 +50,9 @@ class AdministratorAction
         $events = $this->repository->findAll();
         $sess = $this->session->get('auth');
         $user = $this->repository->find($sess->getId());
+        $users = $this->userRepository->findAll();
+
+
         // Le symbole "&" dans la ligne de code "foreach ($events as &$event)" crée une référence à chaque élément de l'array "$events" lors de l'itération de la boucle foreach.
         // Cela signifie que toute modification apportée à l'objet "$event" à l'intérieur de la boucle est également modifiée dans l'array "$events" d'origine.
         foreach ($events as &$event) {
@@ -58,6 +64,7 @@ class AdministratorAction
 
         return $this->renderer->render('@admin/event', [
             "evenements" => $events,
+            "users" => $users
         ]);
     }
 

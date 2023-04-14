@@ -1,4 +1,6 @@
 setTimeout(function() {
-    document.querySelector('.alert').remove();
+    document.querySelectorAll('.alert').forEach(function(alert) {
+        alert.remove();
+    });
 }, 3000);
 
