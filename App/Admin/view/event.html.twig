@@ -19,7 +19,6 @@
                 <th>Débute à </th>
                 <th>Fini à </th>
                 <th>Nombres de places restantes </th>
-                <th>Nombres de places occupées </th>
                 <th>Liste des participants</th>
                 <th>Options disponibles</th>
             </tr>
@@ -41,16 +40,42 @@
                 {% else %}
                 <td><span class="text-danger">Complet</span></td>
                 {% endif %}
-                <td>{{ evenement.user_register }}</td>
+
 
 
                 {# TODO #}
                 <td>
-                {% for user in evenement.users %}
-                <span>{{ user.nom }} {{user.prenom}}<br></span>
-                {% else %}
-                <span>Aucun participant</span>
-                {% endfor %}
+                    {% for user in evenement.users %}
+                    <span>{{ user.nom }} {{user.prenom}}</span>
+                    <!-- Button trigger modal -->
+                    <a data-bs-toggle="modal" data-bs-target="#testModal{{ evenement.id }}"><i
+                            class="fa-sharp fa-solid fa-ban" style="color: #f51919;"></i></a>
+                    <br>
+                    <!-- Modal -->
+                    <div class="modal fade" id="testModal{{ evenement.id }}" tabindex="-1"
+                        aria-labelledby="testModalLabel{{ evenement.id }}" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="testModalLabel{{ evenement.id }}">Retirer
+                                        l'utilisateur de l'événement</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary"
+                                        data-bs-dismiss="modal">Retour</button>
+                                    <button type="button" class="btn btn-danger">
+                                        <a href="{{ path('users.remove', {idUser: user.id, idEvent: evenement.id})}}"
+                                            class="text-decoration-none text-white">Désinscrire</a>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% else %}
+                    <span>Aucun participant</span>
+                    {% endfor %}
                 </td>
 
                 <td>

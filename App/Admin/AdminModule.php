@@ -51,5 +51,7 @@ class AdminModule extends AbstractModule
         $this->router->post('/admin/addInter', [$adminAction, 'addInter']);
         // Supprimer un Intervenant
         $this->router->get('/admin/deleteInter/{id:[\d]+}', [$adminAction, 'deleteInter'], 'inter.delete');
+        // Désinscrire un USER
+        $this->router->get('/admin/removeUsers/{idUser:[\d]+}-{idEvent:[\d]+}', [$adminAction, 'removeUsers'], 'users.remove');
     }
 }

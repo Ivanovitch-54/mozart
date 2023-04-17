@@ -250,4 +250,27 @@ class AdministratorAction
         return (new Response())
             ->withHeader('Location', '/admin/inter');
     }
+
+    public function removeUsers(ServerRequestInterface $request)
+    {
+
+        $id = $request->getAttribute('idUser');
+
+        $idEvent = $request->getAttribute('idEvent');
+
+        $user = $this->userRepository->find($id);
+
+        $event = $this->repository->find($idEvent);
+
+        $event->removeUser($user);
+
+        $this->manager->flush();
+
+
+
+
+
+        return (new Response())
+            ->withHeader('Location', '/admin/event');
+    }
 }
