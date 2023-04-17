@@ -26,12 +26,13 @@
             <p class="card-text"><small class="text-dark">Nombres de places restantes : <span
                         class="text-danger fs-5 bolder">{{
                         evenement.places_dispo }}</span></small></p>
-            {% else %}
-            <p class="card-text"><small class="text-danger text-uppercase bolder fs-5">Complet</small></p>
-            {% endif %}
             <button class="btn btn-primary">
                 <a href="{{ path('user.login') }}" class="text-decoration-none text-white">S'inscrire</a>
             </button>
+            {% else %}
+            <p class="card-text"><small class="text-danger text-uppercase bolder fs-5">Complet</small></p>
+            {% endif %}
+
         </div>
     </div>
     {% endfor %}

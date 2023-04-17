@@ -222,7 +222,11 @@ class UserAction
         if ($method === 'POST') {
             $data = $request->getParsedBody();
             $validator = new Validator($data);
-            $errors = $validator->required('nom', 'prenom','password')
+            $errors = $validator
+                ->required('nom', 'prenom','old_password')
+                ->required('new_password','confirm_password')
+                ->strSize('new_password', 12, 50)
+                ->confirm('new_password')
                 ->getErrors();
 
             if ($errors) {
@@ -233,10 +237,16 @@ class UserAction
                     ->withHeader('Location', 'user/monCompte');
             }
 
+            if (!password_verify($data['old_password'], $user->getPassword())){
+                $this->toaster->makeToast('L\'ancien mot de passe ne correspond pas', Toaster::ERROR);
+                return (new Response())
+                ->withHeader('Location', '/user/monCompte');
+            }
+
             $user
                 ->setNom($data['nom'])
                 ->setPrenom($data['prenom'])
-                ->setPassword(password_hash($data['password'], PASSWORD_BCRYPT));
+                ->setPassword(password_hash($data['new_password'], PASSWORD_BCRYPT));
             $this->manager->flush();
             $this->session->set('auth', $user);
             $this->toaster->makeToast('Mise à jour réussi', Toaster::SUCCESS);
