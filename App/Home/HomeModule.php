@@ -11,13 +11,11 @@ use Core\Session\SessionInterface;
 use Doctrine\ORM\EntityRepository;
 use PHPMailer\PHPMailer\Exception;
 use PHPMailer\PHPMailer\PHPMailer;
-use Doctrine\Common\Proxy\Autoloader;
 use Psr\Http\Message\ServerRequestInterface;
 use Core\Framework\Renderer\RendererInterface;
 use Core\Framework\AbstractClass\AbstractModule;
 use Core\Framework\Router\RedirectTrait;
-use GuzzleHttp\Psr7\ServerRequest;
-use PHPMailer\PHPMailer\SMTP;
+use Core\Toaster\Toaster;
 
 
 
@@ -33,11 +31,13 @@ class HomeModule extends AbstractModule
     private EntityRepository $interRepository;
     private SessionInterface $session;
     use RedirectTrait;
+    private Toaster $toaster;
 
-    public function __construct(Router $router, RendererInterface $renderer, EntityManager $manager)
+    public function __construct(Router $router, RendererInterface $renderer, EntityManager $manager, Toaster $toaster)
     {
         $this->router = $router;
         $this->renderer = $renderer;
+        $this->toaster = $toaster;
         $this->eventRepository = $manager->getRepository(Evenement::class);
         $this->interRepository = $manager->getRepository(Intervenant::class);
 
@@ -77,16 +77,15 @@ class HomeModule extends AbstractModule
 
             $data = $request->getParsedBody();
 
-            $mail = new PHPMailer();
+            $mail = new PHPMailer(true);
 
             $mail->isSMTP();
             $mail->Host = 'smtp.gmail.com';  //gmail SMTP server
             $mail->SMTPAuth = true;
-            //to view proper logging details for success and error messages
-            $mail->SMTPDebug = 2;
             $mail->Host = 'smtp.gmail.com';  //gmail SMTP server
-            $mail->Username = 'neo54880@gmail.com';   //email
+            $mail->Username = 'neo54880@gmail.com';  //email
             $mail->Password = 'vyrdwqlmxieeysgs';   //16 character obtained from app password created
+            $mail->SMTPSecure = 'ssl';             //La méthode de chiffrement
             $mail->Port = 465;                    //SMTP port
 
             //sender information
@@ -95,20 +94,19 @@ class HomeModule extends AbstractModule
             //receiver email address and name
             $mail->addAddress('ivan.noblecourt@gmail.com');
 
-            $mail->isHTML(true);
-
             $mail->Subject = $data['subject'];
             $mail->Body    = $data['message'];
 
-            // Send mail   
-            if (!$mail->send()) {
-                echo 'Email not sent an error was encountered: ' . $mail->ErrorInfo;
-            } else {
-                echo 'Message has been sent.';
+            try {
+                $mail->send();
+                //Création d'un toast de succès et redirection vers la page de formulaire
+                $this->toaster->makeToast('Votre message a bien été envoyé', Toaster::SUCCESS);
+            } catch (Exception $e) {
+                //Création d'un toast d'erreur et redirection vers la page de formulaire
+                $this->toaster->makeToast('Une erreur est survenu lors de l\'envoi du message', Toaster::ERROR);
             }
-
-            $mail->smtpClose();
         }
+
         return $this->renderer->render('@home/contact');
     }
 
