@@ -27,10 +27,10 @@ body {
 
 .loader {
   display: inline-block;
-  width: 30px;
-  height: 30px;
+  width: 40px;
+  height: 40px;
   position: relative;
-  border: 4px solid blue;
+  border: 4px solid #39D5F7;
   animation: loader 2s infinite ease;
 }
 
@@ -38,7 +38,7 @@ body {
   vertical-align: top;
   display: inline-block;
   width: 100%;
-  background-color: blue;
+  background-color: #39D5F7;
   animation: loader-inner 2s infinite ease-in;
 }
 

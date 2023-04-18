@@ -80,13 +80,13 @@ class HomeModule extends AbstractModule
             $mail = new PHPMailer(true);
 
             $mail->isSMTP();
-            $mail->Host = 'smtp.gmail.com';  //gmail SMTP server
+            $mail->Host = 'smtp.gmail.com';  //GMAIL SMTP server
             $mail->SMTPAuth = true;
-            $mail->Host = 'smtp.gmail.com';  //gmail SMTP server
-            $mail->Username = 'neo54880@gmail.com';  //email
-            $mail->Password = 'vyrdwqlmxieeysgs';   //16 character obtained from app password created
-            $mail->SMTPSecure = 'ssl';             //La méthode de chiffrement
-            $mail->Port = 465;                    //SMTP port
+            $mail->Host = 'smtp.gmail.com';  //GMAIL SMTP server
+            $mail->Username = 'neo54880@gmail.com';  // E-mail
+            $mail->Password = 'vyrdwqlmxieeysgs';   // 16 character obtained from app password created
+            $mail->SMTPSecure = 'ssl';             // La méthode de chiffrement
+            $mail->Port = 465;                    // SMTP port
 
             //sender information
             $mail->setFrom($data['email'], $data['name']);
