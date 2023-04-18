@@ -24,10 +24,14 @@ th {
     border: solid;
 }
 
+h5 {
+    font-family: 'Satisfy', cursive;
+}
+
 /* Ancienne Version en Tableau  */
 
 body {
-    background: linear-gradient(90deg, #c0d7d2,hsl(169, 23%, 98%));
+    background: linear-gradient(90deg, #c0d7d2, hsl(169, 23%, 98%));
 }
 
 h2 {

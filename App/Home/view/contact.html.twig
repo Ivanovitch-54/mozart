@@ -17,7 +17,7 @@
 <div class="bloc container mb-5">
     <div class="row">
         <div class="col-sm-4">
-            <form action="mailto:mozart@epi.fr" method="post" class="card p-4">
+            <form action="" method="post" class="card p-4">
 
                 <h3 class="text-center mb-3">Formulaire de contact</h3>
 
@@ -28,6 +28,12 @@
                 </div>
 
                 <div class="input-group input-group-sm mb-3">
+                    <span class="input-group-text" id="inputGroup-sizing-sm">Nom</span>
+                    <input type="text" name="name" class="form-control text-center" aria-label="Sizing example input"
+                        aria-describedby="inputGroup-sizing-sm" placeholder="Indiquer votre Nom *">
+                </div>
+
+                <div class="input-group input-group-sm mb-3">
                     <span class="input-group-text" id="inputGroup-sizing-sm">Sujet</span>
                     <input type="text" name="subject" class="form-control text-center" aria-label="Sizing example input"
                         aria-describedby="inputGroup-sizing-sm" placeholder="Indiquer le sujet de votre message *">
@@ -35,7 +41,8 @@
 
                 <div class="input-group input-group-sm">
                     <span class="input-group-text" id="inputGroup-sizing-sm">Message</span>
-                    <textarea class="form-control" name="message" id="floatingTextarea" placeholder="Saisir votre message ici *"></textarea>
+                    <textarea class="form-control" name="message" id="floatingTextarea"
+                        placeholder="Saisir votre message ici *"></textarea>
                 </div>
 
                 {# CAPTCHA #}
@@ -49,7 +56,7 @@
         <div class="col-sm-4">
             <iframe
                 src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d10447.130077723144!2d6.1680357!3d49.1097719!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4794dc0600ab2253%3A0x5b6ac954f3be2ad3!2sEpicerie%20Mozart!5e0!3m2!1sfr!2sfr!4v1678187938277!5m2!1sfr!2sfr"
-                width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"
+                width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" defer
                 referrerpolicy="no-referrer-when-downgrade"></iframe>
         </div>
 

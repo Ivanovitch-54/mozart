@@ -2,16 +2,24 @@
 
 namespace App\Home;
 
+
 use Model\Entity\Evenement;
 use Model\Entity\Intervenant;
 use Doctrine\ORM\EntityManager;
 use Core\Framework\Router\Router;
+use Core\Session\SessionInterface;
 use Doctrine\ORM\EntityRepository;
+use PHPMailer\PHPMailer\Exception;
+use PHPMailer\PHPMailer\PHPMailer;
+use Doctrine\Common\Proxy\Autoloader;
+use Psr\Http\Message\ServerRequestInterface;
 use Core\Framework\Renderer\RendererInterface;
 use Core\Framework\AbstractClass\AbstractModule;
-use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\Exception;
-use Psr\Http\Message\ServerRequestInterface;
+use Core\Framework\Router\RedirectTrait;
+use GuzzleHttp\Psr7\ServerRequest;
+use PHPMailer\PHPMailer\SMTP;
+
+
 
 class HomeModule extends AbstractModule
 
@@ -23,6 +31,8 @@ class HomeModule extends AbstractModule
     private RendererInterface $renderer;
     private EntityRepository $eventRepository;
     private EntityRepository $interRepository;
+    private SessionInterface $session;
+    use RedirectTrait;
 
     public function __construct(Router $router, RendererInterface $renderer, EntityManager $manager)
     {
@@ -36,6 +46,7 @@ class HomeModule extends AbstractModule
         $this->router->get('/quiSommes', [$this, 'quiSommes'], 'quiSommes');
         $this->router->get('/dons', [$this, 'dons'], 'dons');
         $this->router->get('/contact', [$this, 'contact'], 'contact');
+        $this->router->post('/contact', [$this, 'contact']);
         $this->router->get('/events', [$this, 'homeEvents'], 'events');
         $this->router->get('/mentions', [$this, 'mentions'], 'mentions');
     }
@@ -58,8 +69,46 @@ class HomeModule extends AbstractModule
         return $this->renderer->render('@home/dons');
     }
 
-    public function contact()
+    public function contact(ServerRequestInterface $request)
     {
+        $method = $request->getMethod();
+
+        if ($method === 'POST') {
+
+            $data = $request->getParsedBody();
+
+            $mail = new PHPMailer();
+
+            $mail->isSMTP();
+            $mail->Host = 'smtp.gmail.com';  //gmail SMTP server
+            $mail->SMTPAuth = true;
+            //to view proper logging details for success and error messages
+            $mail->SMTPDebug = 2;
+            $mail->Host = 'smtp.gmail.com';  //gmail SMTP server
+            $mail->Username = 'neo54880@gmail.com';   //email
+            $mail->Password = 'vyrdwqlmxieeysgs';   //16 character obtained from app password created
+            $mail->Port = 465;                    //SMTP port
+
+            //sender information
+            $mail->setFrom($data['email'], $data['name']);
+
+            //receiver email address and name
+            $mail->addAddress('ivan.noblecourt@gmail.com');
+
+            $mail->isHTML(true);
+
+            $mail->Subject = $data['subject'];
+            $mail->Body    = $data['message'];
+
+            // Send mail   
+            if (!$mail->send()) {
+                echo 'Email not sent an error was encountered: ' . $mail->ErrorInfo;
+            } else {
+                echo 'Message has been sent.';
+            }
+
+            $mail->smtpClose();
+        }
         return $this->renderer->render('@home/contact');
     }
 
