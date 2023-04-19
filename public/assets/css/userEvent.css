@@ -1,0 +1,39 @@
+body {
+    background: linear-gradient(90deg, #c0d7d2, hsl(169, 23%, 98%));
+}
+
+h2 {
+    width: 30%;
+    font-family: 'Satisfy', cursive;
+}
+
+h5 {
+    font-family: 'Satisfy', cursive;
+}
+
+footer {
+    margin-top: 18%;
+    height: 15vh!important;
+}
+
+.border-top {
+    border-color: black !important;
+}
+
+@media screen and (max-width:780px) {
+    footer ul {
+        display: block !important;
+    }
+
+    footer p {
+        margin-top: 3%;
+    }
+
+    h2 {
+        width: 70% !important;
+    }
+
+    footer {
+        margin-top: 0vh !important;
+    }
+}

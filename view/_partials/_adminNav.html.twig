@@ -1,0 +1,47 @@
+{% block stylesheet %}
+<link rel="stylesheet" href="{{ assets('/assets/css/nav.css') }}" />
+{% endblock %}
+<header>
+    <nav class="navbar navbar-expand-lg bg-body-primary">
+        <div class="container-fluid">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse mx-auto" id="navbarSupportedContent">
+                <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="{{ path('admin.home') }}">Home</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="{{ path('inter.add') }}">Ajouter un
+                            intervenant</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="{{ path('admin.inter') }}">Liste des
+                            intervenants</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="{{ path('event.add') }}">Ajouter un
+                            événement</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="{{ path('admin.event') }}">Liste des
+                            événements</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="{{ path('admin.logout') }}">Déconnexion</a>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>

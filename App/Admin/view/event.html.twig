@@ -11,16 +11,16 @@
 
     <h2 class="text-center my-4 border rounded-4 bg-white">Liste des événements</h2>
     <table>
-        <thead class="bg-white">
+        <thead>
             <tr>
-                <th>Nom de l'événement</th>
-                <th>Description de l'événement</th>
-                <th>Intervenant de l'événement</th>
-                <th>Débute à </th>
-                <th>Fini à </th>
-                <th>Nombres de places restantes </th>
-                <th>Liste des participants</th>
-                <th>Options disponibles</th>
+                <th><span>Nom de l'événement</span></th>
+                <th><span>Description de l'événement</span></th>
+                <th><span>Intervenant de l'événement</span></th>
+                <th><span>Débute à </span></th>
+                <th><span>Fini à </span></th>
+                <th><span>Nombres de places restantes </span></th>
+                <th><span>Liste des participants</span></th>
+                <th><span>Options disponibles</span></th>
             </tr>
         </thead>
 
@@ -46,10 +46,11 @@
                 {# TODO #}
                 <td>
                     {% for user in evenement.users %}
-                    <span>{{ user.nom }} {{user.prenom}}</span>
-                    <!-- Button trigger modal -->
-                    <a data-bs-toggle="modal" data-bs-target="#testModal{{ evenement.id }}"><i
-                            class="fa-sharp fa-solid fa-ban" style="color: #f51919;"></i></a>
+                    <p>{{ user.nom }} {{user.prenom}}
+                        <!-- Button trigger modal -->
+                        <a data-bs-toggle="modal" data-bs-target="#testModal{{ evenement.id }}"><i
+                                class="fa-sharp fa-solid fa-ban" style="color: #f51919;"></i></a>
+                    </p>
                     <br>
                     <!-- Modal -->
                     <div class="modal fade" id="testModal{{ evenement.id }}" tabindex="-1"
@@ -74,7 +75,7 @@
                         </div>
                     </div>
                     {% else %}
-                    <span>Aucun participant</span>
+                    <p class="text-danger">Aucun participant</p>
                     {% endfor %}
                 </td>
 

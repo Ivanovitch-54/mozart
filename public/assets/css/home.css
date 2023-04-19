@@ -30,17 +30,21 @@ header li {
 
 .link-cuisine {
     height: 25%;
-    background-image: url(/assets/img/loaf-gacbb6d202_1920.jpg);
-    background-position: center;
+    background-image: url(/assets/img/vue-dessus-recadre-mains-cuisinier-aine-decoupage-carotte-cuisson-ragout-legumes.jpg);
+    background-position-x: center;
+    background-position-y: -55px;
     background-size: cover;
+    background-repeat: no-repeat;
     font-family: 'Satisfy', cursive;
 }
 
 .link-coiffure {
     height: 25%;
     background-image: url(/assets/img/barber-gb2ae370d6_1920.jpg);
-    background-position: center;
+    background-position-x: center;
+    background-position-y: -160px;
     background-size: cover;
+    background-repeat: no-repeat;
     font-family: 'Satisfy', cursive;
 }
 

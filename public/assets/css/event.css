@@ -2,14 +2,19 @@
 
 table {
     border: solid;
-    height: 75vh;
-    width: 80vw;
+    height: 75dvh;
+    width: 80dvw;
+    border-collapse: collapse;
 }
 
 thead {
-    color: black;
-    border: solid;
+    border: solid black;
+    background-color: gray;
+}
 
+button {
+    margin-top: 3%;
+    margin-bottom: 3%;
 }
 
 tr {
@@ -17,18 +22,26 @@ tr {
 }
 
 td {
-    border: solid;
+    border: solid rgb(128, 128, 128);
+}
+
+tr:nth-child(even) {
+    background-color:hsl(168, 10%, 90%);
 }
 
 th {
-    border: solid;
+    border: solid gray;
+}
+
+span {
+    color: white;
 }
 
 h5 {
     font-family: 'Satisfy', cursive;
 }
 
-/* Ancienne Version en Tableau  */
+/* Fin Ancienne Version en Tableau  */
 
 body {
     background: linear-gradient(90deg, #c0d7d2, hsl(169, 23%, 98%));
@@ -37,6 +50,10 @@ body {
 h2 {
     width: 30%;
     font-family: 'Satisfy', cursive;
+}
+
+footer {
+    margin-top: 17%;
 }
 
 @media screen and (max-width:780px) {
@@ -54,5 +71,9 @@ h2 {
 
     footer {
         margin-top: 0vh !important;
+    }
+
+    .border-top {
+        border-color: black !important;
     }
 }

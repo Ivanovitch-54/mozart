@@ -4,13 +4,13 @@
 {% endblock %}
 {% block stylesheet %}
 
-<link rel="stylesheet" href="{{ assets('/assets/css/event.css') }}" />
+<link rel="stylesheet" href="{{ assets('/assets/css/userEvent.css') }}" />
 {% endblock %}
 {% block body %}
 
 
-<h2 class="mx-auto text-center bg-white border rounded-4 align-self-center mb-4">Liste des événements disponibles</h2>
-<div class="container card-group gap-3 text-center mb-5">
+<h2 class="mx-auto text-center bg-white border rounded-4 align-self-center mb-3">Liste des événements disponibles</h2>
+<div class="container card-group gap-3 text-center pt-5">
     {% for evenement in evenements %}
     {% if evenement.user_register == false %}
     <div class="card border border-dark rounded">

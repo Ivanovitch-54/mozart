@@ -7,6 +7,10 @@ h3 {
     font-family: 'Josefin Sans', sans-serif;
 }
 
+footer {
+    margin-top: 16%;
+}
+
 @media screen and (max-width:780px) {
     h2 {
         width: 70%;

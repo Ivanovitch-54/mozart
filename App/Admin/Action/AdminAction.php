@@ -60,6 +60,6 @@ class AdminAction
         $auth->logout();
         $this->toaster->makeToast('Déconnexion Réussi', Toaster::SUCCESS);
         return (new Response())
-            ->withHeader('Location', '@home/inex');
+            ->withHeader('Location', '@home/index');
     }
 }

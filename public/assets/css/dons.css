@@ -3,6 +3,10 @@ h2 {
     width: 40%;
 }
 
+footer {
+    margin-top: 12%;
+}
+
 @media screen and (max-width:780px) {
     p {
         margin-top: 10%;
