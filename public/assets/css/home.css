@@ -68,6 +68,7 @@ header li {
 
 .text-activity {
     margin-top: 16%;
+    text-shadow: 0 0 5px rgba(0, 0, 0, 0.9);
 }
 
 .text-josefin {

@@ -4,7 +4,6 @@ use Core\App;
 use App\Home\HomeModule;
 use DI\ContainerBuilder;
 use App\Admin\AdminModule;
-use App\Evenement\EvenementModule;
 use App\User\UserModule;
 
 use function Http\Response\send;
@@ -12,6 +11,7 @@ use GuzzleHttp\Psr7\ServerRequest;
 use Core\Framework\Middleware\RouterMiddleware;
 use Core\Framework\Middleware\NotFoundMiddleware;
 use Core\Framework\Middleware\AdminAuthMiddleware;
+use Core\Framework\Middleware\CSRFMiddleware;
 use Core\Framework\Middleware\TrailingSlashMiddleware;
 
 
@@ -52,9 +52,10 @@ $app = new App($container, $modules);
 // Puis on ajoute les Middleware suivants en leurs passant le container de dépendances si besoin 
 $app->linkFirst(new TrailingSlashMiddleware())
     ->linkWith(new RouterMiddleware($container))
+    ->linkWith(new CSRFMiddleware($container, []))
     ->linkWith(new AdminAuthMiddleware($container))
     ->linkWith(new UserAuthMiddleware($container))
-    ->linkWith(new RouterDispatcherMiddleware)
+    ->linkWith(new RouterDispatcherMiddleware())
     ->linkWith(new NotFoundMiddleware);
 
 

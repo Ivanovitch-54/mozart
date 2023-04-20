@@ -30,6 +30,9 @@
             {% else %}
             <p class="card-text"><small class="text-success text-uppercase">Complet</small></p>
             {% endif %}
+
+            {{ csrf() }}
+            
             <button class="btn btn-danger">
                 <a href="{{ path('user.decoEvent', {id: evenement.id}) }}" class="text-decoration-none text-white">Se
                     désinscrire</a>

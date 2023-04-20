@@ -9,7 +9,7 @@ use Twig\Extension\AbstractExtension;
 
 /**
  * Extension Twig permettant d'accèder directement au dossier public 
- * utile pour donner les chemins des feuilles de style, des scripts js, des images et de toutr ce qui peut se trouver dans le dossier Assets
+ * utile pour donner les chemins des feuilles de style, des scripts js, des images et de tout ce qui peut se trouver dans le dossier Assets
  */
 class AssetsTwigExtension extends AbstractExtension
 {
