@@ -6,7 +6,7 @@
 
 /* Ne pas oublier de modifier l'url pour récupérer les images (Supprimer /public pour passez directement à /assets) */
 body {
-    background: linear-gradient(90deg, #c0d7d2,hsl(169, 23%, 98%));
+    background: linear-gradient(90deg, #c0d7d2, hsl(169, 23%, 98%));
 }
 
 header li {
@@ -26,6 +26,10 @@ header li {
 
 .welcome-text {
     margin-top: 60%;
+    text-shadow: 2px 8px 6px rgba(0, 0, 0, 0.2),
+        0px -5px 35px rgba(255, 255, 255, 0.3);
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0), rgb(255, 255, 255), rgb(255, 255, 255), rgba(255, 255, 255, 0));
+    width: 100%;
 }
 
 .link-cuisine {
@@ -68,7 +72,12 @@ header li {
 
 .text-activity {
     margin-top: 16%;
-    text-shadow: 0 0 5px rgba(0, 0, 0, 0.9);
+    /* text-shadow: 0 0 5px rgba(0, 0, 0, 1); */
+    font-weight: 200 !important;
+    text-shadow: 2px 8px 6px rgba(0, 0, 0, 0.2),
+        0px -5px 35px rgba(255, 255, 255, 0.3);
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0), rgb(255, 255, 255), rgb(255, 255, 255), rgba(255, 255, 255, 0));
+    width: 100%;
 }
 
 .text-josefin {
@@ -99,7 +108,8 @@ header li {
 }
 
 .welcome-text2 {
-    width: 60%;
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0),rgb(255, 255, 255), rgb(255, 255, 255), rgb(255, 255, 255), rgba(255, 255, 255, 0));
+    width: 100%;
 }
 
 .welcome-pic2 {
@@ -118,6 +128,28 @@ footer {
 
 .nav-link:hover {
     color: red;
+}
+
+/* Ici je modifie le reponsive */
+
+@media screen and (min-width:1200px) {
+    .link-cuisine p a {
+        width: 100% !important;
+        padding-left: 150px;
+        padding-right: 150px;
+    }
+
+    .link-coiffure p a {
+        width: 100% !important;
+        padding-left: 150px;
+        padding-right: 150px;
+    }
+
+    .link-doc p a {
+        width: 100% !important;
+        padding-left: 150px;
+        padding-right: 150px;
+    }
 }
 
 @media screen and (max-width:780px) {
@@ -144,9 +176,29 @@ footer {
     }
 
     .welcome-text2 {
-        font-size: 16px !important;
         margin-top: 80%;
-        margin-left: 20%;
+        font-size: 24px !important;
+        border-radius: 0 !important;
+        padding-left: 0px !important;
+        padding-right: 0px !important;
+    }
+
+    .link-cuisine p a {
+        width: 100% !important;
+        background: none !important;
+        color: white !important;
+    }
+
+    .link-coiffure p a {
+        width: 100% !important;
+        background: none !important;
+        color: white !important;
+    }
+
+    .link-doc p a {
+        width: 100% !important;
+        background: none !important;
+        color: white !important;
     }
 
     footer ul {
@@ -154,7 +206,7 @@ footer {
     }
 }
 
-@media screen and (max-width: 1200px) and (min-width: 750px){
+@media screen and (max-width: 1200px) and (min-width: 750px) {
     a.nav-link {
         font-size: 1rem !important;
     }
