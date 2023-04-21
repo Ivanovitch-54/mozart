@@ -13,18 +13,18 @@
     <table class="table-responsive">
         <thead>
             <tr>
-                <th><span>Nom de l'événement</span></th>
-                <th><span>Description de l'événement</span></th>
-                <th><span>Intervenant de l'événement</span></th>
-                <th><span>Débute à </span></th>
-                <th><span>Fini à </span></th>
-                <th><span>Nombres de places restantes </span></th>
-                <th><span>Liste des participants</span></th>
-                <th><span>Options disponibles</span></th>
+                <th class="border-end border-dark"><span>Nom de l'événement</span></th>
+                <th class="border-end border-dark"><span>Description de l'événement</span></th>
+                <th class="border-end border-dark"><span>Intervenant de l'événement</span></th>
+                <th class="border-end border-dark"><span>Débute à </span></th>
+                <th class="border-end border-dark"><span>Fini à </span></th>
+                <th class="border-end border-dark"><span>Nombres de places restantes </span></th>
+                <th class="border-end border-dark"><span>Liste des participants</span></th>
+                <th class="border-end border-dark"><span>Options disponibles</span></th>
             </tr>
         </thead>
 
-        <tbody class="bg-white">
+        <tbody class="bg-white fw-bolder">
             {% for evenement in evenements %}
             <tr>
                 <td>{{ evenement.nom }}</td>
@@ -44,7 +44,7 @@
                 <td>
                     {% if evenement.user_register == true %}
                     <!-- Bouton Liste des Participants -->
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                    <button type="button" class="btn btn-primary px-2" data-bs-toggle="modal"
                         data-bs-target="#staticBackdrop{{ evenement.id }}">
                         Voir la liste
                     </button>
