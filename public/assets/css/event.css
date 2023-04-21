@@ -1,14 +1,6 @@
 /* Ancienne Version en Tableau */
 
-table {
-    border: solid;
-    height: 75dvh;
-    width: 80dvw;
-    border-collapse: collapse;
-}
-
 thead {
-    border: solid black;
     background-color: gray;
 }
 
@@ -17,20 +9,30 @@ button {
     margin-bottom: 3%;
 }
 
-tr {
-    border: solid;
+.bg-warning {
+    border-top: solid 1px gray;
+    border-bottom: solid 1px gray;
+}
+
+tbody tr:last-child {
+    border-bottom: solid 3px gray;
 }
 
 td {
-    border: solid rgb(128, 128, 128);
+    border-left: solid rgba(0, 0, 0, 0.5);
+    border-right: solid rgba(0, 0, 0, 0.5);
 }
 
 tr:nth-child(even) {
-    background-color:hsl(168, 10%, 90%);
+    background-color: hsl(168, 10%, 90%);
+}
+
+.modal-body p {
+    background: linear-gradient(90deg, #c0d7d2, hsl(169, 23%, 98%));
 }
 
 th {
-    border: solid gray;
+    border: solid 3px black !important;
 }
 
 span {
