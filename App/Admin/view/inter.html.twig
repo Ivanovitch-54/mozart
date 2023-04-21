@@ -13,57 +13,58 @@
 
     <h2 class="my-4 border rounded-4 bg-white">Liste des intervenants</h2>
 
-        <table class="table align-middle">
-            <thead>
-                <tr>
-                    <th class="border-end border-dark "><span>Nom</span></th>
-                    <th class="border-end border-dark"><span>Prénom</span></th>
-                    <th class="border-end border-dark"><span>Rôle</span></th>
-                    <th class="border-end border-dark"><span>Action</span></th>
-                </tr>
-            </thead>
+    <table class="table align-middle">
+        <thead>
+            <tr>
+                <th class="border-end border-dark "><span>Nom</span></th>
+                <th class="border-end border-dark"><span>Prénom</span></th>
+                <th class="border-end border-dark"><span>Rôle / Profession</span></th>
+                <th class="border-dark"><span>Action</span></th>
+            </tr>
+        </thead>
 
-            <tbody class="bg-white fw-bolder">
-                {% for intervenant in intervenants %}
-                <tr>
-                    <td>{{ intervenant.nom }}</td>
-                    <td>{{ intervenant.prenom }}</td>
-                    <td>{{ intervenant.role }}</td>
-                    <td>
-                        <!-- Button trigger modal -->
-                        <button type="button" class="btn btn-danger" data-bs-toggle="modal"
-                            data-bs-target="#exampleModal{{ intervenant.id }}">
-                            Supprimer
-                        </button>
+        <tbody class="bg-white fw-bolder">
+            {% for intervenant in intervenants %}
+            <tr>
+                <td>{{ intervenant.nom }}</td>
+                <td>{{ intervenant.prenom }}</td>
+                <td>{{ intervenant.role }}</td>
+                <td>
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+                        data-bs-target="#exampleModal{{ intervenant.id }}">
+                        Supprimer
+                    </button>
 
-                        <!-- Modal -->
-                        <div class="modal fade" id="exampleModal{{ intervenant.id }}" tabindex="-1"
-                            aria-labelledby="exampleModalLabel{{ intervenant.id }}" aria-hidden="true">
-                            <div class="modal-dialog modal-dialog-centered">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h1 class="modal-title fs-5" id="exampleModalLabel{{ intervenant.id }}">
-                                            Confirmer la suppresion de l'intervenant</h1>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                            aria-label="Close"></button>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary"
-                                            data-bs-dismiss="modal">Retour</button>
-                                        <button type="button" class="btn btn-danger">
-                                            <a href="{{ path('inter.delete', {id: intervenant.id}) }}"
-                                                class="text-decoration-none text-white">Supprimer</a>
-                                        </button>
+                    <!-- Modal -->
+                    <div class="modal fade" id="exampleModal{{ intervenant.id }}" tabindex="-1"
+                        aria-labelledby="exampleModalLabel{{ intervenant.id }}" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="exampleModalLabel{{ intervenant.id }}">
+                                        La suppresion de l'intervenant est définitive <i
+                                            class="fa-solid fa-triangle-exclamation" style="color: #ff0000;"></i></h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary"
+                                        data-bs-dismiss="modal">Retour</button>
+                                    <button type="button" class="btn btn-danger">
+                                        <a href="{{ path('inter.delete', {id: intervenant.id}) }}"
+                                            class="text-decoration-none text-white">Confirmer</a>
+                                    </button>
 
-                                    </div>
                                 </div>
                             </div>
                         </div>
+                    </div>
 
-                    </td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-    </div>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
 {% endblock %}

@@ -19,8 +19,8 @@ tbody tr:last-child {
 }
 
 td {
-    border-left: solid rgba(0, 0, 0, 0.5);
-    border-right: solid rgba(0, 0, 0, 0.5);
+    border-left: solid 3px rgba(0, 0, 0, 0.5);
+    border-right: solid 3px rgba(0, 0, 0, 0.5);
 }
 
 tr:nth-child(even) {

@@ -24,7 +24,8 @@ tr {
 }
 
 td {
-    border: solid;
+    border-left: solid 3px rgba(0, 0, 0, 0.5);
+    border-right: solid 3px rgba(0, 0, 0, 0.5);
 }
 
 th {
@@ -32,7 +33,7 @@ th {
 }
 
 body {
-    background: linear-gradient(90deg, #c0d7d2,hsl(169, 23%, 98%));
+    background: linear-gradient(90deg, #c0d7d2, hsl(169, 23%, 98%));
 }
 
 @media screen and (max-width:780px) {
