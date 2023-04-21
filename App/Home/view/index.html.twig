@@ -21,20 +21,17 @@
 
     <div class="col-sm-4 d-flex justify-content-around flex-column">
       <p class="bloc-actu fs-3 rounded border bg-white align-self-center">Nos activités</p>
-      <div class="link-cuisine fs-2 rounded-4 d-flex justify-content-center">
+      <div class="link-cuisine fs-3 rounded-4 d-flex justify-content-center">
         <p class="align-self-end mb-3"><a href="{{ path('events') }}"
-            class="text-activity text-decoration-none text-black">Atelier
-            Cuisine</a></p>
+            class="text-activity text-decoration-none text-black">Atelier Cuisine</a></p>
       </div>
-      <div class="link-coiffure mt-3 fs-2 rounded-4 d-flex justify-content-center">
+      <div class="link-coiffure mt-3 fs-3 rounded-4 d-flex justify-content-center">
         <p class="align-self-end mb-3"><a href="{{ path('events') }}"
-            class="text-activity text-decoration-none text-black">Atelier
-            Coiffure</a></p>
+            class="text-activity text-decoration-none text-black">Atelier Coiffure</a></p>
       </div>
-      <div class="link-doc fs-2 mt-3 rounded-4 d-flex justify-content-center">
+      <div class="link-doc fs-3 mt-3 rounded-4 d-flex justify-content-center">
         <p class="align-self-end mb-3"><a href="{{ path('events') }}"
-            class="text-activity text-decoration-none text-black">Rendez-vous
-            médicaux</a></p>
+            class="text-activity text-decoration-none text-black">Espace santé</a></p>
       </div>
     </div>
 
@@ -64,14 +61,14 @@
       {# Ici commence le carousel #}
       <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-inner rounded-4">
-          <div class="carousel-item active">
+          <div class="carousel-item active" data-bs-interval="3000">
             <img src="/assets/img/gros-plan-cuisine-du-chef-dans-cuisine-du-restaurant.jpg" class="img-fluid"
               alt="carousel-picture image des derniers ateliers qui défilent dans un carousel">
           </div>
-          <div class="carousel-item">
+          <div class="carousel-item" data-bs-interval="3000">
             <img src="/assets/img/gros-plan-fille-mere-preparer-pate.jpg" class="img-fluid" alt="carousel-picture image des derniers ateliers qui défilent dans un carousel">
           </div>
-          <div class="carousel-item">
+          <div class="carousel-item" data-bs-interval="3000">
             <img src="/assets/img/spaghetti-g65abc0b04_1920.jpg" class="img-fluid" alt="carousel-picture image des derniers ateliers qui défilent dans un carousel">
           </div>
         </div>

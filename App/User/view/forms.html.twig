@@ -10,6 +10,7 @@
 
 {% block scripts %}
 <script type="text/javascript" src="{{ assets('/assets/js/formSlider.js') }}"></script>
+<script type="text/javascript" src="{{ assets('/assets/js/showPass.js') }}"></script>
 <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 <script src="https://kit.fontawesome.com/d30d53ecea.js" crossorigin="anonymous"></script>
 {% endblock %}
@@ -47,7 +48,7 @@
                 <label for="floatingPasswordConfirm">Confirmer le mot de passe</label>
             </div>
 
-            <p class="text-center">En vous inscrivant, vous acceptez les conditions générales d’utilisation
+            <p class="text-center">En vous inscrivant, vous acceptez les conditions générales d'utilisation
                 définie ci-dessous : <a class="icon-link icon-link-hover" href="{{ path('mentions') }}">Cliquez ici</a>
             </p>
 
@@ -79,7 +80,7 @@
 
             <div class="form-check form-switch row mt-3 ms-1">
                 <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault"
-                    onclick="myFunction()">
+                    onclick="showPass()">
                 <label class="form-check-label" for="flexSwitchCheckDefault">Afficher le mot de passe</label>
             </div>
 
@@ -92,15 +93,4 @@
         </form>
     </div>
 </div>
-
-<script>
-    function myFunction() {
-        var x = document.getElementById("connexion_password");
-        if (x.type === "password") {
-            x.type = "text";
-        } else {
-            x.type = "password";
-        }
-    }
-</script>
 {% endblock %}

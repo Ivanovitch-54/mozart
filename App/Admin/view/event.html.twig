@@ -10,7 +10,7 @@
 <div class="container text-center my-1 d-flex flex-column align-items-center">
 
     <h2 class="text-center my-4 border rounded-4 bg-white">Liste des événements</h2>
-    <table>
+    <table class="table-responsive">
         <thead>
             <tr>
                 <th><span>Nom de l'événement</span></th>
@@ -41,52 +41,58 @@
                 <td><span class="text-danger">Complet</span></td>
                 {% endif %}
 
-
-
-                {# TODO #}
                 <td>
-                    {% for user in evenement.users %}
-                    <p>{{ user.nom }} {{user.prenom}}
-                        <!-- Button trigger modal -->
-                        <a data-bs-toggle="modal" data-bs-target="#testModal{{ evenement.id }}"><i
-                                class="fa-sharp fa-solid fa-ban" style="color: #f51919;"></i></a>
-                    </p>
-                    <br>
-                    <!-- Modal -->
-                    <div class="modal fade" id="testModal{{ evenement.id }}" tabindex="-1"
-                        aria-labelledby="testModalLabel{{ evenement.id }}" aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered">
+                    {% if evenement.user_register == true %}
+                    <!-- Bouton Liste des Participants -->
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                        data-bs-target="#staticBackdrop{{ evenement.id }}">
+                        Voir la liste
+                    </button>
+                    {% else %}
+                    <p class="text-danger fw-bold">Aucun participant</p>
+                    {% endif %}
+
+                    <!-- Modal Liste des Participants -->
+
+                    <div class="modal fade" id="staticBackdrop{{ evenement.id }}" data-bs-backdrop="static"
+                        data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h1 class="modal-title fs-5" id="testModalLabel{{ evenement.id }}">Retirer
-                                        l'utilisateur de l'événement</h1>
+                                    <h1 class="modal-title fs-5" id="staticBackdropLabel{{ evenement.id }}">Participants
+                                        de "{{ evenement.nom }}"</h1>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal"
                                         aria-label="Close"></button>
                                 </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary"
-                                        data-bs-dismiss="modal">Retour</button>
-                                    <button type="button" class="btn btn-danger">
+                                <div class="modal-body">
+                                    {% for user in evenement.users %}
+                                    <p>{{ user.nom }} {{user.prenom}} /
                                         <a href="{{ path('users.remove', {idUser: user.id, idEvent: evenement.id})}}"
-                                            class="text-decoration-none text-white">Désinscrire</a>
-                                    </button>
+                                            class="text-decoration-none text-white"> <i class="fa-sharp fa-solid fa-ban"
+                                                style="color: #f51919;"></i></a>
+                                    </p>
+                                    {% endfor %}
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-primary"
+                                        data-bs-dismiss="modal">Fermer</button>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    {% else %}
-                    <p class="text-danger">Aucun participant</p>
-                    {% endfor %}
+
                 </td>
 
+
                 <td>
-                    <!-- Button trigger modal -->
+                    <!-- Button Options disponibles -->
                     <button type="button" class="btn btn-danger" data-bs-toggle="modal"
                         data-bs-target="#exampleModal{{ evenement.id }}">
                         Supprimer
                     </button>
 
-                    <!-- Modal -->
+                    <!-- Modal Supprimer -->
                     <div class="modal fade" id="exampleModal{{ evenement.id }}" tabindex="-1"
                         aria-labelledby="exampleModalLabel{{ evenement.id }}" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered">
@@ -120,3 +126,40 @@
     </table>
 </div>
 {% endblock %}
+
+
+
+
+{# TODO #}
+{# <td>
+    {% for user in evenement.users %}
+    <p>{{ user.nom }} {{user.prenom}}
+        <!-- Button trigger modal -->
+        <a data-bs-toggle="modal" data-bs-target="#testModal{{ evenement.id }}"><i class="fa-sharp fa-solid fa-ban"
+                style="color: #f51919;"></i></a>
+    </p>
+    <br>
+    <!-- Modal -->
+    <div class="modal fade" id="testModal{{ evenement.id }}" tabindex="-1"
+        aria-labelledby="testModalLabel{{ evenement.id }}" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="testModalLabel{{ evenement.id }}">Retirer
+                        l'utilisateur de l'événement</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Retour</button>
+                    <button type="button" class="btn btn-danger">
+                        <a href="{{ path('users.remove', {idUser: user.id, idEvent: evenement.id})}}"
+                            class="text-decoration-none text-white">Désinscrire</a>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% else %}
+    <p class="text-danger">Aucun participant</p>
+    {% endfor %}
+</td> #}

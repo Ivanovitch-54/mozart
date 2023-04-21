@@ -42,6 +42,18 @@ header li {
     font-family: 'Satisfy', cursive;
 }
 
+.link-cuisine p:hover {
+    transform: scale(1.1);
+}
+
+.link-coiffure p:hover {
+    transform: scale(1.1);
+}
+
+.link-doc p:hover {
+    transform: scale(1.1);
+}
+
 .link-coiffure {
     height: 25%;
     background-image: url(/assets/img/barber-gb2ae370d6_1920.jpg);
@@ -170,8 +182,12 @@ footer {
         height: 80vh;
     }
 
+    .test {
+        height: 700px;
+    }
+
     footer {
-        margin-top: 75vh;
+        margin-top: 130%;
         height: 15vh;
     }
 

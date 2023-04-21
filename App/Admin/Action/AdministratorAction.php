@@ -266,11 +266,9 @@ class AdministratorAction
 
         $this->manager->flush();
 
-
-
-
+        $this->toaster->makeToast('Participant retirer de l\'événement', Toaster::SUCCESS);
 
         return (new Response())
-            ->withHeader('Location', '/admin/event');
+        ->withHeader('Location', '/admin/event');
     }
 }
