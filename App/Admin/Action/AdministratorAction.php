@@ -37,7 +37,7 @@ class AdministratorAction
         $this->session = $container->get(SessionInterface::class);
         $this->repository = $manager->getRepository(Evenement::class);          // Permet d'obtenir un objet de type EntityRepository qui permet de gérer les entités de la classe Evenement
         $this->interRepository = $manager->getRepository(Intervenant::class);   // Permet d'obtenir un objet de type EntityRepository qui permet de gérer les entités de la classe Intervenant
-        $this->userRepository = $manager->getRepository(User::class);            // Permet d'obtenir un objet de type EntityRepository qui permet de gérer les entités de la classe User
+        $this->userRepository = $manager->getRepository(User::class);           // Permet d'obtenir un objet de type EntityRepository qui permet de gérer les entités de la classe User
     }
 
     public function home()

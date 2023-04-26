@@ -223,7 +223,7 @@ class UserAction
             $data = $request->getParsedBody();
             $validator = new Validator($data);
             $errors = $validator
-                ->required('nom', 'prenom','old_password','new_password','confirm_password')
+                ->required('nom', 'prenom', 'old_password', 'new_password', 'confirm_password')
                 ->strSize('new_password', 12, 50)
                 ->confirm('new_password')
                 ->getErrors();
@@ -236,10 +236,10 @@ class UserAction
                     ->withHeader('Location', 'user/monCompte');
             }
 
-            if (!password_verify($data['old_password'], $user->getPassword())){
+            if (!password_verify($data['old_password'], $user->getPassword())) {
                 $this->toaster->makeToast('L\'ancien mot de passe ne correspond pas', Toaster::ERROR);
                 return (new Response())
-                ->withHeader('Location', '/user/monCompte');
+                    ->withHeader('Location', '/user/monCompte');
             }
 
             $user

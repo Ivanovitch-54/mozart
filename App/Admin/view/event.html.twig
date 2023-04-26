@@ -11,7 +11,7 @@
 
     <h2 class="text-center my-4 border rounded-4 bg-white">Liste des événements</h2>
 
-    <table class="table">
+    <table class="table align-middle">
         <thead>
             <tr>
                 <th class="border-end border-dark"><span>Nom de l'événement</span></th>
@@ -45,7 +45,7 @@
                 <td>
                     {% if evenement.user_register == true %}
                     <!-- Bouton Liste des Participants -->
-                    <button type="button" class="btn btn-success px-1 py-1" data-bs-toggle="modal"
+                    <button type="button" class="btn btn-success px-1" data-bs-toggle="modal"
                         data-bs-target="#staticBackdrop{{ evenement.id }}">
                         Voir la liste
                     </button>
@@ -114,6 +114,7 @@
                             </div>
                         </div>
                     </div>
+
                     <!-- Modifier l'événement -->
                     <a href="{{ path('event.update', {id: evenement.id}) }}" class="ms-3"><i
                             class="fa-regular fa-pen-to-square"></i></a>
