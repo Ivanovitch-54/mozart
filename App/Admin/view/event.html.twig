@@ -70,8 +70,8 @@
                                     {% for user in evenement.users %}
                                     <p>{{ user.nom }} {{user.prenom}} /
                                         <a href="{{ path('users.remove', {idUser: user.id, idEvent: evenement.id})}}"
-                                            class="text-decoration-none text-white"> <i class="fa-sharp fa-solid fa-ban"
-                                                style="color: #f51919;"></i></a>
+                                            class="text-decoration-none text-white"> <i class="fa-solid fa-user-slash"
+                                                style="color: #f00000;"></i></a>
                                     </p>
                                     {% endfor %}
                                 </div>
