@@ -166,7 +166,7 @@ class UserAction
 
             $this->manager->flush();
 
-            $this->toaster->makeToast('Inscription à l\'événement réussi !', Toaster::SUCCESS);
+            $this->toaster->makeToast('Inscription à l\'événement réussie !', Toaster::SUCCESS);
         }
 
         return (new Response())
@@ -249,7 +249,7 @@ class UserAction
                 ->setPassword(password_hash($data['new_password'], PASSWORD_BCRYPT));
             $this->manager->flush();
             $this->session->set('auth', $user);
-            $this->toaster->makeToast('Mise à jour réussi', Toaster::SUCCESS);
+            $this->toaster->makeToast('Mise à jour réussie', Toaster::SUCCESS);
 
             return (new Response())
                 ->withHeader('Location', '/user/monCompte'); // En cas de succès retourne la page liste d'EVENT

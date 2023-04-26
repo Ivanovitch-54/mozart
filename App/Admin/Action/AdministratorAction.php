@@ -171,7 +171,7 @@ class AdministratorAction
                 ->setIntervenants($intervenants);
 
             $this->manager->flush();
-            $this->toaster->makeToast('Mise à jour de l\'événement réussi', Toaster::SUCCESS);
+            $this->toaster->makeToast('Mise à jour de l\'événement réussie', Toaster::SUCCESS);
 
             return (new Response())
                 ->withHeader('Location', '/admin/event'); // En cas de succès retourne la page liste d'EVENT
