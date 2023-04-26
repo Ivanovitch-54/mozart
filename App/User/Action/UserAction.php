@@ -223,8 +223,7 @@ class UserAction
             $data = $request->getParsedBody();
             $validator = new Validator($data);
             $errors = $validator
-                ->required('nom', 'prenom','old_password')
-                ->required('new_password','confirm_password')
+                ->required('nom', 'prenom','old_password','new_password','confirm_password')
                 ->strSize('new_password', 12, 50)
                 ->confirm('new_password')
                 ->getErrors();

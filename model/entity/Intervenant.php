@@ -42,6 +42,13 @@ class Intervenant
     private string $role;
 
     /**
+     * Numéro de téléphone de l'intervenant
+     * @ORM\Column(type="string", length="10")
+     * @var string
+     */
+    private string $tel;
+
+    /**
      * Many Intervenants have Many Evenements.
      * @ORM\ManyToMany(targetEntity="Evenement", mappedBy="intervenants")
      * @var Collection<int, Evenement>
@@ -180,5 +187,29 @@ class Intervenant
     public function getEvenements()
     {
         return $this->evenements;
+    }
+
+    /**
+     * Get numéro de téléphone de l'intervenant
+     *
+     * @return  string
+     */ 
+    public function getTel()
+    {
+        return $this->tel;
+    }
+
+    /**
+     * Set numéro de téléphone de l'intervenant
+     *
+     * @param  string  $tel  Numéro de téléphone de l'intervenant
+     *
+     * @return  self
+     */ 
+    public function setTel(string $tel)
+    {
+        $this->tel = $tel;
+
+        return $this;
     }
 }

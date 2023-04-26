@@ -204,7 +204,7 @@ class AdministratorAction
             $intervenants = $this->interRepository->findAll(); // Permet d'allez récuperer tous les intervenants en bdd 
             $validator = new Validator($data);
             $errors = $validator
-                ->required('nom', 'prenom', 'role')
+                ->required('nom', 'prenom', 'role','tel')
                 ->getErrors();
 
             if ($errors) {
@@ -225,7 +225,8 @@ class AdministratorAction
             $new = new Intervenant();
             $new->setNom($data['nom'])
                 ->setPrenom($data['prenom'])
-                ->setRole($data['role']);
+                ->setRole($data['role'])
+                ->setTel($data['tel']);
 
             $this->manager->persist($new);
             $this->manager->flush();

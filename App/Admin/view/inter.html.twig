@@ -30,13 +30,17 @@
                 <td>{{ intervenant.prenom }}</td>
                 <td>{{ intervenant.role }}</td>
                 <td>
-                    <!-- Button trigger modal -->
-                    <button type="button" class="btn btn-danger" data-bs-toggle="modal"
-                        data-bs-target="#exampleModal{{ intervenant.id }}">
-                        Supprimer
-                    </button>
+                    <!-- Boutton supprimer modal -->
+                    <a href="{{ intervenant.id }}" data-bs-toggle="modal"
+                        data-bs-target="#exampleModal{{ intervenant.id }}"><i class="fa-sharp fa-solid fa-trash"
+                            style="color: #df0101;"></i></a>
 
-                    <!-- Modal -->
+                    <!-- Boutton téléphone modal -->
+                    <a href="{{ intervenant.id }}" data-bs-toggle="modal"
+                        data-bs-target="#phoneModal{{ intervenant.id }}" class="ms-3"><i
+                            class="fa-solid fa-phone"></i></a>
+
+                    <!-- Modal supprimer l'intervenant -->
                     <div class="modal fade" id="exampleModal{{ intervenant.id }}" tabindex="-1"
                         aria-labelledby="exampleModalLabel{{ intervenant.id }}" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered">
@@ -55,7 +59,27 @@
                                         <a href="{{ path('inter.delete', {id: intervenant.id}) }}"
                                             class="text-decoration-none text-white">Confirmer</a>
                                     </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
+                    <!-- Modal Téléphone Intervenant -->
+                    <div class="modal fade" id="phoneModal{{ intervenant.id }}" tabindex="-1"
+                        aria-labelledby="phoneModalLabel{{ intervenant.id }}" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="phoneModalLabel{{ intervenant.id }}">Numéro de téléphone de {{
+                                        intervenant.nom }} {{ intervenant.prenom }} / {{ intervenant.role }}</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body fs-2">
+                                    {{ intervenant.tel }}
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Fermer</button>
                                 </div>
                             </div>
                         </div>
