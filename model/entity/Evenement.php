@@ -180,6 +180,16 @@ class Evenement
         return $this->endAt;
     }
 
+    public function getTimesForInputStartAt(): string
+    {
+        return $this->startAt->format('Y-m-d\TH:i');
+    }
+
+    public function getTimesForInputEndAt(): string
+    {
+        return $this->endAt->format('Y-m-d\TH:i');
+    }
+
     /**
      * Get user>
      *

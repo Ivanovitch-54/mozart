@@ -30,6 +30,7 @@ header li {
         0px -5px 35px rgba(255, 255, 255, 0.3);
     background: linear-gradient(90deg, rgba(255, 255, 255, 0), rgb(255, 255, 255), rgb(255, 255, 255), rgba(255, 255, 255, 0));
     width: 100%;
+    user-select: none;
 }
 
 .link-cuisine {
@@ -125,11 +126,13 @@ header li {
 .bloc-actu {
     font-family: 'Josefin Sans', sans-serif;
     width: 90%;
+    user-select: none;
 }
 
 .welcome-text2 {
     background: linear-gradient(90deg, rgba(255, 255, 255, 0),rgb(255, 255, 255), rgb(255, 255, 255), rgb(255, 255, 255), rgba(255, 255, 255, 0));
     width: 100%;
+    user-select: none;
 }
 
 .welcome-pic2 {

@@ -2,8 +2,20 @@
     footer p {
         display: none;
     }
+
+    #logo {
+        display: none;
+    }
 }
 
 .border-top {
     border-color: gray!important;
+}
+
+#logo:hover {
+    transform: scale(1.1);
+}
+
+p {
+    user-select: none;
 }

@@ -45,7 +45,7 @@
                 <td>
                     {% if evenement.user_register == true %}
                     <!-- Bouton Liste des Participants -->
-                    <button type="button" class="btn btn-success px-2" data-bs-toggle="modal"
+                    <button type="button" class="btn btn-success px-1 py-1" data-bs-toggle="modal"
                         data-bs-target="#staticBackdrop{{ evenement.id }}">
                         Voir la liste
                     </button>
@@ -86,10 +86,9 @@
 
                 <td>
                     <!-- Button Options disponibles Evenement -->
-                    <button type="button" class="btn btn-danger" data-bs-toggle="modal"
-                        data-bs-target="#exampleModal{{ evenement.id }}">
-                        Supprimer
-                    </button>
+                    <a href="{{ evenement.id }}" data-bs-toggle="modal"
+                        data-bs-target="#exampleModal{{ evenement.id }}"><i class="fa-sharp fa-solid fa-trash"
+                            style="color: #df0101;"></i></a>
 
                     <!-- Modal Supprimer Evenement -->
                     <div class="modal fade" id="exampleModal{{ evenement.id }}" tabindex="-1"
@@ -98,7 +97,7 @@
                             <div class="modal-content">
                                 <div class="modal-header">
                                     <h1 class="modal-title fs-5" id="exampleModalLabel{{ evenement.id }}">Attention la
-                                        suppression est
+                                        suppression de l'événement est
                                         définitive ! <i class="fa-solid fa-triangle-exclamation"
                                             style="color: #ff0000;"></i></h1>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal"
@@ -115,10 +114,9 @@
                             </div>
                         </div>
                     </div>
-                    <button type="button" class="btn btn-warning mt-3">
-                        <a href="{{ path('event.update', {id: evenement.id}) }}"
-                            class="text-decoration-none text-dark">Modifier</a>
-                    </button>
+                    <!-- Modifier l'événement -->
+                    <a href="{{ path('event.update', {id: evenement.id}) }}" class="ms-3"><i
+                            class="fa-regular fa-pen-to-square"></i></a>
                 </td>
             </tr>
             {% endfor %}

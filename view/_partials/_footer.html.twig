@@ -4,7 +4,13 @@
 
 <div class="container mt-3">
   <footer class="container-fluid d-flex flex-wrap justify-content-center align-items-center border-top">
-    <p class="col-md-2 mb-0 text-dark">&copy; 2023 Noblecourt Ivan</p>
+    <img src="{{ assets('assets/img/logosite.png') }}" alt="Logo de l'épicerie" style="height: 150px; width:98px;" class="col-md-1" id="logo">
+
+    <p class="col-md-1"></p>
+
+    <p class="col-mb-2 mb-0 text-dark text-capitalize">épicerie Mozart 2023 &copy;</p>
+
+
     <ul class="nav col-md-8 justify-content-end text-center">
       <li class="nav-item"><a href="{{ path('accueil') }}" class="nav-link px-2 text-dark">Accueil</a></li>
       {% if user %}
