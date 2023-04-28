@@ -88,13 +88,13 @@ class HomeModule extends AbstractModule
             $mail->Port = 465;                    // SMTP port
 
             //sender information
-            $mail->setFrom($data['email'], $data['name']);
+            $mail->setFrom($data['email_user'], $data['name']);
 
             //receiver email address and name
             $mail->addAddress('ivan.noblecourt@gmail.com');
 
             $mail->Subject = $data['subject'];
-            $mail->Body    = $data['message'];
+            $mail->Body    = "Message envoyer par : ". $data['email_user'] . " // " . $data['message'];
 
             try {
                 $mail->send();
