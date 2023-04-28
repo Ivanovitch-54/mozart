@@ -223,9 +223,9 @@ class UserAction
             $data = $request->getParsedBody();
             $validator = new Validator($data);
             $errors = $validator
-                ->required('nom', 'prenom', 'old_password', 'new_password', 'confirm_password')
-                ->strSize('new_password', 12, 50)
-                ->confirm('new_password')
+                ->required('nom', 'prenom', 'old_password', 'newPassword', 'newPassword_confirm')
+                ->strSize('newPassword', 12, 50)
+                ->confirm('newPassword')
                 ->getErrors();
 
             if ($errors) {
@@ -233,7 +233,7 @@ class UserAction
                     $this->toaster->makeToast($error->toString(), Toaster::ERROR);
                 }
                 return (new Response())
-                    ->withHeader('Location', 'user/monCompte');
+                    ->withHeader('Location', '/user/monCompte');
             }
 
             if (!password_verify($data['old_password'], $user->getPassword())) {
@@ -245,7 +245,7 @@ class UserAction
             $user
                 ->setNom($data['nom'])
                 ->setPrenom($data['prenom'])
-                ->setPassword(password_hash($data['new_password'], PASSWORD_BCRYPT));
+                ->setPassword(password_hash($data['newPassword'], PASSWORD_BCRYPT));
             $this->manager->flush();
             $this->session->set('auth', $user);
             $this->toaster->makeToast('Mise à jour réussie', Toaster::SUCCESS);
