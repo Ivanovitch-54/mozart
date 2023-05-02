@@ -37,7 +37,7 @@
                 <td>{{ evenement.startAt|date("d/m/Y\\ H:i", "Europe/Paris") }}</td>
                 <td>{{ evenement.endAt|date("d/m/Y\\ H:i", "Europe/Paris") }}</td>
                 {% if evenement.places_restantes != 0 %}
-                <td>{{ evenement.places_restantes }} / {{ evenement.nbrPlacesDispo }}</td>
+                <td>{{ evenement.user_register }} / {{ evenement.nbrPlacesDispo }}</td>
                 {% else %}
                 <td class="bg-warning"><span class="text-danger">Complet</span></td>
                 {% endif %}
