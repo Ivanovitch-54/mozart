@@ -73,9 +73,9 @@ class AdministratorAction
         $method = $request->getMethod();
 
         if ($method === 'POST') {
-            $data = $request->getParsedBody(); // On récupère le contenu de $_POST (les valeurs saisis dans le formualaire)
-            // TODO $evenements = $this->repository->findAll(); Activer pour empêcher l'inscription de deux événements ayant le même noms
-            $validator = new Validator($data); // On instancie le Validator en lui passant le tableau de données à valider 
+            $data = $request->getParsedBody();
+
+            $validator = new Validator($data);
             $errors = $validator
                 ->required('nom', 'description', 'start_at', 'endAt', 'intervenant', 'nbr_places_dispo')
                 ->getErrors();
@@ -87,19 +87,6 @@ class AdministratorAction
                 return $this->renderer->render('@admin/addEvent');
             }
 
-
-            //TODO Activer pour empêcher l'inscription de deux événements ayant le même noms
-            // foreach ($evenements as $evenement) {
-
-            //     if ($evenement->getNom() === $data['nom']) { // Ici je vérifie si le id de l'événement rentrer n'existe pas dèja en BDD
-
-            //         $this->toaster->makeToast('Cette événement existe déjà', Toaster::ERROR); // Créer et affiche le Toast "ERREUR"
-
-            //         return $this->renderer->render('@admin/addEvent'); // Retourne la page addEvent
-            //     }
-            // }
-
-            // Ici j'instancie un nouveau événement contenu dans la variable $new 
             $new = new Evenement();
             $intervenant = $this->interRepository->find($data['intervenant']);
 
@@ -198,22 +185,19 @@ class AdministratorAction
     public function addInter(ServerRequestInterface $request)
     {
         $method = $request->getMethod();
-
         if ($method === 'POST') {
             $data = $request->getParsedBody();
             $intervenants = $this->interRepository->findAll(); // Permet d'allez récuperer tous les intervenants en bdd 
             $validator = new Validator($data);
             $errors = $validator
-                ->required('nom', 'prenom', 'role','tel')
+                ->required('nom', 'prenom', 'role', 'tel')
                 ->getErrors();
-
             if ($errors) {
                 foreach ($errors as $error) {
                     $this->toaster->makeToast($error->toString(), Toaster::ERROR);
                 }
                 return $this->redirect('inter.add');
             }
-
             // J'empêche un intervenant d'avoir deux fois le même rôle
             foreach ($intervenants as $intervenant) {
                 if ($intervenant->getNom() === $data['nom']) {
@@ -221,7 +205,6 @@ class AdministratorAction
                     return $this->renderer->render('@admin/addInter');
                 }
             }
-
             $new = new Intervenant();
             $new->setNom($data['nom'])
                 ->setPrenom($data['prenom'])
@@ -246,7 +229,7 @@ class AdministratorAction
         $this->manager->remove($intervenant); // Supprime l'intervenant
         $this->manager->flush(); // Applique la suppresion 
 
-        $this->toaster->makeToast('Intervenant supprimer avec succès', Toaster::SUCCESS);
+        $this->toaster->makeToast('Intervenant supprimer avec succès', Toaster::SUCCESS); // Affiche un toast en cas de succès
 
         return (new Response())
             ->withHeader('Location', '/admin/inter');
@@ -270,6 +253,21 @@ class AdministratorAction
         $this->toaster->makeToast('Participant retirer de l\'événement', Toaster::SUCCESS);
 
         return (new Response())
-        ->withHeader('Location', '/admin/event');
+            ->withHeader('Location', '/admin/event');
     }
 }
+
+
+            // TODO $evenements = $this->repository->findAll(); Activer pour empêcher l'inscription de deux événements ayant le même noms
+            // TODO Activer pour empêcher l'inscription de deux événements ayant le même noms
+            // foreach ($evenements as $evenement) {
+
+            //     if ($evenement->getNom() === $data['nom']) { // Ici je vérifie si le id de l'événement rentrer n'existe pas dèja en BDD
+
+            //         $this->toaster->makeToast('Cette événement existe déjà', Toaster::ERROR); // Créer et affiche le Toast "ERREUR"
+
+            //         return $this->renderer->render('@admin/addEvent'); // Retourne la page addEvent
+            //     }
+            // }
+
+            // Ici j'instancie un nouveau événement contenu dans la variable $new 

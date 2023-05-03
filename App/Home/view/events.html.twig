@@ -6,7 +6,6 @@
 <link rel="stylesheet" href="{{ assets('/assets/css/userEvent.css') }}" />
 {% endblock %}
 {% block body %}
-
 <h2 class="text-center mx-auto border rounded bg-white mb-4 py-2">Liste des événements disponibles</h2>
 <div class="container-fluid card-group gap-3 text-center mb-5 mt-5">
     {% for evenement in evenements %}
@@ -26,9 +25,7 @@
                         class="text-danger fs-5 bolder">{{
                         evenement.places_dispo }}</span></small></p>
 
-            {{ csrf() }}
-
-            
+            {{ csrf() }}        
         </div>
         <button class="btn btn-primary mb-3 w-50 mx-auto">
             <a href="{{ path('user.login') }}" class="text-decoration-none text-white">S'inscrire</a>
