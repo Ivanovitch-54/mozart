@@ -251,7 +251,7 @@ class UserAction
             $this->toaster->makeToast('Mise à jour réussie', Toaster::SUCCESS);
 
             return (new Response())
-                ->withHeader('Location', '/user/monCompte'); // En cas de succès retourne la page liste d'EVENT
+                ->withHeader('Location', '/user/monCompte');
         }
 
         return $this->renderer->render('@user/monCompte', [

@@ -66,7 +66,7 @@ class Validator
      * @param string $key
      * @param integer $min
      * @param integer $max
-     * @return void
+     * @return self
      */
     public function strSize(string $key, int $min, int $max): self // A besoin de la clé et d'une valeur MIN/MAX
     {
