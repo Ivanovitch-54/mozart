@@ -6,7 +6,7 @@
 
 /* Ne pas oublier de modifier l'url pour récupérer les images (Supprimer /public pour passez directement à /assets) */
 body {
-    background: linear-gradient(90deg, #c0d7d2, hsl(169, 23%, 98%));
+    background: linear-gradient(90deg, #c0d7d2, hsl(180, 20%, 98%));
 }
 
 header li {
