@@ -10,9 +10,9 @@ use Doctrine\Common\Collections\ArrayCollection;
  * @ORM\Entity
  * @ORM\Table(name="user")
  */
+
 class User
 {
-
     /**
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")

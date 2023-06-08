@@ -6,7 +6,6 @@
 <link rel="stylesheet" href="{{ absolute(assets('assets/css/adminLogin.css')) }}" />
 {% endblock %}
 {% block body %}
-{# La méthode POST récupére le 'name' de l'input enctype="multipart/form-data" permet de récuperer l'image envoyer // Obligatoire pour récupérer un fichier #}
 
 
 <div class="container d-flex flex-column align-items-center text-center">
@@ -25,9 +24,23 @@
                 aria-describedby="inputGroup-sizing-sm">
         </div>
 
+        {# CAPTCHA #}
+        <div class="g-recaptcha align-self-center" data-sitekey="6LeIgIMlAAAAAJjT_9J79tzTX-iMSTZ2ejI9oTqb"></div>
+        {# CAPTCHA #}
+
         {{ csrf() }}
 
-        <input type="submit" value="Se connecter" class="border border-warning rounded-4 bg-warning">
+        <input type="submit" value="Se connecter" class="border border-warning rounded-4 bg-warning mt-3">
     </form>
 </div>
 {% endblock %}
+
+{% block scripts %}
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+{% endblock %}
+
+
+
+
+{# La méthode POST récupére le 'name' de l'input enctype="multipart/form-data" permet de récuperer l'image envoyer //
+Obligatoire pour récupérer un fichier #}

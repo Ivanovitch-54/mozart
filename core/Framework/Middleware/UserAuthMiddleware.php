@@ -33,7 +33,7 @@ class UserAuthMiddleware extends AbstractMiddleware
         $uri = $request->getUri()->getPath(); // getUri permet de récuperer Localhost et getPath ce qui suit l'url 
         if (str_starts_with($uri, '/user')) { // Vérifie si l'url commence par '/user'
             $auth = $this->container->get(UserAuth::class);
-            if (!$auth->isLogged() or !$auth->isUser()) { // Si le User n'est pas connecter Ni un utilisateur ( or = || )
+            if (!$auth->isLogged() or !$auth->isUser()) {
                 $toaster = $this->container->get(Toaster::class);
                 $toaster->makeToast("Veuillez vous connecté pour continuer", Toaster::ERROR);
                 return $this->redirect('user.login');

@@ -20,20 +20,19 @@
             <p class="card-text">Fini le {{ evenement.endAt|date("d/m/Y\\", "Europe/Paris") }} à {{
                 evenement.endAt|date("H:i", "Europe/Paris") }}</p>
             <hr>
+        </div>
             {% if evenement.places_dispo != 0 %}
             <p class="card-text"><small class="text-dark">Nombres de places restantes : <span
                         class="text-danger fs-5 bolder">{{
                         evenement.places_dispo }}</span></small></p>
-
-            {{ csrf() }}        
-        </div>
         <button class="btn btn-primary mb-3 w-50 mx-auto">
             <a href="{{ path('user.login') }}" class="text-decoration-none text-white">S'inscrire</a>
         </button>
         {% else %}
-        <p class="card-text"><small class="text-danger text-uppercase bolder fs-5">Complet</small></p>
+        <p class="card-text mb-5"><small class="text-danger text-uppercase bolder fs-5">Complet</small></p>
         {% endif %}
     </div>
     {% endfor %}
+    {{ csrf() }}
 </div>
 {% endblock %}

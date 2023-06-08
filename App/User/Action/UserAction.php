@@ -150,10 +150,10 @@ class UserAction
     public function inscEvent(ServerRequestInterface $request)
     {
 
-        $event = $this->eventRepository->find($request->getAttribute('id')); // Permet d'allez récupérer l'ID
+        $event = $this->eventRepository->find($request->getAttribute('id')); // Permet d'allez récupérer l'ID de l'événement
 
         if ($event) {
-            $sess = $this->session->get('auth'); // Permet d'allez récupérer la personne authentifier'
+            $sess = $this->session->get('auth'); // Permet d'allez récupérer la personne authentifier
             $user = $this->repository->find($sess->getId()); // Permet de récuperer l'id de l'user auth 
 
             if ($event->getUsers()->count() >= $event->getNbrPlacesDispo()) { // Si le nombre d'Users inscrits a l'event est supérieur aux nbr de places dispo
@@ -207,7 +207,7 @@ class UserAction
         }
 
         return $this->renderer->render('@user/listEvent', [
-            "evenements" => $events, // "evenements" = nom de la variable / $response = Valeur de la variable 
+            "evenements" => $events,  
             "intervenant" => $inter,
         ]);
     }

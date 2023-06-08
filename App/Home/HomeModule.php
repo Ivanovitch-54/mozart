@@ -42,7 +42,7 @@ class HomeModule extends AbstractModule
         $this->interRepository = $manager->getRepository(Intervenant::class);
 
         $this->renderer->addPath('home', __DIR__ . DIRECTORY_SEPARATOR . 'view');
-        $this->router->get('/', [$this, 'index'], 'accueil'); // Index Correspond a la méthode appeler 
+        $this->router->get('/', [$this, 'index'], 'accueil');
         $this->router->get('/quiSommes', [$this, 'quiSommes'], 'quiSommes');
         $this->router->get('/dons', [$this, 'dons'], 'dons');
         $this->router->get('/contact', [$this, 'contact'], 'contact');

@@ -29,11 +29,14 @@ class AdminModule extends AbstractModule
 
         $this->renderer->addPath('admin', __DIR__ . DIRECTORY_SEPARATOR . 'view'); // Crée un chemin vers la vue Admin
 
-        $this->router->get('/admin/login', [$authAction, 'login'], 'admin.login'); // LogIn de l'Admin
-        $this->router->post('/admin/login', [$authAction, 'login']); // LogIn de l'Admin
-        $this->router->get('/admin/logout', [$authAction, 'logout'], 'admin.logout'); // LogOut de l'Admin 
-        $this->router->get('/admin/home', [$adminAction, 'home'], 'admin.home'); // Page Home de l'Admin
-
+        // LogIn de l'Admin
+        $this->router->get('/admin/login', [$authAction, 'login'], 'admin.login');
+        // LogIn de l'Admin
+        $this->router->post('/admin/login', [$authAction, 'login']);
+        // LogOut de l'Admin
+        $this->router->get('/admin/logout', [$authAction, 'logout'], 'admin.logout');
+        // Page Home de l'Admin
+        $this->router->get('/admin/home', [$adminAction, 'home'], 'admin.home');
         // Liste Des Evenements
         $this->router->get('/admin/event', [$adminAction, 'event'], 'admin.event');
         // Ajouter Un Evenement

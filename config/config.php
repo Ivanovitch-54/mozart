@@ -1,4 +1,5 @@
 <?php
+
 use Core\Db\DataBaseFactory;
 use Doctrine\ORM\EntityManager;
 use Core\Framework\Router\Router;
@@ -33,4 +34,3 @@ return [
     EntityManager::class => \DI\factory(DataBaseFactory::class),
     Toaster::class => \DI\autowire(),
 ];
-
